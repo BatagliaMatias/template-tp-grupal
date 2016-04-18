@@ -15,7 +15,6 @@ public class MainTests {
     public void initialGameTDD() {
         TddGame myGame = new TddGame();
        String out = myGame.processInput("nothing");
-
         assertEquals(out,"The name of this Subject is ...");
     }
 
