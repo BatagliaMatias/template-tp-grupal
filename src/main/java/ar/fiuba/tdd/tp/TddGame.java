@@ -12,8 +12,7 @@ public class TddGame {
         if (state == BEGIN) {
             output = "The name of this Subject is ...";
             state = SEND;
-        }
-        else if (state == SEND) {
+        } else if (state == SEND) {
             if (theInput.equalsIgnoreCase("TDD")) {
                 output = "YES. YOU WIN. THE GAME START AGAIN...";
                 state = BEGIN;
@@ -21,6 +20,6 @@ public class TddGame {
                 output = "NO. TRY AGAIN";
             }
         }
-     return output;
+        return output;
     }
 }
