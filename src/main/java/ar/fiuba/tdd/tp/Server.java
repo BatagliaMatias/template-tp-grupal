@@ -1,8 +1,6 @@
 package ar.fiuba.tdd.tp;
 
-import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.IOException;
 
 public class Server {
     public static void main(String[] args) throws IOException {
@@ -11,10 +9,8 @@ public class Server {
         int portNumber = Integer.parseInt(args[0]);
 
         try {
-            ServerSocket serverSocket = new ServerSocket(portNumber);
-            Socket clientSocket = serverSocket.accept();
-            PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
+            ServerNetworkFacade network = new ServerNetworkFacade();
+            network.startListening(portNumber);
 
             String inputLine;
             String outputLine;
@@ -22,11 +18,11 @@ public class Server {
             // Initiate conversation with client
             Game game = new TddGame();
             outputLine = game.processInput(null);
-            out.println(outputLine);
+            network.sendMessage(outputLine);
 
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = network.receiveMessage()) != null) {
                 outputLine = game.processInput(inputLine);
-                out.println(outputLine);
+                network.sendMessage(outputLine);
                 if (outputLine.equals("YES. YOU WIN. THE GAME START AGAIN...")) {
                     break;
                 }
