@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.commands;
 
 public abstract class GameCommand {
     private String identifier;
@@ -7,7 +7,7 @@ public abstract class GameCommand {
         this.identifier = identifier;
     }
 
-    abstract String execute();
+    public abstract String execute();
 
     public String getIdentifier() {
         return identifier;

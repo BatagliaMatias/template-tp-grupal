@@ -7,13 +7,13 @@ public abstract class Action {
 
     Action nextAction;
 
-    public abstract void solve(String userAction);
-
-    public abstract boolean canSolve(ActionsEnum action);
-
     public Action() {
         this.nextAction = null;
     }
+
+    public abstract void solve(String userAction);
+
+    public abstract boolean canSolve(ActionsEnum action);
 
     public void setNextAction(Action otherAction) {
         this.nextAction = otherAction;
@@ -24,13 +24,13 @@ public abstract class Action {
     }
 
     public void reSendAction(String userAction) {
-        if ( this.nextAction != null ) {
+        if (this.nextAction != null) {
             this.nextAction.process(userAction);
         }
     }
 
     public void process(String userAction) {
-        if ( this.canSolveRequest(userAction) ) {
+        if (this.canSolveRequest(userAction)) {
             this.solve(userAction);
         } else {
             this.reSendAction(userAction);

@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp.client;
 
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 public class Client {
@@ -18,7 +18,7 @@ public class Client {
             String fromUser;
             String fromServer;
 
-            while ( network.continuesReceivingMessages() ) {
+            while (network.continuesReceivingMessages()) {
                 fromServer = network.getLastMessageReceived();
                 System.out.println("From Server: " + fromServer);
                 if (fromServer.equals("YES. YOU WIN. THE GAME START AGAIN...")) {

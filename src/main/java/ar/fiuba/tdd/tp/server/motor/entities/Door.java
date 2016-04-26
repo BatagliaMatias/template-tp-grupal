@@ -1,4 +1,9 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.entities;
+
+import ar.fiuba.tdd.tp.server.motor.Player;
+import ar.fiuba.tdd.tp.server.motor.Stage;
+import ar.fiuba.tdd.tp.server.motor.uses.Openable;
+import ar.fiuba.tdd.tp.server.motor.uses.Unlockable;
 
 public class Door extends GameEntity implements Openable, Unlockable {
 

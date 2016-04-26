@@ -1,4 +1,7 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.entities;
+
+import ar.fiuba.tdd.tp.server.motor.uses.Closable;
+import ar.fiuba.tdd.tp.server.motor.uses.Openable;
 
 import java.util.List;
 

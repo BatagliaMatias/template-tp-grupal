@@ -1,4 +1,6 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.entities;
+
+import ar.fiuba.tdd.tp.server.motor.uses.Nameable;
 
 public abstract class GameEntity implements Nameable {
     private String name;

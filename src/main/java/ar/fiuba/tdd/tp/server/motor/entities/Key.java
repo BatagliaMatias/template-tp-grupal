@@ -1,4 +1,6 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.entities;
+
+import ar.fiuba.tdd.tp.server.motor.uses.Unlockable;
 
 import java.util.List;
 

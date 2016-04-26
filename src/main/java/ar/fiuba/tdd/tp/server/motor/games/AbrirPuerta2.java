@@ -1,4 +1,15 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.games;
+
+import ar.fiuba.tdd.tp.server.motor.Player;
+import ar.fiuba.tdd.tp.server.motor.Stage;
+import ar.fiuba.tdd.tp.server.motor.commands.Close;
+import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
+import ar.fiuba.tdd.tp.server.motor.commands.Open;
+import ar.fiuba.tdd.tp.server.motor.commands.Pick;
+import ar.fiuba.tdd.tp.server.motor.entities.Box;
+import ar.fiuba.tdd.tp.server.motor.entities.Door;
+import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
+import ar.fiuba.tdd.tp.server.motor.entities.Key;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +27,8 @@ public class AbrirPuerta2 extends Game {
         player = new Player();
         player.setlocation(room1);
 
-        // estos worldEntites deberian ser StageEntities (tratar de hacerlo como los container de Matias), entonces varian dependendiendo de que stage estes, para este juego no es necesario asi que por ahora no lo hago
+        // estos worldEntites deberian ser StageEntities (tratar de hacerlo como los container de Matias),
+        // entonces varian dependendiendo de que stage estes, para este juego no es necesario asi que por ahora no lo hago
         List<GameEntity> worldEntities = new ArrayList<GameEntity>();
         List<GameEntity> entitiesInsideBox = new ArrayList<GameEntity>();
         List<GameEntity> playerInventory = player.getInventory();

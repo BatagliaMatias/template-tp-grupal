@@ -1,16 +1,18 @@
 package ar.fiuba.tdd.tp.shared;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by jorlando on 26/04/16.
  */
 public abstract class NetworkFacade {
 
+    protected static final String ENCODING = "UTF-8";
+    public String lastMessageReceived = null;
     protected PrintWriter outputStream;
     protected BufferedReader inputStream;
-    public String lastMessageReceived = null;
-    protected static final String ENCODING = "UTF-8";
 
     public NetworkFacade() {
     }

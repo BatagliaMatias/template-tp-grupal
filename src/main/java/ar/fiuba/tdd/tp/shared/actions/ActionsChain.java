@@ -15,7 +15,7 @@ public class ActionsChain {
     }
 
     public void addAction(Action newAction) {
-        if ( !this.actions.isEmpty() ) {
+        if (!this.actions.isEmpty()) {
             this.getTheLastAction().setNextAction(newAction);
         }
         this.actions.add(newAction);

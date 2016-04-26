@@ -1,5 +1,7 @@
-package ar.fiuba.tdd.tp.server.model;
+package ar.fiuba.tdd.tp.server.motor.games;
 
+
+import ar.fiuba.tdd.tp.server.motor.commands.GameCommand;
 
 import java.util.ArrayList;
 import java.util.List;

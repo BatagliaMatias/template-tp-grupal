@@ -1,4 +1,7 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor;
+
+import ar.fiuba.tdd.tp.server.motor.games.AbrirPuerta2;
+import ar.fiuba.tdd.tp.server.motor.games.Game;
 
 public class Motor {
 

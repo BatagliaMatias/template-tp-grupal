@@ -1,4 +1,6 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.commands;
+
+import ar.fiuba.tdd.tp.server.motor.uses.Closable;
 
 public class Close extends GameCommand {
 

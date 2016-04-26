@@ -1,4 +1,6 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor;
+
+import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,7 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.motor.commands;
+
+import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
+import ar.fiuba.tdd.tp.server.motor.uses.Pickable;
 
 import java.util.List;
 
