@@ -10,6 +10,6 @@ public class LoadAction extends Action {
     }
 
     public boolean canSolve(String userAction) {
-        return (userAction == "load" );
+        return (userAction.equals("load"));
     }
 }

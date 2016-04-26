@@ -8,6 +8,7 @@ public abstract class Action {
     Action nextAction;
 
     public abstract void solve(String userAction);
+
     public abstract boolean canSolve(String userAction);
 
     public Action() {

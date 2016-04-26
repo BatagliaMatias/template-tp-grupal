@@ -22,7 +22,7 @@ public class ActionsChain {
     }
 
     public Action getTheLastAction() {
-        return this.actions.get(this.actions.size()-1);
+        return this.actions.get(this.actions.size() - 1);
     }
 
     public void processAction(String userAction) {

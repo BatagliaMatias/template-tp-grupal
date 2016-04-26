@@ -10,7 +10,7 @@ public class HelpAction extends Action {
     }
 
     public boolean canSolve(String userAction) {
-        return (userAction == "help" );
+        return (userAction.equals("help"));
     }
 }
 
