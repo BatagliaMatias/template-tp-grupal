@@ -7,7 +7,7 @@ public class TddGame extends Game {
     private static final int END = 2;
 
     private int state = BEGIN;
-
+/*
     @Override
     void initializeGame() {
         state = BEGIN;
@@ -39,5 +39,5 @@ public class TddGame extends Game {
     @Override
     void endGame() {
         // ...
-    }
+    }*/
 }

@@ -16,12 +16,11 @@ public class Server {
             String outputLine;
 
             // Initiate conversation with client
-            Game game = new TddGame();
-            outputLine = game.processInput(null);
-            network.sendMessage(outputLine);
+            Motor motor = new Motor();
+            network.sendMessage("Hola");
 
             while ((inputLine = network.receiveMessage()) != null) {
-                outputLine = game.processInput(inputLine);
+                outputLine = motor.processInput(inputLine);
                 network.sendMessage(outputLine);
                 if (outputLine.equals("YES. YOU WIN. THE GAME START AGAIN...")) {
                     break;
