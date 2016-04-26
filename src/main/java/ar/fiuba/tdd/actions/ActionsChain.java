@@ -21,7 +21,7 @@ public class ActionsChain {
         this.actions.add(newAction);
     }
 
-    public Action getTheLastAction() {
+    private Action getTheLastAction() {
         return this.actions.get(this.actions.size() - 1);
     }
 
@@ -29,5 +29,9 @@ public class ActionsChain {
         if (!this.actions.isEmpty()) {
             this.actions.get(0).process(userAction);
         }
+    }
+
+    public int getSizeActions() {
+        return this.actions.size();
     }
 }

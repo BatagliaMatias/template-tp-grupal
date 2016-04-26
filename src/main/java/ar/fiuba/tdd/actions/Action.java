@@ -20,7 +20,7 @@ public abstract class Action {
     }
 
     public boolean canSolveRequest(String userAction) {
-        return this.canSolve(ActionsEnum.value(userAction));
+        return this.canSolve(ActionsEnum.getEnum(userAction));
     }
 
     public void reSendAction(String userAction) {

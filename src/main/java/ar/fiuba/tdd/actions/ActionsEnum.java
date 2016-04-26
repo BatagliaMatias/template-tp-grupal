@@ -16,9 +16,13 @@ public enum ActionsEnum {
         this.name = newName;
     }
 
-    public static ActionsEnum value(String nameToAnalize) {
+    public String getName() {
+        return this.name;
+    }
+
+    public static ActionsEnum getEnum(String nameToAnalize) {
         try {
-            return ActionsEnum.valueOf(nameToAnalize);
+            return ActionsEnum.valueOf(nameToAnalize.toUpperCase());
         } catch (IllegalArgumentException t) {
             return ActionsEnum.INVALID;
         }
