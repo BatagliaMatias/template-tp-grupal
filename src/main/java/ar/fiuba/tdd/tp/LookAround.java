@@ -6,7 +6,7 @@ public class LookAround extends GameCommand {
 
     private List<? extends Nameable> targets;
 
-    public LookAround(List<? extends Nameable>targets) {
+    public LookAround(List<? extends Nameable> targets) {
         super("look around");
         this.targets = targets;
     }
@@ -17,7 +17,11 @@ public class LookAround extends GameCommand {
             result = "There is nothing around";
         } else {
             for (Nameable nameable : targets) {
-                result += "There is a " + nameable.getName() + ".";
+                StringBuffer buf = new StringBuffer();
+                buf.append("There is a ");
+                buf.append(nameable.getName());
+                buf.append(".");
+                result = buf.toString();
             }
         }
         return result;

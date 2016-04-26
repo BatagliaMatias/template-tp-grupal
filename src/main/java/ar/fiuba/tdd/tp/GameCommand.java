@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp;
 
-public abstract class  GameCommand {
+public abstract class GameCommand {
     private String identifier;
 
     protected GameCommand(String identifier) {

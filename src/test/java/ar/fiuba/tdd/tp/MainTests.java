@@ -11,6 +11,7 @@ public class MainTests {
         assertEquals(0, 0);
     }
 
+    /*
     @Test
     public void initialGameTDD() {
         TddGame myGame = new TddGame();
@@ -25,6 +26,6 @@ public class MainTests {
         assertEquals(out,"The name of this Subject is ...");
         String secondOut = myGame.processInput("TDD");
         assertEquals(secondOut,"YES. YOU WIN. THE GAME START AGAIN...");
-    }
+    }*/
 
 }

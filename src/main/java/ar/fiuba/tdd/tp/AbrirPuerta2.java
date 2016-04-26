@@ -21,11 +21,11 @@ public class AbrirPuerta2 extends Game {
         List<GameEntity> entitiesInsideBox = new ArrayList<GameEntity>();
         List<GameEntity> playerInventory = player.getInventory();
 
-        Door puerta = new Door(player,finalRoom);
-        Key llave = new Key(puerta, worldEntities,playerInventory);
+        Door puerta = new Door(player, finalRoom);
+        Key llave = new Key(puerta, worldEntities, playerInventory);
 
         entitiesInsideBox.add(llave);
-        Box box = new Box(entitiesInsideBox,worldEntities);
+        Box box = new Box(entitiesInsideBox, worldEntities);
 
         worldEntities.add(puerta);
         worldEntities.add(box);
@@ -38,7 +38,7 @@ public class AbrirPuerta2 extends Game {
     }
 
     @Override
-    boolean gameOver() {
+    boolean isGameOver() {
         return player.getLocation() == finalRoom;
     }
 

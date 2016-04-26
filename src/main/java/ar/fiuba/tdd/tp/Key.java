@@ -8,7 +8,7 @@ public class Key extends PickableGameEntity {
     private Unlockable target;
 
     public Key(Unlockable targetToUnlock, List<GameEntity> originLocation, List<GameEntity> destinationLocation) {
-        super(NAME,originLocation,destinationLocation);
+        super(NAME, originLocation, destinationLocation);
         this.target = targetToUnlock;
     }
 

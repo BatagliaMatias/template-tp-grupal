@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class Game {
     protected List<GameCommand> commands = new ArrayList<GameCommand>();
 
-    abstract boolean gameOver();
+    abstract boolean isGameOver();
 
     abstract String getGameOverMessage();
 
@@ -17,7 +17,7 @@ public abstract class Game {
         for (GameCommand command : commands) {
             if (input.equals(command.getIdentifier())) {
                 String response = command.execute();
-                if (gameOver()) {
+                if (isGameOver()) {
                     response = getGameOverMessage();
                 }
                 return response;
