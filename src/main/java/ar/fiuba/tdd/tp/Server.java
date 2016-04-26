@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.network.ServerNetworkFacade;
+
 import java.io.IOException;
 
 public class Server {
@@ -10,9 +12,8 @@ public class Server {
 
         try {
             ServerNetworkFacade network = new ServerNetworkFacade();
-            network.startListening(portNumber);
+            network.initConnection(portNumber);
 
-            String inputLine;
             String outputLine;
 
             // Initiate conversation with client
@@ -20,8 +21,8 @@ public class Server {
             outputLine = game.processInput(null);
             network.sendMessage(outputLine);
 
-            while ((inputLine = network.receiveMessage()) != null) {
-                outputLine = game.processInput(inputLine);
+            while (network.continuesReceivingMessages()) {
+                outputLine = game.processInput(network.getLastMessageReceived());
                 network.sendMessage(outputLine);
                 if (outputLine.equals("YES. YOU WIN. THE GAME START AGAIN...")) {
                     break;

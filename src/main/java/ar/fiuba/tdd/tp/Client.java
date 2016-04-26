@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.network.ClientNetworkFacade;
+
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -7,34 +9,31 @@ import java.net.UnknownHostException;
 public class Client {
     public static void main(String[] args) throws IOException {
 
-        //Usage: java localhost 4444 for i.e.
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
+        //Usage: java 4444 for i.e.
+        int portNumber = Integer.parseInt(args[0]);
 
         try {
-            Socket socket = new Socket(hostName, portNumber);
-            PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+            ClientNetworkFacade network = new ClientNetworkFacade();
+            network.initConnection(portNumber);
 
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
-
-            String fromServer;
             String fromUser;
+            String fromServer;
 
-            while ((fromServer = in.readLine()) != null) {
+            while ( network.continuesReceivingMessages() ) {
+                fromServer = network.getLastMessageReceived();
                 System.out.println("From Server: " + fromServer);
                 if (fromServer.equals("YES. YOU WIN. THE GAME START AGAIN...")) {
                     break;
                 }
 
-                fromUser = stdIn.readLine();
+                fromUser = network.getMessageToSend();
                 if (fromUser != null) {
                     System.out.println("From Client: " + fromUser);
-                    out.println(fromUser);
+                    network.sendMessage(fromUser);
                 }
             }
         } catch (UnknownHostException e) {
-            System.err.println("Bad host: " + hostName);
+            System.err.println("Bad host ");
             System.exit(1);
         }
     }
