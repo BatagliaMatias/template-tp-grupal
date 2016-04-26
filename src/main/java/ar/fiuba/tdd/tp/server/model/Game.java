@@ -1,26 +1,29 @@
 package ar.fiuba.tdd.tp.server.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Game {
-    abstract void initializeGame();
+    protected List<GameCommand> commands = new ArrayList<GameCommand>();
 
-    abstract String makePlay(String input);
+    abstract boolean isGameOver();
 
-    abstract boolean endOfGame();
-
-    abstract void endGame();
+    abstract String getGameOverMessage();
 
     /* template method : */
-    public String processInput(String theInput) {
-        String output = null;
+    public String processInput(String input) {
 
-        output = makePlay(theInput);
-        if (endOfGame()) {
-            endGame();
-            //... (por ej llamar a callback que finalize la coneccion)
+        for (GameCommand command : commands) {
+            if (input.equals(command.getIdentifier())) {
+                String response = command.execute();
+                if (isGameOver()) {
+                    response = getGameOverMessage();
+                }
+                return response;
+            }
         }
-
-        return output;
+        return "Invalid command";
     }
 }
 
