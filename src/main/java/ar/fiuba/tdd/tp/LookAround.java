@@ -4,21 +4,20 @@ import java.util.List;
 
 public class LookAround extends GameCommand {
 
-    private List<GameEntity> entities;
+    private List<? extends Nameable> targets;
 
-    public LookAround(List<GameEntity> entities) {
-
+    public LookAround(List<? extends Nameable>targets) {
         super("look around");
-        this.entities = entities;
+        this.targets = targets;
     }
 
     public String execute() {
         String result = "";
-        if (this.entities.size() == 0) {
+        if (targets.size() == 0) {
             result = "There is nothing around";
         } else {
-            for (GameEntity entity : entities) {
-                result += " There is a " + entity.getName();
+            for (Nameable nameable : targets) {
+                result += "There is a " + nameable.getName() + ".";
             }
         }
         return result;

@@ -7,11 +7,23 @@ public class AbrirPuerta2 extends Game {
 
     public AbrirPuerta2() {
 
-        List<GameEntity> entities = new ArrayList<GameEntity>();
-        entities.add(new Door());
+        List<GameEntity> worldEntities = new ArrayList<GameEntity>();
+        List<GameEntity> entitiesInsideBox = new ArrayList<GameEntity>();
 
-        commands = new ArrayList<GameCommand>();
-        commands.add(new LookAround(entities));
+        Door puerta = new Door();
+        Key llave = new Key(puerta);
+        entitiesInsideBox.add(llave);
+        Box box = new Box(entitiesInsideBox,worldEntities);
+
+        worldEntities.add(puerta);
+        worldEntities.add(box);
+
+        commands.add(new LookAround(worldEntities));
+        commands.add(new Open(puerta));
+        commands.add(new Open(box));
+        commands.add(new Close(puerta));
+        commands.add(new Close(box));
+        commands.add(new Pick(llave));
     }
 
 }

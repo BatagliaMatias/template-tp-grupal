@@ -1,10 +1,11 @@
 package ar.fiuba.tdd.tp;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Game {
-    protected List<GameCommand> commands;
+    protected List<GameCommand> commands = new ArrayList<GameCommand>();
 
     protected Game(/*List<GameCommand> commands*/) {
         /*this.commands = commands;*/
@@ -27,7 +28,7 @@ public abstract class Game {
                 return command.execute();
             }
         }
-        return "Invalid comand";
+        return "Invalid command";
     }
 }
 
