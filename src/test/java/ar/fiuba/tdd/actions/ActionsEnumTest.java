@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.actions;
 
+import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

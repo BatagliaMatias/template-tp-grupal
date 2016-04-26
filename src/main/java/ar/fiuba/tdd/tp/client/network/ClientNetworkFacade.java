@@ -1,4 +1,6 @@
-package ar.fiuba.tdd.network;
+package ar.fiuba.tdd.tp.client.network;
+
+import ar.fiuba.tdd.tp.shared.NetworkFacade;
 
 import java.io.*;
 import java.net.Socket;

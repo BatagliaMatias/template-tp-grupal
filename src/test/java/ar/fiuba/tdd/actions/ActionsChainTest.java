@@ -1,5 +1,9 @@
 package ar.fiuba.tdd.actions;
 
+import ar.fiuba.tdd.tp.shared.actions.ActionsChain;
+import ar.fiuba.tdd.tp.shared.actions.HelpAction;
+import ar.fiuba.tdd.tp.shared.actions.InvalidAction;
+import ar.fiuba.tdd.tp.shared.actions.LoadAction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

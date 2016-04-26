@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.server.model.TddGame;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

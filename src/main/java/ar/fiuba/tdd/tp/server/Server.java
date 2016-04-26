@@ -1,6 +1,8 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server;
 
-import ar.fiuba.tdd.network.ServerNetworkFacade;
+import ar.fiuba.tdd.tp.server.network.ServerNetworkFacade;
+import ar.fiuba.tdd.tp.server.model.Game;
+import ar.fiuba.tdd.tp.server.model.TddGame;
 
 import java.io.IOException;
 

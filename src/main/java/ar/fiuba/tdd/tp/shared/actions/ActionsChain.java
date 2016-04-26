@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.actions;
+package ar.fiuba.tdd.tp.shared.actions;
 
 import java.util.ArrayList;
 import java.util.List;

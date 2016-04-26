@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.network;
+package ar.fiuba.tdd.tp.shared;
 
 import java.io.*;
 

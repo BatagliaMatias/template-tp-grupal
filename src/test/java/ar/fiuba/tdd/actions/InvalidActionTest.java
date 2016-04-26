@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.actions;
 
+import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
+import ar.fiuba.tdd.tp.shared.actions.InvalidAction;
 import org.junit.*;
 
 import java.io.ByteArrayOutputStream;

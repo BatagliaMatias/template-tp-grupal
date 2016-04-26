@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.actions;
+package ar.fiuba.tdd.tp.shared.actions;
 
 /**
  * Created by jorlando on 23/04/16.

@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server.model;
 
 public class TddGame extends Game {
 

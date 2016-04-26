@@ -1,9 +1,8 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.client;
 
-import ar.fiuba.tdd.network.ClientNetworkFacade;
+import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
 
 import java.io.*;
-import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
