@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.network;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -10,7 +9,6 @@ import java.net.Socket;
 public class ClientNetworkFacade extends NetworkFacade {
 
     private static final String HOST_NAME = "localhost";
-    private static final String ENCODING = "UTF-8";
     private BufferedReader standardInput;
 
     public void initConnection(int port) throws IOException {

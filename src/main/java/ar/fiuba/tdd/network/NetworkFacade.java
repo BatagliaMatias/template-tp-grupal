@@ -1,17 +1,16 @@
 package ar.fiuba.tdd.network;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  * Created by jorlando on 26/04/16.
  */
 public abstract class NetworkFacade {
 
-    PrintWriter outputStream;
-    BufferedReader inputStream;
-    String lastMessageReceived = null;
+    protected PrintWriter outputStream;
+    protected BufferedReader inputStream;
+    public String lastMessageReceived = null;
+    protected static final String ENCODING = "UTF-8";
 
     public NetworkFacade() {
     }
