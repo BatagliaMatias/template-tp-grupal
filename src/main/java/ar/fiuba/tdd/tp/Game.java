@@ -7,25 +7,20 @@ import java.util.List;
 public abstract class Game {
     protected List<GameCommand> commands = new ArrayList<GameCommand>();
 
-    protected Game(/*List<GameCommand> commands*/) {
-        /*this.commands = commands;*/
-    }
+    abstract boolean gameOver();
 
-    /*
-    abstract void initializeGame();
-
-    abstract String makePlay(String input);
-
-    abstract boolean endOfGame();
-
-    abstract void endGame();*/
+    abstract String getGameOverMessage();
 
     /* template method : */
     public String processInput(String input) {
 
         for (GameCommand command : commands) {
             if (input.equals(command.getIdentifier())) {
-                return command.execute();
+                String response = command.execute();
+                if (gameOver()) {
+                    response = getGameOverMessage();
+                }
+                return response;
             }
         }
         return "Invalid command";

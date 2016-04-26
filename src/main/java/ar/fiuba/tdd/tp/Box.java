@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp;
 
 import java.util.List;
 
-public class Box extends GameEntity implements Openable {
+public class Box extends GameEntity implements Openable, Closable {
     private static final String NAME = "box";
     private List<GameEntity> contents;
     private List<GameEntity> worldEntities;

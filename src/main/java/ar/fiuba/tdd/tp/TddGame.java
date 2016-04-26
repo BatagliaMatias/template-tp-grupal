@@ -7,6 +7,16 @@ public class TddGame extends Game {
     private static final int END = 2;
 
     private int state = BEGIN;
+
+    @Override
+    boolean gameOver() {
+        return false;
+    }
+
+    @Override
+    String getGameOverMessage() {
+        return null;
+    }
 /*
     @Override
     void initializeGame() {
