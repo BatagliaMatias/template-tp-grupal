@@ -9,7 +9,7 @@ public abstract class Action {
 
     public abstract void solve(String userAction);
 
-    public abstract boolean canSolve(String userAction);
+    public abstract boolean canSolve(ActionsEnum action);
 
     public Action() {
         this.nextAction = null;
@@ -19,6 +19,10 @@ public abstract class Action {
         this.nextAction = otherAction;
     }
 
+    public boolean canSolveRequest(String userAction) {
+        return this.canSolve(ActionsEnum.value(userAction));
+    }
+
     public void reSendAction(String userAction) {
         if ( this.nextAction != null ) {
             this.nextAction.process(userAction);
@@ -26,7 +30,7 @@ public abstract class Action {
     }
 
     public void process(String userAction) {
-        if ( this.canSolve(userAction) ) {
+        if ( this.canSolveRequest(userAction) ) {
             this.solve(userAction);
         } else {
             this.reSendAction(userAction);

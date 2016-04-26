@@ -9,7 +9,7 @@ public class LoadAction extends Action {
         //TODO: do something
     }
 
-    public boolean canSolve(String userAction) {
-        return (userAction.equals("load"));
+    public boolean canSolve(ActionsEnum action) {
+        return action.equals(ActionsEnum.LOAD);
     }
 }

@@ -9,8 +9,8 @@ public class InvalidAction extends Action {
         System.out.println("Action " + userAction + " not recognized");
     }
 
-    public boolean canSolve(String userAction) {
-        return true;
+    public boolean canSolve(ActionsEnum action) {
+        return action.equals(ActionsEnum.INVALID);
     }
 }
 

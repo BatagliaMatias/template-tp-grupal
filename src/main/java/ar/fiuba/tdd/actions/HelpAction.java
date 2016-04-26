@@ -9,8 +9,8 @@ public class HelpAction extends Action {
         //TODO: do something
     }
 
-    public boolean canSolve(String userAction) {
-        return (userAction.equals("help"));
+    public boolean canSolve(ActionsEnum action) {
+        return action.equals(ActionsEnum.HELP);
     }
 }
 
