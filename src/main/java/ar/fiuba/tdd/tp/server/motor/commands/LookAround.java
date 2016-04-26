@@ -18,13 +18,13 @@ public class LookAround extends GameCommand {
         if (targets.size() == 0) {
             result = "There is nothing around";
         } else {
+            StringBuilder buf = new StringBuilder();
             for (Nameable nameable : targets) {
-                StringBuffer buf = new StringBuffer();
                 buf.append("There is a ");
                 buf.append(nameable.getName());
                 buf.append(".");
-                result = buf.toString();
             }
+            result = buf.toString();
         }
         return result;
     }

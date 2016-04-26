@@ -10,7 +10,7 @@ public class PickableGameEntity extends GameEntity implements Pickable {
        destinationLocation: container where this entity is moved to after its picked
     */
 
-    List<GameEntity> destinationLocation;
+    private List<GameEntity> destinationLocation;
     private List<GameEntity> originLocation;
 
 
