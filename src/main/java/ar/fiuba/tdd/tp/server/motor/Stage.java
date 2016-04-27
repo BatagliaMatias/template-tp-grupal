@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp.server.motor;
 
 import ar.fiuba.tdd.tp.server.motor.uses.Nameable;
 
-public class Stage implements Nameable {
+public class Stage extends EntityContainer implements Nameable {
     private String name;
 
     public Stage(String name) {

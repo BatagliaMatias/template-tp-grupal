@@ -1,27 +1,35 @@
 package ar.fiuba.tdd.tp.server.motor.commands;
 
-import ar.fiuba.tdd.tp.server.motor.uses.Nameable;
+import ar.fiuba.tdd.tp.server.motor.EntityContainer;
+import ar.fiuba.tdd.tp.server.motor.Player;
+import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
 
-import java.util.List;
+import java.util.Iterator;
 
 public class LookAround extends GameCommand {
 
-    private List<? extends Nameable> targets;
+    private Player player;
 
-    public LookAround(List<? extends Nameable> targets) {
+    public LookAround(Player player) {
         super("look around");
-        this.targets = targets;
+        this.player = player;
     }
 
     public String execute() {
         String result = "";
-        if (targets.size() == 0) {
+        EntityContainer target = player.getLocation();
+
+        if (target.size() == 0) {
             result = "There is nothing around";
         } else {
             StringBuilder buf = new StringBuilder();
-            for (Nameable nameable : targets) {
+
+            Iterator<GameEntity> iter = target.getIter();
+            while (iter.hasNext()) {
+                GameEntity entity = iter.next();
+
                 buf.append("There is a ");
-                buf.append(nameable.getName());
+                buf.append(entity.getName());
                 buf.append(".");
             }
             result = buf.toString();

@@ -8,11 +8,7 @@ import ar.fiuba.tdd.tp.server.motor.commands.Open;
 import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.entities.Box;
 import ar.fiuba.tdd.tp.server.motor.entities.Door;
-import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AbrirPuerta2 extends Game {
 
@@ -27,26 +23,20 @@ public class AbrirPuerta2 extends Game {
         player = new Player();
         player.setlocation(room1);
 
-        // estos worldEntites deberian ser StageEntities (tratar de hacerlo como los container de Matias),
-        // entonces varian dependendiendo de que stage estes, para este juego no es necesario asi que por ahora no lo hago
-        List<GameEntity> worldEntities = new ArrayList<GameEntity>();
-        List<GameEntity> entitiesInsideBox = new ArrayList<GameEntity>();
-        List<GameEntity> playerInventory = player.getInventory();
-
         Door puerta = new Door(player, finalRoom);
-        Key llave = new Key(puerta, worldEntities, playerInventory);
+        Key llave = new Key(puerta, room1, player.getInventory());
 
-        entitiesInsideBox.add(llave);
-        Box box = new Box(entitiesInsideBox, worldEntities);
+        Box box = new Box(room1);
+        box.add(llave);
 
-        worldEntities.add(puerta);
-        worldEntities.add(box);
+        room1.addEntity(puerta);
+        room1.addEntity(box);
 
-        commands.add(new LookAround(worldEntities));
+        commands.add(new LookAround(player));
         commands.add(new Open(puerta));
         commands.add(new Open(box));
         commands.add(new Close(box));
-        commands.add(new Pick(llave, worldEntities));
+        commands.add(new Pick(llave, room1));
     }
 
     @Override

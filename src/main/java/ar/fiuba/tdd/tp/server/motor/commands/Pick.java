@@ -1,23 +1,21 @@
 package ar.fiuba.tdd.tp.server.motor.commands;
 
-import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
-import ar.fiuba.tdd.tp.server.motor.uses.Pickable;
-
-import java.util.List;
+import ar.fiuba.tdd.tp.server.motor.EntityContainer;
+import ar.fiuba.tdd.tp.server.motor.entities.PickableGameEntity;
 
 public class Pick extends GameCommand {
 
-    List<GameEntity> locationToPickFrom;
-    private Pickable target;
+    EntityContainer containerToPickFrom;
+    private PickableGameEntity target;
 
-    public Pick(Pickable target, List<GameEntity> locationToPickFrom) {
+    public Pick(PickableGameEntity target, EntityContainer containerToPickFrom) {
         super("pick " + target.getName());
         this.target = target;
-        this.locationToPickFrom = locationToPickFrom;
+        this.containerToPickFrom = containerToPickFrom;
     }
 
     public String execute() {
-        if (!locationToPickFrom.contains(target)) {
+        if (!containerToPickFrom.containsEntity(target)) {
             return "There is no " + target.getName() + " to pick up here.";
         }
         return target.pick();

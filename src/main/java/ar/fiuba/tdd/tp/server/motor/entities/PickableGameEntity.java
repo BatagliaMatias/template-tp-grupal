@@ -1,29 +1,28 @@
 package ar.fiuba.tdd.tp.server.motor.entities;
 
+import ar.fiuba.tdd.tp.server.motor.EntityContainer;
 import ar.fiuba.tdd.tp.server.motor.uses.Pickable;
-
-import java.util.List;
 
 public class PickableGameEntity extends GameEntity implements Pickable {
 
-    /* originLocation: container where this entity is stored
-       destinationLocation: container where this entity is moved to after its picked
+    /* originContainer: container where this entity is stored
+       destinationContainer: container where this entity is moved to after its picked
     */
 
-    private List<GameEntity> destinationLocation;
-    private List<GameEntity> originLocation;
+    private EntityContainer destinationContainer;
+    private EntityContainer originContainer;
 
 
-    protected PickableGameEntity(String name, List<GameEntity> originLocation, List<GameEntity> destinationLocation) {
+    protected PickableGameEntity(String name, EntityContainer originLocation, EntityContainer destinationLocation) {
         super(name);
-        this.originLocation = originLocation;
-        this.destinationLocation = destinationLocation;
+        this.originContainer = originLocation;
+        this.destinationContainer = destinationLocation;
     }
 
     @Override
     public String pick() {
-        originLocation.remove(this);
-        destinationLocation.add(this);
+        originContainer.removeEntity(this);
+        destinationContainer.addEntity(this);
         return "There you go";
     }
 }
