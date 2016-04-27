@@ -20,7 +20,8 @@ public abstract class Action {
     }
 
     public boolean canSolveRequest(String userAction) {
-        return this.canSolve(ActionsEnum.getEnum(userAction));
+        String[] command = userAction.split(" ");
+        return this.canSolve(ActionsEnum.getEnum(command[0]));
     }
 
     public void reSendAction(String userAction) {

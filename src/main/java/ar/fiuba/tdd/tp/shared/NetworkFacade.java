@@ -17,7 +17,7 @@ public abstract class NetworkFacade {
     public NetworkFacade() {
     }
 
-    public abstract void initConnection(int port) throws IOException;
+    public abstract void initConnection(ConnectionConfig connection) throws IOException;
 
     public String receiveMessage() throws IOException {
         return inputStream.readLine();
@@ -38,5 +38,9 @@ public abstract class NetworkFacade {
 
     public String getLastMessageReceived() {
         return this.lastMessageReceived;
+    }
+
+    public void messageToStandardOutput(String message) {
+        System.out.println(message);
     }
 }
