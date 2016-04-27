@@ -52,6 +52,19 @@ public class TowerOfHanoiTest {
     }
 
     @Test
+    public void commandCheckTop() {
+
+        StackHanoi stackFirst = new StackHanoi("1");
+
+        stackFirst.putDisks();
+
+        CheckTop command = new CheckTop(stackFirst);
+
+        assertEquals(command.execute(),"Size of top from stack 1 is 1");
+
+    }
+
+    @Test
     public void moveADiskToAStackWithSmallerDiscsShouldNotBeAllowed() {
 
         StackHanoi stackFirst = new StackHanoi("1");
