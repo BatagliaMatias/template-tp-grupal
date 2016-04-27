@@ -32,7 +32,7 @@ public class TowerOfHanoi extends Game{
     }
 
     @Override
-    boolean isGameOver() {
+    public boolean isGameOver() {
 
         boolean stackFirsEmpty = (this.stackHanoiFirst.checkSizeTop() == 0);
         boolean stackSecondComplete = this.stackHanoiSecond.isComplete();
@@ -43,7 +43,7 @@ public class TowerOfHanoi extends Game{
     }
 
     @Override
-    String getGameOverMessage() {
+    public String getGameOverMessage() {
         return "You won the game tower of Hanoi !";
     }
 }
