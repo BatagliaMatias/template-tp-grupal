@@ -24,7 +24,7 @@ public class CursedObjectTest {
         game.processInput("pick key");
         game.processInput("open door1");
 
-        assertEquals(game.processInput("Talk to thief 'Hello'"), "Hi!\nThe thief has just stolen your object!\n...");
+        assertEquals(game.processInput("Talk to thief 'Hello'"), "Hi! (The thief has just stolen your object!...)");
 
     }
 
