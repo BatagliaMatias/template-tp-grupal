@@ -1,5 +1,8 @@
 package ar.fiuba.tdd.tp.server.motor;
 
+import ar.fiuba.tdd.tp.server.exceptions.BadGameNameException;
+import ar.fiuba.tdd.tp.server.motor.factories.FactoryGames;
+import ar.fiuba.tdd.tp.server.motor.factories.GameEnum;
 import ar.fiuba.tdd.tp.server.motor.games.AbrirPuerta2;
 import ar.fiuba.tdd.tp.server.motor.games.Game;
 
@@ -7,8 +10,9 @@ public class Motor {
 
     private Game game;
 
-    public Motor() {
-        this.game = new AbrirPuerta2();
+    public Motor(String gameName) throws BadGameNameException {
+        FactoryGames factory = GameEnum.getGame(gameName);
+        this.game = factory.create();
     }
 
     public String getWelcomeMessage() {

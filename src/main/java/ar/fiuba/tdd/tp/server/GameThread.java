@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.server;
 
+import ar.fiuba.tdd.tp.server.exceptions.BadGameNameException;
 import ar.fiuba.tdd.tp.server.motor.Motor;
 import ar.fiuba.tdd.tp.server.network.ServerNetworkFacade;
 import ar.fiuba.tdd.tp.shared.ConnectionConfig;
@@ -24,7 +25,12 @@ public class GameThread extends Thread {
     }
 
     public void run() {
-        this.init();
+        try {
+            this.init();
+        } catch (BadGameNameException e) {
+            this.network.messageToStandardOutput(e.getMessage());
+            return;
+        }
         try {
             this.network.initConnection(this.connectionConfig);
         } catch (IOException e) {
@@ -54,12 +60,10 @@ public class GameThread extends Thread {
         this.network.messageToStandardOutput(message.toString());
     }
 
-    public void init() {
+    public void init() throws BadGameNameException {
         this.network = new ServerNetworkFacade();
         this.connectionConfig = new ConnectionConfig();
-        // Initiate conversation with client
-        //Motor motor = new Motor(this.gameName);
-        this.motor = new Motor();
+        this.motor = new Motor(this.gameName);
         this.showGameLoaded();
     }
 }
