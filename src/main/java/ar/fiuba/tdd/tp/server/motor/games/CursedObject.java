@@ -6,8 +6,8 @@ import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
 import ar.fiuba.tdd.tp.server.motor.commands.Open;
 import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.commands.Talk;
-import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
+import ar.fiuba.tdd.tp.server.motor.entities.LockedDoor;
 import ar.fiuba.tdd.tp.server.motor.entities.Thief;
 
 public class CursedObject extends Game {
@@ -20,14 +20,14 @@ public class CursedObject extends Game {
 
         Stage originRoom = new Stage("Room1");
         Stage secondRoom = new Stage("Room2");
-        Door door1 = new Door("door1", this.player, secondRoom);
+        LockedDoor door1 = new LockedDoor("door1", this.player, secondRoom);
         Key key = new Key(door1, originRoom, player.getInventory());
         player.setlocation(originRoom);
 
         originRoom.addEntity(key);
         originRoom.addEntity(door1);
 
-        Door door2 = new Door("door2", this.player, this.destinationRoom);
+        LockedDoor door2 = new LockedDoor("door2", this.player, this.destinationRoom);
         secondRoom.addEntity(door2);
         Thief thief = new Thief(door2, key, this.player.getInventory());
         secondRoom.addEntity(thief);

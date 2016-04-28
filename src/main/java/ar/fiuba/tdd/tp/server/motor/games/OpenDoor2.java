@@ -7,8 +7,8 @@ import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
 import ar.fiuba.tdd.tp.server.motor.commands.Open;
 import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.entities.Box;
-import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
+import ar.fiuba.tdd.tp.server.motor.entities.LockedDoor;
 import ar.fiuba.tdd.tp.shared.Message;
 
 public class OpenDoor2 extends Game {
@@ -25,7 +25,7 @@ public class OpenDoor2 extends Game {
         player = new Player();
         player.setlocation(room1);
 
-        Door puerta = new Door("door", player, finalRoom);
+        LockedDoor puerta = new LockedDoor("door", player, finalRoom);
         Key llave = new Key(puerta, room1, player.getInventory());
 
         Box box = new Box(room1);
@@ -55,6 +55,5 @@ public class OpenDoor2 extends Game {
     @Override
     String getGameOverMessage() {
         return Message.WIN.getText();
-        //return "GANASTE!. A esto le falta variar el mensaje si perdes";
     }
 }

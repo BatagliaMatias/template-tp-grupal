@@ -8,6 +8,7 @@ public enum GameEnum {
     CURSEDOBJECT(new FactoryCursedObject()),
     PICKSTICK(new FactoryPickStick()),
     WOLFSHEEPCOL(new FactoryWolfSheepCol()),
+    TREASUREHUNT(new FactoryTreasureHunt()),
     OPENDOOR2(new FactoryOpenDoor2());
 
     private FactoryGames factory;
