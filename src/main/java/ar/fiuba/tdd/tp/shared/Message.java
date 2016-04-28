@@ -18,7 +18,8 @@ public enum Message {
     INIT_CLIENT("Client RUNNING! Enter command"),
     INIT_SERVER("Server RUNNING! Enter command"),
     INPUT_ERROR("Error trying to read from Standard Input"),
-    GAME_LOADED(" loaded and listening on port ");
+    GAME_LOADED(" loaded and listening on port "),
+    BYE("BYE!");
 
     private final String text;
 

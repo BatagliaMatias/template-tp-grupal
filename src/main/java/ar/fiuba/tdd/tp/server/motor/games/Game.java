@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.server.motor.games;
 
 
+import ar.fiuba.tdd.tp.server.motor.commands.Exit;
 import ar.fiuba.tdd.tp.server.motor.commands.GameCommand;
 import ar.fiuba.tdd.tp.server.motor.commands.Help;
 import ar.fiuba.tdd.tp.shared.Message;
@@ -18,6 +19,7 @@ public abstract class Game {
 
     public String getWelcomeMessage() {
         commands.add(new Help());
+        commands.add(new Exit());
         String gameName = this.getGameName();
         return Message.WELCOME.getText().concat(gameName);
     }
