@@ -18,6 +18,8 @@ public class Door extends GameEntity implements Openable {
 
     @Override
     public String open() {
+        if (player.isPoisoned())
+            player.kill();
         Stage newDestination = player.getLocation();
         newDestination.removeEntity(this);
         destination.addEntity(this);

@@ -28,7 +28,7 @@ public class OpenDoor2 extends Game {
         LockedDoor puerta = new LockedDoor("door", player, finalRoom);
         Key llave = new Key(puerta, room1, player.getInventory());
 
-        Box box = new Box(room1);
+        Box box = new Box("box",room1);
         box.add(llave);
 
         room1.addEntity(puerta);

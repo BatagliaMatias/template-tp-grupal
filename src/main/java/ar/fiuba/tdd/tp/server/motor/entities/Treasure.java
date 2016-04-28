@@ -1,8 +1,10 @@
 package ar.fiuba.tdd.tp.server.motor.entities;
 
-public class Treasure extends GameEntity {
+import ar.fiuba.tdd.tp.server.motor.EntityContainer;
 
-    public Treasure() {
-        super("treasure");
+public class Treasure extends PickableGameEntity {
+
+    public Treasure(EntityContainer originContainer, EntityContainer destinationContainer) {
+        super("treasure", originContainer, destinationContainer);
     }
 }

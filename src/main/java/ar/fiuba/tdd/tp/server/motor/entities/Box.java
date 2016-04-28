@@ -7,13 +7,12 @@ import ar.fiuba.tdd.tp.server.motor.uses.Openable;
 import java.util.Iterator;
 
 public class Box extends GameEntity implements Openable, Closable {
-    private static final String NAME = "box";
     private EntityContainer contents = new EntityContainer();
     private EntityContainer outsideContainer;
     private boolean open = false;
 
-    public Box(EntityContainer outsideContainer) {
-        super(NAME);
+    public Box( String name, EntityContainer outsideContainer) {
+        super(name);
         this.outsideContainer = outsideContainer;
     }
 
