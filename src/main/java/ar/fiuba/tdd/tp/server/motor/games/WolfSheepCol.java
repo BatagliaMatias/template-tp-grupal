@@ -13,11 +13,11 @@ import ar.fiuba.tdd.tp.server.motor.entities.Sheep;
 import ar.fiuba.tdd.tp.server.motor.entities.Wolf;
 
 public class WolfSheepCol extends Game {
-    Stage southShore = new Stage("south-shore");
-    Stage northShore = new Stage("north-shore");
-    Sheep sheep = new Sheep();
-    Wolf wolf = new Wolf();
-    Col col = new Col();
+    private Stage southShore = new Stage("south-shore");
+    private Stage northShore = new Stage("north-shore");
+    private Sheep sheep = new Sheep();
+    private Wolf wolf = new Wolf();
+    private Col col = new Col();
 
     public WolfSheepCol() {
         southShore.addEntity(wolf);

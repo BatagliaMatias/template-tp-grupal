@@ -13,6 +13,11 @@ public class Key extends PickableGameEntity {
         this.target = targetToUnlock;
     }
 
+    public Key(String custonName, Unlockable targetToUnlock, EntityContainer originContainer, EntityContainer destinationContainer) {
+        super(custonName, originContainer, destinationContainer);
+        this.target = targetToUnlock;
+    }
+
     @Override
     public String pick() {
         target.unlock();

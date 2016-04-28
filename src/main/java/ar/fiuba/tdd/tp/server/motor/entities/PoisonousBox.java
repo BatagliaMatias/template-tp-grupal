@@ -17,7 +17,13 @@ public class PoisonousBox extends Box {
         if (poisonRemaining) {
             poisonRemaining = false;
             player.poison();
-            return super.open() + " and you have been poisoned!";
+            String msg;
+            if (player.isPoisoned()) {
+                msg = " and you have been poisoned!";
+            } else {
+                msg = " and your antidote blocks a dangerous poison!";
+            }
+            return super.open() + msg;
         }
         return super.open();
     }

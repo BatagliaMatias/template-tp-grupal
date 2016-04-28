@@ -6,6 +6,7 @@ public class Player {
     private EntityContainer inventory = new EntityContainer();
     private boolean poisoned = false;
     private boolean dead = false;
+    private int poisonsProtections = 0;
 
     public void kill() {
         dead = true;
@@ -24,7 +25,12 @@ public class Player {
     }
 
     public void poison() {
-        this.poisoned = true;
+        if (poisonsProtections > 0) {
+            poisonsProtections--;
+            poisoned = false;
+        } else {
+            this.poisoned = true;
+        }
     }
 
     public void curePoison() {
@@ -37,5 +43,13 @@ public class Player {
 
     public boolean isDead() {
         return dead;
+    }
+
+    public void preventPoison() {
+        if (poisoned) {
+            poisoned = false;
+        } else {
+            this.poisonsProtections++;
+        }
     }
 }

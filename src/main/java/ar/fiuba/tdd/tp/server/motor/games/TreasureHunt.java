@@ -10,50 +10,80 @@ import ar.fiuba.tdd.tp.server.motor.entities.*;
 public class TreasureHunt extends Game {
 
     private static String helpMessage = "There is no help here, you are on your own";
-    Stage room3 = new Stage("Room 3");
+    private Door puerta1;
+    private LockedDoor puerta2;
+    private LockedDoor puerta3;
+    private Door puerta4;
+    private PoisonousBox pbox;
+    private Antidote antidoto;
+    private Key key4;
+    private Key key3;
     private Player player = new Player();
-    private PickableGameEntity treasure = new Treasure(room3, player.getInventory());
     private Stage initialRoom = new Stage("Room 1");
+    private Stage room2 = new Stage("Room 2");
+    private Stage room3 = new Stage("Room 3");
+    private Stage room4 = new Stage("Room 4");
+    private Stage room5 = new Stage("Room 5");
+    private PickableGameEntity treasure = new Treasure(room2, player.getInventory());
+    private Box wardrobe;
+    private Box box;
 
     public TreasureHunt() {
+        initDoors();
+        initItems();
 
-        // initialRoom contiene 2 puertas, una cerrada y otra abierta, llevan a room 2 y room 4 respectivamente
-        Stage room2 = new Stage("Room 2");
-        Stage room4 = new Stage("Room 4");
-        Door puerta1 = new Door("door1", player, room2);
-        LockedDoor puerta2 = new LockedDoor("door2", player, room4);
+        initialRoom.addEntity(wardrobe);
         initialRoom.addEntity(puerta1);
         initialRoom.addEntity(puerta2);
-        PoisonousBox pbox1 = new PoisonousBox("oddLookingBox", initialRoom, player);
-        pbox1.add(new Col());
-        initialRoom.addEntity(pbox1);
 
-        Stage room5 = new Stage("Room 5");
-        // room 2 contiene una puerta cerrada a room 3
-        LockedDoor puerta3 = new LockedDoor("door3", player, room3);
+        room2.addEntity(pbox);
         room2.addEntity(puerta3);
 
-        // room 4 contiene una puerta abierta a room 5
-        LockedDoor puerta4 = new LockedDoor("door4", player, room5);
+        room3.addEntity(antidoto);
         room4.addEntity(puerta4);
-
-
+        room5.addEntity(key3);
         player.setlocation(initialRoom);
-        room3.addEntity(treasure);
-/*
-        commands.add(new LookAround(player));
-        commands.add(new Open(puerta1));
-        commands.add(new Open(puerta2));
-        commands.add(new Open(puerta3));
-        commands.add(new Open(puerta4));
-        commands.add(new Open(pbox1));
-        commands.add(new Pick(treasure, room3));
 
-        includeWhatCanIdoWithCommand();*/
+        initCommands();
     }
 
     public static String getHelp() {
         return helpMessage;
+    }
+
+    private void initDoors() {
+        puerta1 = new Door("door1", player, room2);
+        puerta2 = new LockedDoor("door2", player, room4);
+        puerta3 = new LockedDoor("door3", player, room3);
+        puerta4 = new Door("door4", player, room5);
+    }
+
+    private void initItems() {
+        wardrobe = new Box("wardrobe", initialRoom);
+        box = new Box("box", initialRoom);
+        wardrobe.add(box);
+        key4 = new Key(puerta2, initialRoom, this.player.getInventory());
+        box.add(key4);
+        antidoto = new Antidote(player, room3, this.player.getInventory());
+        key3 = new Key("key2", puerta3, room2, this.player.getInventory());
+        pbox = new PoisonousBox("oddLookingBox", room2, player);
+        pbox.add(treasure);
+    }
+
+    private void initCommands() {
+        commands.add(new Pick(key4, initialRoom));
+        commands.add(new Open(wardrobe));
+        commands.add(new LookAround(player));
+        commands.add(new Open(box));
+        commands.add(new Pick(antidoto, room3));
+        commands.add(new Open(puerta1));
+        commands.add(new Open(puerta2));
+        commands.add(new Pick(treasure, room2));
+        commands.add(new Open(puerta3));
+        commands.add(new Pick(key3, room5));
+        commands.add(new Open(puerta4));
+        commands.add(new Open(pbox));
+        includeWhatCanIdoWithCommand();
     }
 
     @Override

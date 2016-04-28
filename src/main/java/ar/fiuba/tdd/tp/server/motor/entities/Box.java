@@ -23,7 +23,7 @@ public class Box extends GameEntity implements Openable, Closable {
     @Override
     public String open() {
         if (open) {
-            return "The box is already open!";
+            return this.getName() + " is already open!";
         }
 
         Iterator<GameEntity> iter = contents.getIter();
@@ -32,13 +32,13 @@ public class Box extends GameEntity implements Openable, Closable {
             outsideContainer.addEntity(entity);
         }
         open = true;
-        return "You have opened the box";
+        return "You have opened " + this.getName();
     }
 
     @Override
     public String close() {
         if (!open) {
-            return "The box is already closed!";
+            return this.getName() + " is already closed!";
         }
 
         Iterator<GameEntity> iter = contents.getIter();
