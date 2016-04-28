@@ -10,6 +10,7 @@ public class PickStick extends Game{
 
     private Stick stick;
     private Player player;
+    private static String helpMessage = "You have to pick that stick over there.";
 
     public PickStick() {
 
@@ -35,5 +36,9 @@ public class PickStick extends Game{
     @Override
     public String getGameOverMessage() {
         return "You won the game!";
+    }
+
+    public static String getHelp() {
+        return helpMessage;
     }
 }
