@@ -9,6 +9,7 @@ import java.util.List;
 
 public abstract class Game {
     protected List<GameCommand> commands = new ArrayList<GameCommand>();
+    private static String helpMessage = "Default Help";
 
     abstract boolean isGameOver();
 
@@ -33,6 +34,10 @@ public abstract class Game {
             }
         }
         return "Invalid command";
+    }
+
+    public static String getHelp() {
+        return helpMessage;
     }
 }
 
