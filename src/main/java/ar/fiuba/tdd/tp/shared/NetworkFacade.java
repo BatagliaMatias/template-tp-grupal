@@ -42,6 +42,6 @@ public abstract class NetworkFacade {
     }
 
     public void messageToStandardOutput(String message) {
-        System.out.println(message);
+        System.out.println(">> ".concat(message));
     }
 }
