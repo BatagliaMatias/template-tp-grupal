@@ -20,11 +20,25 @@ public enum GameEnum {
     }
 
     public static FactoryGames getGame(String nameToAnalize) throws BadGameNameException {
+        return getGameEnum(nameToAnalize.toUpperCase()).getFactory();
+    }
+
+    public static GameEnum getGameEnum(String nameToAnalize) throws BadGameNameException {
         try {
-            return GameEnum.valueOf(nameToAnalize.toUpperCase()).getFactory();
+            return GameEnum.valueOf(nameToAnalize.toUpperCase());
         } catch (IllegalArgumentException t) {
             throw new BadGameNameException("Game: ".concat(nameToAnalize).concat(" not found."));
         }
     }
+
+    public static boolean contains(String nameToAnalize) {
+        try {
+            getGameEnum(nameToAnalize);
+            return true;
+        } catch (BadGameNameException t) {
+            return false;
+        }
+    }
+
 
 }

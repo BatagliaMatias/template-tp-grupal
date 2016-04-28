@@ -6,7 +6,7 @@ import ar.fiuba.tdd.tp.shared.Message;
 /**
  * Created by jorlando on 26/04/16.
  */
-public class SendAction extends  ClientAction {
+public class SendAction extends ClientAction {
 
     public SendAction(ClientHelper client) {
         super(client);
