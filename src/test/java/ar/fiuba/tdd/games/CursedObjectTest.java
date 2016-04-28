@@ -24,7 +24,7 @@ public class CursedObjectTest {
         game.processInput("pick key");
         game.processInput("open door1");
 
-        assertEquals(game.processInput("Talk to thief “Hello“"), "Hi!\nThe thief has just stolen your object!\n...");
+        assertEquals(game.processInput("Talk to thief 'Hello'"), "Hi!\nThe thief has just stolen your object!\n...");
 
     }
 
@@ -35,7 +35,7 @@ public class CursedObjectTest {
 
         game.processInput("pick key");
         game.processInput("open door1");
-        game.processInput("Talk to thief “Hello“");
+        game.processInput("Talk to thief 'Hello'");
 
         assertEquals(game.processInput("open door2"), "Congratulations!! You won the game!");
 
@@ -46,9 +46,7 @@ public class CursedObjectTest {
 
         CursedObject game = new CursedObject();
 
-        game.processInput("Talk to thief “Hello“");
-
-        assertEquals(game.processInput("Talk to thief “Hello“"), "Invalid command");
+        assertEquals(game.processInput("Talk to thief 'Hello'"), "Invalid command");
 
     }
 

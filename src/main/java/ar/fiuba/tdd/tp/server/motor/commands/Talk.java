@@ -9,7 +9,7 @@ public class Talk extends  GameCommand{
 
     public Talk(String talk,String response, Thief thief) {
 
-        super("Talk to thief “" + talk + "“");
+        super("Talk to thief '" + talk + "'");
 
         this.thief = thief;
         this.response = response;
