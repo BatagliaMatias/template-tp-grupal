@@ -15,6 +15,7 @@ public class OpenDoor2 extends OpenDoor {
         box.add(key);
 
         this.room1.addEntity(box);
+        this.room1.removeEntity(key);
 
         this.commands.add(new Open(box));
         this.commands.add(new Close(box));
