@@ -12,6 +12,7 @@ public enum Message {
     EXIT_MESSAGE("EXIT"),
     NO_SEND_CONNECTED("Cant send command because you aren't connected to any game"),
     WIN("YOU WIN THE GAME"),
+    WELCOME("Welcome to "),
     INIT_CLIENT("Client RUNNING! Enter command");
 
     private final String text;

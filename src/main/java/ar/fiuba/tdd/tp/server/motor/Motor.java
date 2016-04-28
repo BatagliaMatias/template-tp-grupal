@@ -11,6 +11,10 @@ public class Motor {
         this.game = new AbrirPuerta2();
     }
 
+    public String getWelcomeMessage() {
+        return this.game.getWelcomeMessage();
+    }
+
     public String processInput(String input) {
         return this.game.processInput(input);
     }

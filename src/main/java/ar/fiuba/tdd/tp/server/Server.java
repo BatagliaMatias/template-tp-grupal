@@ -21,7 +21,7 @@ public class Server {
 
             // Initiate conversation with client
             Motor motor = new Motor();
-            network.sendMessage("Hola, esto es el juego AbrirPuerta2");
+            network.sendMessage(motor.getWelcomeMessage());
 
             while (network.continuesReceivingMessages()) {
                 outputLine = motor.processInput(network.getLastMessageReceived());
