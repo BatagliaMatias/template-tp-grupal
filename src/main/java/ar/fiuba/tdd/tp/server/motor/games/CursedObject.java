@@ -9,6 +9,7 @@ import ar.fiuba.tdd.tp.server.motor.entities.Thief;
 
 public class CursedObject extends Game{
 
+    private static String helpMessage = "A door locked, a cursed key.. where can you escape?";
     private Player player;
     private Stage destinationRoom;
     private Thief thief;
