@@ -6,7 +6,7 @@ package ar.fiuba.tdd.tp.shared;
 public class ConnectionConfig {
 
     String hostName = "localhost";
-    int port = 4444;
+    int port = PortSequence.getInstance().getPort();
 
     public ConnectionConfig(String newHost, int newPort) {
         this.hostName = newHost;

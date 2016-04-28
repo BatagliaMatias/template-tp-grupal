@@ -1,0 +1,30 @@
+package ar.fiuba.tdd.tp.shared;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+
+/**
+ * Created by jorlando on 28/04/16.
+ */
+public class StandardInputManager {
+    BufferedReader standardInput = null;
+    static final String ENCODING = "UTF-8";
+
+    public StandardInputManager() {
+        try {
+            standardInput = new BufferedReader(new InputStreamReader(System.in, ENCODING));
+        } catch (UnsupportedEncodingException e) {
+            System.out.println(Message.INPUT_ERROR.getText());
+        }
+    }
+
+    public String read() {
+        try {
+            return standardInput.readLine();
+        } catch (IOException e) {
+            return Message.INPUT_ERROR.getText();
+        }
+    }
+}

@@ -15,9 +15,13 @@ public abstract class Game {
     abstract String getGameOverMessage();
 
     public String getWelcomeMessage() {
-        //Obtengo el nombre de la clase. Esto lo toma de la clase que se crea posta (AbrirPuerta2), no de Game.
-        String gameName = this.getClass().getSimpleName();
+        String gameName = this.getGameName();
         return Message.WELCOME.getText().concat(gameName);
+    }
+
+    public String getGameName() {
+        //Obtengo el nombre de la clase. Esto lo toma de la clase que se crea posta (AbrirPuerta2), no de Game.
+        return this.getClass().getSimpleName();
     }
 
     /* template method : */

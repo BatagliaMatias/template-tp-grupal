@@ -38,7 +38,7 @@ public class ConnectAction extends ClientAction {
                 System.out.println(Message.CONNECT_ERROR.getText());
             }
         } else {
-            System.out.println(Message.CONNECT_PARAMS.getText());
+            System.out.println(Message.INVALID_QTY_PARAMS.getText());
         }
     }
 

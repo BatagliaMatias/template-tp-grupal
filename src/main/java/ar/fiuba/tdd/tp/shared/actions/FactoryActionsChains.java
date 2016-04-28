@@ -12,6 +12,13 @@ public class FactoryActionsChains {
         chain.addAction(new ConnectAction(clientHelper));
         chain.addAction(new ExitAction(clientHelper));
         chain.addAction(new SendAction(clientHelper));
-        return  chain;
+        return chain;
+    }
+
+    public static ActionsChain serverChain() {
+        ActionsChain chain = new ActionsChain();
+        chain.addAction(new LoadAction());
+        chain.addAction(new InvalidAction());
+        return chain;
     }
 }

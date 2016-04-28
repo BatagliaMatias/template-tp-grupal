@@ -3,18 +3,15 @@ package ar.fiuba.tdd.tp.client;
 import ar.fiuba.tdd.tp.client.config.GameStates;
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
 import ar.fiuba.tdd.tp.shared.Message;
+import ar.fiuba.tdd.tp.shared.StandardInputManager;
 import ar.fiuba.tdd.tp.shared.actions.ActionsChain;
 import ar.fiuba.tdd.tp.shared.actions.FactoryActionsChains;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Created by jorlando on 26/04/16.
  */
 public class ClientHelper {
-    static final String ENCODING = "UTF-8";
     public GameStates gameState = GameStates.WAITING;
     ClientNetworkFacade network = null;
 
@@ -52,12 +49,12 @@ public class ClientHelper {
         }
     }
 
-    public void play() throws IOException {
-        BufferedReader standardInput = new BufferedReader(new InputStreamReader(System.in, ENCODING));
+    public void init() {
+        StandardInputManager standardInput = new StandardInputManager();
         ActionsChain chain = FactoryActionsChains.clientChain(this);
         System.out.println(Message.INIT_CLIENT.getText());
         while (true) {
-            String userCommand = standardInput.readLine();
+            String userCommand = standardInput.read();
             chain.processAction(userCommand);
         }
     }
