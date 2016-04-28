@@ -24,7 +24,7 @@ public class AbrirPuerta2 extends Game {
         player = new Player();
         player.setlocation(room1);
 
-        Door puerta = new Door(player, finalRoom);
+        Door puerta = new Door("door",player, finalRoom);
         Key llave = new Key(puerta, room1, player.getInventory());
 
         Box box = new Box(room1);

@@ -7,13 +7,13 @@ import ar.fiuba.tdd.tp.server.motor.uses.Unlockable;
 
 public class Door extends GameEntity implements Openable, Unlockable {
 
-    private static final String NAME = "door";
+    //private static final String NAME = "door";
     private boolean locked = true;
     private Player player;
     private Stage destination;
 
-    public Door(Player player, Stage destination) {
-        super(NAME);
+    public Door(String name,Player player, Stage destination) {
+        super(name);
         this.player = player;
         this.destination = destination;
     }
