@@ -49,7 +49,7 @@ public class CursedObjectTest {
         game.processInput("Talk to thief “Hello“");
 
         assertEquals(game.processInput("Talk to thief “Hello“"), "Invalid command");
-        
+
     }
 
 

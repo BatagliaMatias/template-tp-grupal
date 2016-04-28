@@ -3,35 +3,34 @@ package ar.fiuba.tdd.tp.server.motor.commands.proxycommands;
 import ar.fiuba.tdd.tp.server.motor.Player;
 import ar.fiuba.tdd.tp.server.motor.Stage;
 import ar.fiuba.tdd.tp.server.motor.commands.GameCommand;
-import ar.fiuba.tdd.tp.server.motor.commands.Talk;
 
-public class ProxyTalk extends GameCommand{
+public class ProxyCommand extends GameCommand {
 
-    private Talk talk;
+    protected GameCommand command;
     private Player player;
     private Stage destinationRoom;
 
-    public ProxyTalk(Talk talk,Player player,Stage destinationRoom) {
+    public ProxyCommand(GameCommand command, Player player, Stage destinationRoom) {
 
-        super("proxy talk");
+        super("proxy command");
 
-        this.talk = talk;
         this.player = player;
         this.destinationRoom = destinationRoom;
+        this.command = command;
 
     }
 
     @Override
     public String execute() {
 
-        return this.talk.execute();
+        return this.command.execute();
 
     }
 
     @Override
     public boolean canProcessRequest(String request) {
 
-        boolean correctMessage = this.talk.canProcessRequest(request);
+        boolean correctMessage = this.command.canProcessRequest(request);
 
         return correctMessage && this.player.getLocation() == this.destinationRoom;
 
@@ -41,7 +40,9 @@ public class ProxyTalk extends GameCommand{
     public String getIdentifier() {
 
         if ( this.player.getLocation() == this.destinationRoom ) {
-            return this.talk.getIdentifier();
+
+            return this.command.getIdentifier();
+
         }
 
         return "";
