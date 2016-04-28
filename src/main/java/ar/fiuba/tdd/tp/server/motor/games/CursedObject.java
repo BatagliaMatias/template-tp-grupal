@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.server.motor.games;
 import ar.fiuba.tdd.tp.server.motor.Player;
 import ar.fiuba.tdd.tp.server.motor.Stage;
 import ar.fiuba.tdd.tp.server.motor.commands.*;
+import ar.fiuba.tdd.tp.server.motor.commands.proxycommands.ProxyTalk;
 import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
 import ar.fiuba.tdd.tp.server.motor.entities.Thief;
@@ -36,7 +37,7 @@ public class CursedObject extends Game{
         secondRoom.addEntity(door2);
         secondRoom.addEntity(thief);
 
-        commands.add(new Talk("Hello","Hi!",thief));
+        commands.add(new ProxyTalk(new Talk("Hello","Hi!",thief),this.player,secondRoom));
         commands.add(new Talk("Bye","Bye!",thief));
         commands.add(new LookAround(player));
         commands.add(new Open(door1));

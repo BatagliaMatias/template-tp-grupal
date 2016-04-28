@@ -41,5 +41,16 @@ public class CursedObjectTest {
 
     }
 
+    @Test
+    public void ifTalkToThiefFromRoom1ReceiveInvalidCommand() {
+
+        CursedObject game = new CursedObject();
+
+        game.processInput("Talk to thief “Hello“");
+
+        assertEquals(game.processInput("Talk to thief “Hello“"), "Invalid command");
+        
+    }
+
 
 }
