@@ -4,13 +4,13 @@ import ar.fiuba.tdd.tp.server.motor.commands.Close;
 import ar.fiuba.tdd.tp.server.motor.commands.Open;
 import ar.fiuba.tdd.tp.server.motor.entities.Box;
 
-public class OpenDoor2 extends OpenDoor{
+public class OpenDoor2 extends OpenDoor {
 
     public OpenDoor2() {
 
         super();
 
-        Box box = new Box(this.room1);
+        Box box = new Box("box",this.room1);
 
         box.add(key);
 

@@ -12,7 +12,7 @@ public class ProxyCommand extends GameCommand {
 
     public ProxyCommand(GameCommand command, Player player, Stage destinationRoom) {
 
-        super("","");
+        super("", "");
 
         this.player = player;
         this.destinationRoom = destinationRoom;
@@ -39,7 +39,7 @@ public class ProxyCommand extends GameCommand {
     @Override
     public String getIdentifier() {
 
-        if ( this.player.getLocation() == this.destinationRoom ) {
+        if (this.player.getLocation() == this.destinationRoom) {
 
             return this.command.getIdentifier();
 

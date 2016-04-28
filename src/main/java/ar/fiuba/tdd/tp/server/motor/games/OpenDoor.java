@@ -2,9 +2,12 @@ package ar.fiuba.tdd.tp.server.motor.games;
 
 import ar.fiuba.tdd.tp.server.motor.Player;
 import ar.fiuba.tdd.tp.server.motor.Stage;
-import ar.fiuba.tdd.tp.server.motor.commands.*;
+import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
+import ar.fiuba.tdd.tp.server.motor.commands.Open;
+import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
+import ar.fiuba.tdd.tp.server.motor.entities.LockedDoor;
 import ar.fiuba.tdd.tp.shared.Message;
 
 public class OpenDoor extends Game {
@@ -23,7 +26,7 @@ public class OpenDoor extends Game {
         this.player = new Player();
         this.player.setlocation(this.room1);
 
-        Door puerta = new Door("door",this.player, this.finalRoom);
+        LockedDoor puerta = new LockedDoor("door", this.player, this.finalRoom);
         this.key = new Key(puerta, this.room1, this.player.getInventory());
 
         this.room1.addEntity(puerta);

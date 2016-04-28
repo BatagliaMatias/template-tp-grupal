@@ -30,7 +30,7 @@ public abstract class Game {
     }
 
     public String getGameName() {
-        //Obtengo el nombre de la clase. Esto lo toma de la clase que se crea posta (OpenDoor2), no de Game.
+        //Obtengo el nombre de la clase. Esto lo toma de la clase que se crea posta, no de Game.
         return this.getClass().getSimpleName();
     }
 
