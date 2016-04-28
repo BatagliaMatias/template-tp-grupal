@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.server.motor.games;
 
 import ar.fiuba.tdd.tp.server.motor.Player;
 import ar.fiuba.tdd.tp.server.motor.Stage;
+import ar.fiuba.tdd.tp.server.motor.commands.Close;
 import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
 import ar.fiuba.tdd.tp.server.motor.commands.Open;
 import ar.fiuba.tdd.tp.server.motor.commands.Pick;
@@ -78,11 +79,14 @@ public class TreasureHunt extends Game {
         commands.add(new Pick(antidoto, room3));
         commands.add(new Open(puerta1));
         commands.add(new Open(puerta2));
-        commands.add(new Pick(treasure, room2));
-        commands.add(new Open(puerta3));
-        commands.add(new Pick(key3, room5));
         commands.add(new Open(puerta4));
+        commands.add(new Open(puerta3));
         commands.add(new Open(pbox));
+        commands.add(new Pick(treasure, room2));
+        commands.add(new Close(pbox));
+        commands.add(new Pick(key3, room5));
+        commands.add(new Close(wardrobe));
+        commands.add(new Close(box));
         includeWhatCanIdoWithCommand();
     }
 
