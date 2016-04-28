@@ -29,6 +29,6 @@ public class Help extends GameCommand {
     public boolean canProcessRequest(String request) {
         this.command = request;
         String[] gameName = this.command.split(" ");
-        return (gameName[0].equals(this.getIdentifier()) && GameEnum.contains(gameName[1]));
+        return gameName.length == 2 && (gameName[0].equals(this.getIdentifier()) && GameEnum.contains(gameName[1]));
     }
 }
