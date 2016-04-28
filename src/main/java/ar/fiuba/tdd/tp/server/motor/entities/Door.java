@@ -19,6 +19,9 @@ public class Door extends GameEntity implements Openable {
     @Override
     public String open() {
         Stage newDestination = player.getLocation();
+        newDestination.removeEntity(this);
+        destination.addEntity(this);
+
         player.setlocation(destination);
         destination = newDestination;
         return ("You enter " + player.getLocation().getName());

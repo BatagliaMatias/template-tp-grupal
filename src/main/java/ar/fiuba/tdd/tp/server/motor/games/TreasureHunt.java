@@ -25,24 +25,33 @@ public class TreasureHunt extends Game {
 
         player = new Player();
 
-        // OJO: a las puertas hay que agregarlas al stage donde estan y al que llevan (estan en 2 stages al mismo tiempo)
 
-        Door puerta1 = new Door("openDoor", player, room2);
-        LockedDoor puerta2 = new LockedDoor("closedDoor", player, room3);
+        // initialRoom contiene 2 puertas, una cerrada y otra abierta, llevan a room 2 y room 4 respectivamente
+        Door puerta1 = new Door("door1", player, room2);
+        LockedDoor puerta2 = new LockedDoor("door2", player, room4);
+        initialRoom.addEntity(puerta1);
+        initialRoom.addEntity(puerta2);
+
+        // room 2 contiene una puerta cerrada a room 3
+        LockedDoor puerta3 = new LockedDoor("door3",player,room3);
+        room2.addEntity(puerta3);
+
+        // room 4 contiene una puerta abierta a room 5
+        LockedDoor puerta4 = new LockedDoor("door4",player,room5);
+        room4.addEntity(puerta3);
+
 
         treasure = new Treasure();
 
         player.setlocation(initialRoom);
         room2.addEntity(treasure);
         initialRoom.addEntity(new Col());
-        initialRoom.addEntity(puerta1);
-        room2.addEntity(puerta1);
-        initialRoom.addEntity(puerta2);
-        room3.addEntity(puerta2);
 
         commands.add(new LookAround(player));
         commands.add(new Open(puerta1));
         commands.add(new Open(puerta2));
+        commands.add(new Open(puerta3));
+        commands.add(new Open(puerta4));
 
         includeWhatCanIdoWithCommand();
     }
