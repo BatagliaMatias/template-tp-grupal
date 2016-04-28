@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.actions;
 
 import ar.fiuba.tdd.tp.shared.actions.ActionsChain;
-import ar.fiuba.tdd.tp.shared.actions.HelpAction;
 import ar.fiuba.tdd.tp.shared.actions.InvalidAction;
 import ar.fiuba.tdd.tp.shared.actions.LoadAction;
 import org.junit.After;
@@ -44,7 +43,7 @@ public class ActionsChainTest {
     @Test
     public void testAddActions() {
         ActionsChain chain = new ActionsChain();
-        chain.addAction(new HelpAction());
+        chain.addAction(new LoadAction());
         chain.addAction(new LoadAction());
         assertEquals(chain.getSizeActions(), 2);
     }
@@ -63,7 +62,7 @@ public class ActionsChainTest {
     @Test
     public void testProcessActionWithHelpAction() {
         ActionsChain chain = new ActionsChain();
-        chain.addAction(new HelpAction());
+        chain.addAction(new LoadAction());
         try {
             chain.processAction("test");
         } catch (Exception e) {
@@ -75,19 +74,10 @@ public class ActionsChainTest {
     @Test
     public void testProcessActionWithInvalidAction() {
         ActionsChain chain = new ActionsChain();
-        chain.addAction(new HelpAction());
+        chain.addAction(new LoadAction());
         chain.addAction(new InvalidAction());
         chain.processAction("test");
         assertEquals("Action test not recognized\n".toString(), outContent.toString());
-    }
-
-    @Test
-    public void testProcessActionWithHelpActionSolved() {
-        ActionsChain chain = new ActionsChain();
-        chain.addAction(new HelpAction());
-        chain.addAction(new InvalidAction());
-        chain.processAction("help");
-        assertEquals("".toString(), outContent.toString());
     }
 
 }

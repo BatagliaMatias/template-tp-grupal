@@ -12,4 +12,8 @@ public abstract class GameCommand {
     public String getIdentifier() {
         return identifier;
     }
+
+    public boolean canProcessRequest(String request) {
+        return this.getIdentifier().equals(request);
+    }
 }

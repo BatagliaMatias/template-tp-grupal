@@ -1,7 +1,9 @@
 package ar.fiuba.tdd.tp.server.motor.games;
 
 
+import ar.fiuba.tdd.tp.server.motor.commands.Exit;
 import ar.fiuba.tdd.tp.server.motor.commands.GameCommand;
+import ar.fiuba.tdd.tp.server.motor.commands.Help;
 import ar.fiuba.tdd.tp.shared.Message;
 
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ public abstract class Game {
     abstract String getGameOverMessage();
 
     public String getWelcomeMessage() {
+        commands.add(new Help());
+        commands.add(new Exit());
         String gameName = this.getGameName();
         return Message.WELCOME.getText().concat(gameName);
     }
@@ -29,7 +33,7 @@ public abstract class Game {
     public String processInput(String input) {
 
         for (GameCommand command : commands) {
-            if (input.equals(command.getIdentifier())) {
+            if (command.canProcessRequest(input)) {
                 String response = command.execute();
                 if (isGameOver()) {
                     response = getGameOverMessage();
