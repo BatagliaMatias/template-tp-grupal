@@ -7,6 +7,7 @@ public enum GameEnum {
     TOWEROFHANOI(new FactoryTowerOfHanoi()),
     CURSEDOBJECT(new FactoryCursedObject()),
     PICKSTICK(new FactoryPickStick()),
+    OPENDOOR(new FactoryOpenDoor()),
     OPENDOOR2(new FactoryOpenDoor2());
 
     private FactoryGames factory;

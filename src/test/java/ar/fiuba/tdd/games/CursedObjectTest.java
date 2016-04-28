@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.games.cursedobject;
+package ar.fiuba.tdd.games;
 
 import ar.fiuba.tdd.tp.server.motor.games.CursedObject;
 import org.junit.Test;

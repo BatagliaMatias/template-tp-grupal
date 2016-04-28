@@ -1,12 +1,10 @@
 package ar.fiuba.tdd.tp.server.motor.factories;
 
-import ar.fiuba.tdd.tp.server.motor.games.AbrirPuerta2;
 import ar.fiuba.tdd.tp.server.motor.games.Game;
+import ar.fiuba.tdd.tp.server.motor.games.OpenDoor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class FactoryOpenDoor2Test {
     private FactoryOpenDoor2 factoryOpenDoor2;
@@ -19,7 +17,7 @@ public class FactoryOpenDoor2Test {
     @Test
     public void create() throws Exception {
         Game game = factoryOpenDoor2.create();
-        Assert.assertEquals(AbrirPuerta2.class,game.getClass());
+        Assert.assertEquals(OpenDoor.class,game.getClass());
     }
 
     @Test
