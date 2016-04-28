@@ -2,10 +2,13 @@ package ar.fiuba.tdd.tp.server.motor.games;
 
 import ar.fiuba.tdd.tp.server.motor.Player;
 import ar.fiuba.tdd.tp.server.motor.Stage;
+
 import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
 import ar.fiuba.tdd.tp.server.motor.commands.Open;
 import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.commands.Talk;
+import ar.fiuba.tdd.tp.server.motor.commands.proxycommands.ProxyCommand;
+
 import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
 import ar.fiuba.tdd.tp.server.motor.entities.Thief;
@@ -32,11 +35,12 @@ public class CursedObject extends Game {
         Thief thief = new Thief(door2, key, this.player.getInventory());
         secondRoom.addEntity(thief);
 
-        commands.add(new Talk("Hello", "Hi!", thief));
-        commands.add(new Talk("Bye", "Bye!", thief));
+        commands.add(new ProxyCommand(new Talk("Hello", "Hi!", thief), this.player, secondRoom));
+        commands.add(new ProxyCommand(new Talk("Bye", "Bye!", thief), this.player, secondRoom));
+
         commands.add(new LookAround(player));
         commands.add(new Open(door1));
-        commands.add(new Open(door2));
+        commands.add(new ProxyCommand(new Open(door2),this.player,secondRoom));
         commands.add(new Pick(key, originRoom));
         includeWhatCanIdoWithCommand();
     }

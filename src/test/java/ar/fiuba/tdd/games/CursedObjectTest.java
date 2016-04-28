@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.games.cursedobject;
+package ar.fiuba.tdd.games;
 
 import ar.fiuba.tdd.tp.server.motor.games.CursedObject;
 import org.junit.Test;
@@ -24,7 +24,7 @@ public class CursedObjectTest {
         game.processInput("pick key");
         game.processInput("open door1");
 
-        assertEquals(game.processInput("Talk to thief “Hello“"), "Hi!\nThe thief has just stolen your object!\n...");
+        assertEquals(game.processInput("Talk to thief 'Hello'"), "Hi!\nThe thief has just stolen your object!\n...");
 
     }
 
@@ -35,9 +35,18 @@ public class CursedObjectTest {
 
         game.processInput("pick key");
         game.processInput("open door1");
-        game.processInput("Talk to thief “Hello“");
+        game.processInput("Talk to thief 'Hello'");
 
         assertEquals(game.processInput("open door2"), "Congratulations!! You won the game!");
+
+    }
+
+    @Test
+    public void ifTalkToThiefFromRoom1ReceiveInvalidCommand() {
+
+        CursedObject game = new CursedObject();
+
+        assertEquals(game.processInput("Talk to thief 'Hello'"), "Invalid command");
 
     }
 

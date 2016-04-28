@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.games.pickstick;
+package ar.fiuba.tdd.games;
 
 import ar.fiuba.tdd.tp.server.motor.games.PickStick;
 import org.junit.Test;

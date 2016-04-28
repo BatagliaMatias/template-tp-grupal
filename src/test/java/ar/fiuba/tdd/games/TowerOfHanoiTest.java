@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.games.towerofhanoi;
+package ar.fiuba.tdd.games;
 
 import ar.fiuba.tdd.tp.server.motor.commands.CheckTop;
 import ar.fiuba.tdd.tp.server.motor.commands.MoveDisk;
