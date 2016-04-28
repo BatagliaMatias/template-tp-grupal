@@ -25,7 +25,7 @@ public class PickStick extends Game {
 
         this.commands.add(new LookAround(this.player));
         this.commands.add(new Pick(this.stick, room));
-
+        includeWhatCanIdoWithCommand();
     }
 
     public static String getHelp() {

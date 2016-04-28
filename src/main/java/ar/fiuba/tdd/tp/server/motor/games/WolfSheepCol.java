@@ -41,6 +41,7 @@ public class WolfSheepCol extends Game {
         commands.add(new LeaveFromBoat(wolf, boat));
         commands.add(new ConditionalCross(southShore, player, checker));
         commands.add(new ConditionalCross(northShore, player, checker));
+        includeWhatCanIdoWithCommand();
     }
 
     @Override

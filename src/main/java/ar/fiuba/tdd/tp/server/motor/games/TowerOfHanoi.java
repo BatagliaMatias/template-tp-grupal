@@ -29,7 +29,7 @@ public class TowerOfHanoi extends Game {
         this.commands.add(new MoveDisk(stackHanoiSecond, stackHanoiThird));
         this.commands.add(new MoveDisk(stackHanoiThird, stackHanoiFirst));
         this.commands.add(new MoveDisk(stackHanoiThird, stackHanoiSecond));
-
+        includeWhatCanIdoWithCommand();
     }
 
     public static String getHelp() {

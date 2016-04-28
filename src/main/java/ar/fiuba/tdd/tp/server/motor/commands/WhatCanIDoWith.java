@@ -23,7 +23,7 @@ public class WhatCanIDoWith extends GameCommand {
             StringBuilder buf = new StringBuilder();
             buf.append("With ");
             buf.append(target);
-            buf.append("you can: ");
+            buf.append(" you can: ");
             String currentSeparator = "";
             for (String identifier : commandsIdentifiers) {
                 buf.append(currentSeparator);
