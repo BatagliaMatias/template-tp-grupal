@@ -4,7 +4,7 @@ import ar.fiuba.tdd.tp.server.motor.commands.CheckTop;
 import ar.fiuba.tdd.tp.server.motor.commands.MoveDisk;
 import ar.fiuba.tdd.tp.server.motor.entities.StackHanoi;
 
-public class TowerOfHanoi extends Game{
+public class TowerOfHanoi extends Game {
 
     private static String helpMessage = "The objective of the puzzle is to move the entire stack to another rod.";
     private StackHanoi stackHanoiFirst;
@@ -23,12 +23,12 @@ public class TowerOfHanoi extends Game{
         this.commands.add(new CheckTop(stackHanoiSecond));
         this.commands.add(new CheckTop(stackHanoiThird));
 
-        this.commands.add(new MoveDisk(stackHanoiFirst,stackHanoiSecond));
-        this.commands.add(new MoveDisk(stackHanoiFirst,stackHanoiThird));
-        this.commands.add(new MoveDisk(stackHanoiSecond,stackHanoiFirst));
-        this.commands.add(new MoveDisk(stackHanoiSecond,stackHanoiThird));
-        this.commands.add(new MoveDisk(stackHanoiThird,stackHanoiFirst));
-        this.commands.add(new MoveDisk(stackHanoiThird,stackHanoiSecond));
+        this.commands.add(new MoveDisk(stackHanoiFirst, stackHanoiSecond));
+        this.commands.add(new MoveDisk(stackHanoiFirst, stackHanoiThird));
+        this.commands.add(new MoveDisk(stackHanoiSecond, stackHanoiFirst));
+        this.commands.add(new MoveDisk(stackHanoiSecond, stackHanoiThird));
+        this.commands.add(new MoveDisk(stackHanoiThird, stackHanoiFirst));
+        this.commands.add(new MoveDisk(stackHanoiThird, stackHanoiSecond));
 
     }
 

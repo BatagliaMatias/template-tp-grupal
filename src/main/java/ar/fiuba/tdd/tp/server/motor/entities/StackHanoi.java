@@ -17,7 +17,7 @@ public class StackHanoi extends GameEntity {
 
     public void putDisks() {
 
-        for (int sizeDisk = NUMBERDISKS ;sizeDisk > 0;sizeDisk--) {
+        for (int sizeDisk = NUMBERDISKS; sizeDisk > 0; sizeDisk--) {
 
             this.disks.add(new Disk(sizeDisk));
 

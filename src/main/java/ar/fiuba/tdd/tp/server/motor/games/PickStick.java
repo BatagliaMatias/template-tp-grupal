@@ -6,7 +6,7 @@ import ar.fiuba.tdd.tp.server.motor.commands.LookAround;
 import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.entities.Stick;
 
-public class PickStick extends Game{
+public class PickStick extends Game {
 
     private Stick stick;
     private Player player;
@@ -19,7 +19,7 @@ public class PickStick extends Game{
         this.player = new Player();
         this.player.setlocation(room);
 
-        this.stick = new Stick(room,this.player.getInventory());
+        this.stick = new Stick(room, this.player.getInventory());
 
         room.addEntity(this.stick);
 

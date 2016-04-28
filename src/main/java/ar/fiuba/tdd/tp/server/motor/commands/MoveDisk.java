@@ -8,7 +8,7 @@ public class MoveDisk extends GameCommand {
     private StackHanoi origin;
     private StackHanoi destination;
 
-    public MoveDisk(StackHanoi origin,StackHanoi destination) {
+    public MoveDisk(StackHanoi origin, StackHanoi destination) {
 
         super("move top stack " + origin.getName() + " stack " + destination.getName());
 
