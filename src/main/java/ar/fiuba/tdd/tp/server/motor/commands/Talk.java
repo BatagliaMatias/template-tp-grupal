@@ -21,7 +21,7 @@ public class Talk extends GameCommand {
 
         this.thief.steal();
 
-        return response + "\nThe thief has just stolen your object!\n...";
+        return response + " (The thief has just stolen your object!...)";
 
     }
 
