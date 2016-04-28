@@ -12,19 +12,13 @@ import java.net.Socket;
  */
 public class ClientNetworkFacade extends NetworkFacade {
 
-    private BufferedReader standardInput;
     Socket socket = null;
 
     public void initConnection(ConnectionConfig connection) throws IOException {
         socket = new Socket(connection.getHostName(), connection.getPort());
         outputStream = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), ENCODING), true);
         inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream(), ENCODING));
-        standardInput = new BufferedReader(new InputStreamReader(System.in, ENCODING));
         this.messageToStandardOutput(this.receiveMessage());
-    }
-
-    public String getMessageToSend() throws IOException {
-        return standardInput.readLine();
     }
 
     public void endConnection() {
