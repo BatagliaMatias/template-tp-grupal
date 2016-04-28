@@ -8,7 +8,6 @@ public class Door extends GameEntity implements Openable {
 
     protected Player player;
     protected Stage destination;
-    private boolean locked = true;
 
     public Door(String name, Player player, Stage destination) {
         super(name);
@@ -18,8 +17,9 @@ public class Door extends GameEntity implements Openable {
 
     @Override
     public String open() {
-        if (player.isPoisoned())
+        if (player.isPoisoned()) {
             player.kill();
+        }
         Stage newDestination = player.getLocation();
         newDestination.removeEntity(this);
         destination.addEntity(this);

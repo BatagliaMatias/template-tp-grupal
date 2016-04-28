@@ -10,7 +10,7 @@ public class OpenDoor2 extends OpenDoor {
 
         super();
 
-        Box box = new Box("box",this.room1);
+        Box box = new Box("box", this.room1);
 
         box.add(key);
 

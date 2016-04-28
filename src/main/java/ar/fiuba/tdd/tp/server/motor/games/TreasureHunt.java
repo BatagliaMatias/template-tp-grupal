@@ -10,18 +10,12 @@ import ar.fiuba.tdd.tp.server.motor.entities.*;
 public class TreasureHunt extends Game {
 
     private static String helpMessage = "There is no help here, you are on your own";
-    private Stage initialRoom;
-    private Player player;
-    private PickableGameEntity treasure;
+    Stage room3 = new Stage("Room 3");
+    private Player player = new Player();
+    private PickableGameEntity treasure = new Treasure(room3, player.getInventory());
+    private Stage initialRoom = new Stage("Room 1");
 
     public TreasureHunt() {
-
-
-        Stage initialRoom = new Stage("Room 1");
-
-
-        player = new Player();
-
 
         // initialRoom contiene 2 puertas, una cerrada y otra abierta, llevan a room 2 y room 4 respectivamente
         Stage room2 = new Stage("Room 2");
@@ -34,8 +28,6 @@ public class TreasureHunt extends Game {
         pbox1.add(new Col());
         initialRoom.addEntity(pbox1);
 
-        Stage room3 = new Stage("Room 3");
-
         Stage room5 = new Stage("Room 5");
         // room 2 contiene una puerta cerrada a room 3
         LockedDoor puerta3 = new LockedDoor("door3", player, room3);
@@ -47,10 +39,8 @@ public class TreasureHunt extends Game {
 
 
         player.setlocation(initialRoom);
-
-        treasure = new Treasure(room3, player.getInventory());
         room3.addEntity(treasure);
-
+/*
         commands.add(new LookAround(player));
         commands.add(new Open(puerta1));
         commands.add(new Open(puerta2));
@@ -59,7 +49,7 @@ public class TreasureHunt extends Game {
         commands.add(new Open(pbox1));
         commands.add(new Pick(treasure, room3));
 
-        includeWhatCanIdoWithCommand();
+        includeWhatCanIdoWithCommand();*/
     }
 
     public static String getHelp() {
