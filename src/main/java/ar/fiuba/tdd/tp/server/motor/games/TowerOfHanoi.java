@@ -6,6 +6,7 @@ import ar.fiuba.tdd.tp.server.motor.entities.StackHanoi;
 
 public class TowerOfHanoi extends Game{
 
+    private static String helpMessage = "The objective of the puzzle is to move the entire stack to another rod.";
     private StackHanoi stackHanoiFirst;
     private StackHanoi stackHanoiSecond;
     private StackHanoi stackHanoiThird;
@@ -45,5 +46,10 @@ public class TowerOfHanoi extends Game{
     @Override
     public String getGameOverMessage() {
         return "You won the game tower of Hanoi !";
+    }
+
+    public static String getHelp() {
+
+        return helpMessage;
     }
 }

@@ -7,13 +7,18 @@ public enum Message {
 
     NO_GAME_CONNECTED("You aren't connected to any game"),
     ALREADY_GAME_CONNECTED("You are already connected to a game"),
-    CONNECT_PARAMS("Invalid qty of params for connect command"),
+    INVALID_QTY_PARAMS("Invalid qty of params for command"),
+    INVALID_COMMAND_FORMAT("Invalid format of command"),
     CONNECT_ERROR("Error trying to connect"),
+    GAME_INIT_ERROR("Error trying to load game"),
     EXIT_MESSAGE("EXIT"),
     NO_SEND_CONNECTED("Cant send command because you aren't connected to any game"),
     WIN("YOU WIN THE GAME"),
     WELCOME("Welcome to "),
-    INIT_CLIENT("Client RUNNING! Enter command");
+    INIT_CLIENT("Client RUNNING! Enter command"),
+    INIT_SERVER("Server RUNNING! Enter command"),
+    INPUT_ERROR("Error trying to read from Standard Input"),
+    GAME_LOADED(" loaded and listening on port ");
 
     private final String text;
 

@@ -13,6 +13,7 @@ import ar.fiuba.tdd.tp.shared.Message;
 
 public class AbrirPuerta2 extends Game {
 
+    private static String helpMessage = "A door locked.. where can you find a key?";
     private Stage finalRoom;
     private Player player;
 
@@ -49,5 +50,9 @@ public class AbrirPuerta2 extends Game {
     String getGameOverMessage() {
         return Message.WIN.getText();
         //return "GANASTE!. A esto le falta variar el mensaje si perdes";
+    }
+
+    public static String getHelp() {
+        return helpMessage;
     }
 }
