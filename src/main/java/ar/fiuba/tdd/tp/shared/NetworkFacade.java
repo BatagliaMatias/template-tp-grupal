@@ -19,8 +19,13 @@ public abstract class NetworkFacade {
 
     public abstract void initConnection(ConnectionConfig connection) throws IOException;
 
-    public String receiveMessage() throws IOException {
-        return inputStream.readLine();
+    public String receiveMessage() {
+        try {
+            this.lastMessageReceived = inputStream.readLine();
+        } catch (IOException e) {
+            this.lastMessageReceived = null;
+        }
+        return this.lastMessageReceived;
     }
 
     public void sendMessage(String msg) {
@@ -28,11 +33,7 @@ public abstract class NetworkFacade {
     }
 
     public boolean continuesReceivingMessages() {
-        try {
-            this.lastMessageReceived = this.receiveMessage();
-        } catch (IOException io) {
-            return false;
-        }
+        this.receiveMessage();
         return (this.lastMessageReceived != null);
     }
 

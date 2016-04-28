@@ -46,7 +46,7 @@ public class ClientHelper {
 
     public void sendMessageAndReceive(String messageToSend) {
         network.sendMessage(messageToSend);
-        network.messageToStandardOutput(network.getLastMessageReceived());
+        network.messageToStandardOutput(network.receiveMessage());
         if (network.getLastMessageReceived().equals(Message.WIN.getText())) {
             this.endConnection();
         }

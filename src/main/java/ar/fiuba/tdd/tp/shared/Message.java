@@ -11,7 +11,7 @@ public enum Message {
     CONNECT_ERROR("Error trying to connect"),
     EXIT_MESSAGE("EXIT"),
     NO_SEND_CONNECTED("Cant send command because you aren't connected to any game"),
-    WIN("YES. YOU WIN. THE GAME START AGAIN..."),
+    WIN("YOU WIN THE GAME"),
     INIT_CLIENT("Client RUNNING! Enter command");
 
     private final String text;
