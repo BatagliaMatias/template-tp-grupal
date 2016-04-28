@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.actions;
 
+import ar.fiuba.tdd.tp.client.ClientHelper;
 import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
 import ar.fiuba.tdd.tp.shared.actions.ConnectAction;
 import org.junit.Test;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class ConnectActionTest {
 
-    ConnectAction action = new ConnectAction();
+    ConnectAction action = new ConnectAction(new ClientHelper());
 
     @Test
     public void testCanSolveReturnTrue() {

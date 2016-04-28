@@ -35,3 +35,10 @@ configurations.all {
         force 'xml-apis:xml-apis:1.4.01'
     }
 }
+
+/*tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}*/

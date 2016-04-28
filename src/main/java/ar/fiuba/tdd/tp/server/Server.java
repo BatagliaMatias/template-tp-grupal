@@ -2,6 +2,8 @@ package ar.fiuba.tdd.tp.server;
 
 import ar.fiuba.tdd.tp.server.motor.Motor;
 import ar.fiuba.tdd.tp.server.network.ServerNetworkFacade;
+import ar.fiuba.tdd.tp.shared.ConnectionConfig;
+import ar.fiuba.tdd.tp.shared.Message;
 
 import java.io.IOException;
 
@@ -13,7 +15,7 @@ public class Server {
 
         try {
             ServerNetworkFacade network = new ServerNetworkFacade();
-            network.initConnection(portNumber);
+            network.initConnection(new ConnectionConfig());
 
             String outputLine;
 
@@ -24,7 +26,7 @@ public class Server {
             while (network.continuesReceivingMessages()) {
                 outputLine = motor.processInput(network.getLastMessageReceived());
                 network.sendMessage(outputLine);
-                if (outputLine.equals("YES. YOU WIN. THE GAME START AGAIN...")) {
+                if (outputLine.equals(Message.WIN.getText())) {
                     break;
                 }
             }

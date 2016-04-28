@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.actions;
 
+import ar.fiuba.tdd.tp.client.ClientHelper;
 import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
 import ar.fiuba.tdd.tp.shared.actions.ExitAction;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
  */
 public class ExitActionTest {
 
-    ExitAction action = new ExitAction();
+    ExitAction action = new ExitAction(new ClientHelper());
 
     @Test
     public void testCanSolveReturnTrue() {

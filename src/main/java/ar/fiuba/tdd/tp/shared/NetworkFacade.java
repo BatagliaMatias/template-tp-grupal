@@ -17,10 +17,15 @@ public abstract class NetworkFacade {
     public NetworkFacade() {
     }
 
-    public abstract void initConnection(int port) throws IOException;
+    public abstract void initConnection(ConnectionConfig connection) throws IOException;
 
-    public String receiveMessage() throws IOException {
-        return inputStream.readLine();
+    public String receiveMessage() {
+        try {
+            this.lastMessageReceived = inputStream.readLine();
+        } catch (IOException e) {
+            this.lastMessageReceived = null;
+        }
+        return this.lastMessageReceived;
     }
 
     public void sendMessage(String msg) {
@@ -28,15 +33,15 @@ public abstract class NetworkFacade {
     }
 
     public boolean continuesReceivingMessages() {
-        try {
-            this.lastMessageReceived = this.receiveMessage();
-        } catch (IOException io) {
-            return false;
-        }
+        this.receiveMessage();
         return (this.lastMessageReceived != null);
     }
 
     public String getLastMessageReceived() {
         return this.lastMessageReceived;
+    }
+
+    public void messageToStandardOutput(String message) {
+        System.out.println(message);
     }
 }

@@ -9,6 +9,7 @@ import ar.fiuba.tdd.tp.server.motor.commands.Pick;
 import ar.fiuba.tdd.tp.server.motor.entities.Box;
 import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
+import ar.fiuba.tdd.tp.shared.Message;
 
 public class AbrirPuerta2 extends Game {
 
@@ -46,6 +47,7 @@ public class AbrirPuerta2 extends Game {
 
     @Override
     String getGameOverMessage() {
-        return "GANASTE!. A esto le falta variar el mensaje si perdes";
+        return Message.WIN.getText();
+        //return "GANASTE!. A esto le falta variar el mensaje si perdes";
     }
 }
