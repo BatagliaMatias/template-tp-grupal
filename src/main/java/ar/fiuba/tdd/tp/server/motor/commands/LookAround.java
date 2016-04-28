@@ -11,7 +11,7 @@ public class LookAround extends GameCommand {
     private Player player;
 
     public LookAround(Player player) {
-        super("look around");
+        super("look around", "");
         this.player = player;
     }
 

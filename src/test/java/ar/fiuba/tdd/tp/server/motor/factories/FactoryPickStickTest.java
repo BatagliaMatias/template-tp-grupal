@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class FactoryPickStickTest {
     private FactoryPickStick factoryPickStick;
 
@@ -19,12 +17,12 @@ public class FactoryPickStickTest {
     @Test
     public void create() throws Exception {
         Game game = factoryPickStick.create();
-        Assert.assertEquals(PickStick.class,game.getClass());
+        Assert.assertEquals(PickStick.class, game.getClass());
     }
 
     @Test
     public void getHelp() throws Exception {
         String help = "You have to pick that stick over there.";
-        Assert.assertEquals(help,factoryPickStick.getHelp());
+        Assert.assertEquals(help, factoryPickStick.getHelp());
     }
 }

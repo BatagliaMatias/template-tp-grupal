@@ -9,7 +9,7 @@ public class Pick extends GameCommand {
     private PickableGameEntity target;
 
     public Pick(PickableGameEntity target, EntityContainer containerToPickFrom) {
-        super("pick " + target.getName());
+        super("pick " + target.getName(), target.getName());
         this.target = target;
         this.containerToPickFrom = containerToPickFrom;
     }

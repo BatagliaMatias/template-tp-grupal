@@ -5,15 +5,10 @@ package ar.fiuba.tdd.tp.shared;
  */
 public class PortSequence {
 
-    public int actualPort = 4444;
     private static PortSequence instance = null;
+    public int actualPort = 4444;
 
     protected PortSequence() {
-    }
-
-    public int getPort() {
-        this.actualPort = (this.actualPort + 1);
-        return this.actualPort;
     }
 
     public static PortSequence getInstance() {
@@ -21,5 +16,10 @@ public class PortSequence {
             instance = new PortSequence();
         }
         return instance;
+    }
+
+    public int getPort() {
+        this.actualPort = (this.actualPort + 1);
+        return this.actualPort;
     }
 }

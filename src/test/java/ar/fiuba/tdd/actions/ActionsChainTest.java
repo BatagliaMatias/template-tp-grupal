@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by jorlando on 26/04/16.
@@ -19,6 +19,7 @@ public class ActionsChainTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    Exception ex = null;
 
     @Before
     public void setUpStreams() {
@@ -31,8 +32,6 @@ public class ActionsChainTest {
         System.setOut(null);
         System.setErr(null);
     }
-
-    Exception ex = null;
 
     @Test
     public void testActionsChain() {
@@ -56,7 +55,7 @@ public class ActionsChainTest {
         } catch (IndexOutOfBoundsException e) {
             ex = e;
         }
-        assertEquals(null,ex);
+        assertEquals(null, ex);
     }
 
     @Test
@@ -68,7 +67,7 @@ public class ActionsChainTest {
         } catch (Exception e) {
             ex = e;
         }
-        assertEquals(null,ex);
+        assertEquals(null, ex);
     }
 
     @Test

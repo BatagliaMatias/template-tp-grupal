@@ -34,9 +34,9 @@ public class TowerOfHanoiTest {
 
         stackFirst.putDisks();
 
-        MoveDisk command = new MoveDisk(stackFirst,stackSecond);
+        MoveDisk command = new MoveDisk(stackFirst, stackSecond);
 
-        assertEquals(command.execute(),"moved!");
+        assertEquals(command.execute(), "moved!");
 
     }
 
@@ -48,7 +48,7 @@ public class TowerOfHanoiTest {
 
         CheckTop command = new CheckTop(stackFirst);
 
-        assertEquals(command.execute(),"The stack 1 is empty");
+        assertEquals(command.execute(), "The stack 1 is empty");
 
     }
 
@@ -61,7 +61,7 @@ public class TowerOfHanoiTest {
 
         CheckTop command = new CheckTop(stackFirst);
 
-        assertEquals(command.execute(),"Size of top from stack 1 is 1");
+        assertEquals(command.execute(), "Size of top from stack 1 is 1");
 
     }
 
@@ -73,11 +73,11 @@ public class TowerOfHanoiTest {
 
         stackFirst.putDisks();
 
-        MoveDisk command = new MoveDisk(stackFirst,stackSecond);
+        MoveDisk command = new MoveDisk(stackFirst, stackSecond);
 
         command.execute();
 
-        assertEquals(command.execute(),"The disk in stack 1 is greater than disk in stack 2");
+        assertEquals(command.execute(), "The disk in stack 1 is greater than disk in stack 2");
 
     }
 
@@ -88,7 +88,7 @@ public class TowerOfHanoiTest {
 
         String response = game.processInput("check top stack 1");
 
-        assertEquals(response,"Size of top from stack 1 is 1");
+        assertEquals(response, "Size of top from stack 1 is 1");
 
     }
 
@@ -99,10 +99,9 @@ public class TowerOfHanoiTest {
 
         String response = game.processInput("move top stack 1 stack 2");
 
-        assertEquals(response,"moved!");
+        assertEquals(response, "moved!");
 
     }
-
 
 
 }

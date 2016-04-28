@@ -11,7 +11,7 @@ public class ConditionalCross extends GameCommand {
     private Player player;
 
     public ConditionalCross(Stage destination, Player player, EntityCompatibilityChecker canCrossChecker) {
-        super("cross " + destination.getName());
+        super("cross " + destination.getName(), destination.getName());
         this.player = player;
         this.destination = destination;
         this.canCrossChecker = canCrossChecker;
@@ -31,5 +31,4 @@ public class ConditionalCross extends GameCommand {
         player.setlocation(destination);
         return "Ok";
     }
-
 }

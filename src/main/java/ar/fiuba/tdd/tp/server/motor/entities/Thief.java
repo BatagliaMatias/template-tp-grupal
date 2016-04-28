@@ -3,7 +3,7 @@ package ar.fiuba.tdd.tp.server.motor.entities;
 import ar.fiuba.tdd.tp.server.motor.EntityContainer;
 import ar.fiuba.tdd.tp.server.motor.uses.Unlockable;
 
-public class Thief extends GameEntity{
+public class Thief extends GameEntity {
 
     private static final String NAME = "thief";
     private Unlockable target;
@@ -11,7 +11,7 @@ public class Thief extends GameEntity{
     private Key key;
 
 
-    public Thief(Unlockable target,Key key,EntityContainer originContainer) {
+    public Thief(Unlockable target, Key key, EntityContainer originContainer) {
 
         super(NAME);
         this.target = target;

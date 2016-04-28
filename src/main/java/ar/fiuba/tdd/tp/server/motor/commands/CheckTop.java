@@ -8,7 +8,7 @@ public class CheckTop extends GameCommand {
 
     public CheckTop(StackHanoi stackHanoi) {
 
-        super("check top stack " + stackHanoi.getName());
+        super("check top stack " + stackHanoi.getName(), stackHanoi.getName());
         this.stackHanoi = stackHanoi;
 
     }

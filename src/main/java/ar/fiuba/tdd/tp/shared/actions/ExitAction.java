@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.tp.shared.actions;
 
 import ar.fiuba.tdd.tp.client.ClientHelper;
-import ar.fiuba.tdd.tp.client.config.GameStates;
 import ar.fiuba.tdd.tp.shared.Message;
 
 /**

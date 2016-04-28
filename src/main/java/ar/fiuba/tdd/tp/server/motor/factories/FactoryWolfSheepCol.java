@@ -1,17 +1,17 @@
 package ar.fiuba.tdd.tp.server.motor.factories;
 
 import ar.fiuba.tdd.tp.server.motor.games.Game;
-import ar.fiuba.tdd.tp.server.motor.games.OpenDoor2;
+import ar.fiuba.tdd.tp.server.motor.games.WolfSheepCol;
 
-public class FactoryOpenDoor2 extends FactoryGames {
+public class FactoryWolfSheepCol extends FactoryGames {
 
     @Override
     public Game create() {
-        return new OpenDoor2();
+        return new WolfSheepCol();
     }
 
     @Override
     public String getHelp() {
-        return OpenDoor2.getHelp();
+        return WolfSheepCol.getHelp();
     }
 }

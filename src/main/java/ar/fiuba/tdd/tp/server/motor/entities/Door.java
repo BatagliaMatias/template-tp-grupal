@@ -12,7 +12,7 @@ public class Door extends GameEntity implements Openable, Unlockable {
     private Player player;
     private Stage destination;
 
-    public Door(String name,Player player, Stage destination) {
+    public Door(String name, Player player, Stage destination) {
         super(name);
         this.player = player;
         this.destination = destination;

@@ -2,7 +2,9 @@ package ar.fiuba.tdd.actions;
 
 import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
 import ar.fiuba.tdd.tp.shared.actions.InvalidAction;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -16,6 +18,7 @@ public class InvalidActionTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    InvalidAction action = new InvalidAction();
 
     @Before
     public void setUpStreams() {
@@ -28,8 +31,6 @@ public class InvalidActionTest {
         System.setOut(null);
         System.setErr(null);
     }
-
-    InvalidAction action = new InvalidAction();
 
     @Test
     public void testCanSolveReturnTrue() {

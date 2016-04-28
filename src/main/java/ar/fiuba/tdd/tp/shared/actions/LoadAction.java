@@ -13,7 +13,7 @@ public class LoadAction extends Action {
 
     public void solve(String userAction) {
         String[] connect = userAction.split(" ");
-        if ( connect.length == QTY_VALID_PARAMS && connect[1].equals("game") ) {
+        if (connect.length == QTY_VALID_PARAMS && connect[1].equals("game")) {
             (new GameThread(connect[2])).start();
         } else {
             System.out.println(Message.INVALID_COMMAND_FORMAT.getText());

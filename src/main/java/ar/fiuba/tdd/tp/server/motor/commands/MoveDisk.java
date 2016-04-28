@@ -10,7 +10,7 @@ public class MoveDisk extends GameCommand {
 
     public MoveDisk(StackHanoi origin, StackHanoi destination) {
 
-        super("move top stack " + origin.getName() + " stack " + destination.getName());
+        super("move top stack " + origin.getName() + " stack " + destination.getName(), origin.getName());
 
         this.origin = origin;
         this.destination = destination;

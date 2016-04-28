@@ -7,16 +7,13 @@ public enum GameEnum {
     TOWEROFHANOI(new FactoryTowerOfHanoi()),
     CURSEDOBJECT(new FactoryCursedObject()),
     PICKSTICK(new FactoryPickStick()),
+    WOLFSHEEPCOL(new FactoryWolfSheepCol()),
     OPENDOOR2(new FactoryOpenDoor2());
 
     private FactoryGames factory;
 
     GameEnum(FactoryGames newFactory) {
         this.factory = newFactory;
-    }
-
-    public FactoryGames getFactory() {
-        return this.factory;
     }
 
     public static FactoryGames getGame(String nameToAnalize) throws BadGameNameException {
@@ -38,6 +35,10 @@ public enum GameEnum {
         } catch (BadGameNameException t) {
             return false;
         }
+    }
+
+    public FactoryGames getFactory() {
+        return this.factory;
     }
 
 

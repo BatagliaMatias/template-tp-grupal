@@ -8,9 +8,9 @@ import ar.fiuba.tdd.tp.server.motor.entities.Stick;
 
 public class PickStick extends Game {
 
+    private static String helpMessage = "You have to pick that stick over there.";
     private Stick stick;
     private Player player;
-    private static String helpMessage = "You have to pick that stick over there.";
 
     public PickStick() {
 
@@ -28,6 +28,10 @@ public class PickStick extends Game {
 
     }
 
+    public static String getHelp() {
+        return helpMessage;
+    }
+
     @Override
     public boolean isGameOver() {
         return this.player.getInventory().containsEntity(this.stick);
@@ -36,9 +40,5 @@ public class PickStick extends Game {
     @Override
     public String getGameOverMessage() {
         return "You won the game!";
-    }
-
-    public static String getHelp() {
-        return helpMessage;
     }
 }

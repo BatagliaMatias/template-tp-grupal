@@ -32,6 +32,11 @@ public class TowerOfHanoi extends Game {
 
     }
 
+    public static String getHelp() {
+
+        return helpMessage;
+    }
+
     @Override
     public boolean isGameOver() {
 
@@ -46,10 +51,5 @@ public class TowerOfHanoi extends Game {
     @Override
     public String getGameOverMessage() {
         return "You won the game tower of Hanoi !";
-    }
-
-    public static String getHelp() {
-
-        return helpMessage;
     }
 }

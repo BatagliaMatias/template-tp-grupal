@@ -5,7 +5,6 @@ import ar.fiuba.tdd.tp.server.motor.Motor;
 import ar.fiuba.tdd.tp.server.network.ServerNetworkFacade;
 import ar.fiuba.tdd.tp.shared.ConnectionConfig;
 import ar.fiuba.tdd.tp.shared.Message;
-import ar.fiuba.tdd.tp.shared.StandardInputManager;
 
 import java.io.IOException;
 
@@ -14,10 +13,10 @@ import java.io.IOException;
  */
 public class GameThread extends Thread {
 
-    private String gameName = "";
     ServerNetworkFacade network = null;
     ConnectionConfig connectionConfig = null;
     Motor motor = null;
+    private String gameName = "";
 
     public GameThread(String name) {
         super();

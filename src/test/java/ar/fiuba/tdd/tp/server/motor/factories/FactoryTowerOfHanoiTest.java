@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class FactoryTowerOfHanoiTest {
     private FactoryTowerOfHanoi factoryTowerOfHanoi;
 
@@ -19,12 +17,12 @@ public class FactoryTowerOfHanoiTest {
     @Test
     public void create() throws Exception {
         Game game = factoryTowerOfHanoi.create();
-        Assert.assertEquals(TowerOfHanoi.class,game.getClass());
+        Assert.assertEquals(TowerOfHanoi.class, game.getClass());
     }
 
     @Test
     public void getHelp() throws Exception {
         String help = "The objective of the puzzle is to move the entire stack to another rod.";
-        Assert.assertEquals(help,factoryTowerOfHanoi.getHelp());
+        Assert.assertEquals(help, factoryTowerOfHanoi.getHelp());
     }
 }

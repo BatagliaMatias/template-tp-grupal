@@ -9,8 +9,8 @@ import java.io.UnsupportedEncodingException;
  * Created by jorlando on 28/04/16.
  */
 public class StandardInputManager {
-    BufferedReader standardInput = null;
     static final String ENCODING = "UTF-8";
+    BufferedReader standardInput = null;
 
     public StandardInputManager() {
         try {

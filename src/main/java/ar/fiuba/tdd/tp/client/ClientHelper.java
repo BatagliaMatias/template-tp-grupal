@@ -24,21 +24,21 @@ public class ClientHelper {
         this.getNetwork().endConnection();
     }
 
+    public GameStates getGameState() {
+        return this.gameState;
+    }
+
     public void setGameState(GameStates newState) {
         this.gameState = newState;
     }
 
-    public GameStates getGameState() {
-        return this.gameState;
+    public ClientNetworkFacade getNetwork() {
+        return this.network;
     }
 
     public void setNetwork(ClientNetworkFacade newNet) {
         this.network = newNet;
         this.setGameState(GameStates.RUNNING);
-    }
-
-    public ClientNetworkFacade getNetwork() {
-        return this.network;
     }
 
     public void sendMessageAndReceive(String messageToSend) {

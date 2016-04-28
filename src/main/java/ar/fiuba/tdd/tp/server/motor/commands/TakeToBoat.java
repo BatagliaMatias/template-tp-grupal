@@ -3,18 +3,14 @@ package ar.fiuba.tdd.tp.server.motor.commands;
 import ar.fiuba.tdd.tp.server.motor.entities.Boat;
 import ar.fiuba.tdd.tp.server.motor.entities.GameEntity;
 
-public class TakeToBoat extends GameCommand {
-
-    private GameEntity target;
-    private Boat boat;
+public class TakeToBoat extends BoatCommand {
 
     public TakeToBoat(GameEntity target, Boat boat) {
-        super("take " + target.getName());
-        this.target = target;
-        this.boat = boat;
+        super("take ", target, boat);
     }
 
     public String execute() {
-        return boat.store(target);
+        return boat.store(targetToLeave);
     }
+
 }

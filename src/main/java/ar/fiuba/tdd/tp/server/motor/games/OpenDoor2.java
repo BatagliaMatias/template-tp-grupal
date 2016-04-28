@@ -11,13 +11,13 @@ import ar.fiuba.tdd.tp.server.motor.entities.Door;
 import ar.fiuba.tdd.tp.server.motor.entities.Key;
 import ar.fiuba.tdd.tp.shared.Message;
 
-public class AbrirPuerta2 extends Game {
+public class OpenDoor2 extends Game {
 
     private static String helpMessage = "A door locked.. where can you find a key?";
     private Stage finalRoom;
     private Player player;
 
-    public AbrirPuerta2() {
+    public OpenDoor2() {
 
         Stage room1 = new Stage("Room 1");
         finalRoom = new Stage("Room 2");
@@ -25,7 +25,7 @@ public class AbrirPuerta2 extends Game {
         player = new Player();
         player.setlocation(room1);
 
-        Door puerta = new Door("door",player, finalRoom);
+        Door puerta = new Door("door", player, finalRoom);
         Key llave = new Key(puerta, room1, player.getInventory());
 
         Box box = new Box(room1);
@@ -39,6 +39,12 @@ public class AbrirPuerta2 extends Game {
         commands.add(new Open(box));
         commands.add(new Close(box));
         commands.add(new Pick(llave, room1));
+
+        includeWhatCanIdoWithCommand();
+    }
+
+    public static String getHelp() {
+        return helpMessage;
     }
 
     @Override
@@ -50,9 +56,5 @@ public class AbrirPuerta2 extends Game {
     String getGameOverMessage() {
         return Message.WIN.getText();
         //return "GANASTE!. A esto le falta variar el mensaje si perdes";
-    }
-
-    public static String getHelp() {
-        return helpMessage;
     }
 }

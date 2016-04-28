@@ -12,7 +12,7 @@ public class Help extends GameCommand {
     private String command;
 
     public Help() {
-        super("help");
+        super("help", "");
     }
 
     public String execute() {
