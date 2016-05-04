@@ -22,8 +22,8 @@ public class ClientNetworkFacade extends NetworkFacade {
     }
 
     public void endConnection() {
-        this.sendMessage(Message.EXIT_MESSAGE.getText());
         try {
+            this.sendMessage(Message.EXIT_MESSAGE.getText());
             this.messageToStandardOutput(this.receiveMessage());
             socket.close();
             outputStream.close();

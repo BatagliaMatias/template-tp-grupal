@@ -1,8 +1,5 @@
-package ar.fiuba.tdd.actions;
+package ar.fiuba.tdd.tp.shared.actions;
 
-import ar.fiuba.tdd.tp.shared.actions.ActionsChain;
-import ar.fiuba.tdd.tp.shared.actions.InvalidAction;
-import ar.fiuba.tdd.tp.shared.actions.LoadAction;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,6 +74,19 @@ public class ActionsChainTest {
         chain.addAction(new InvalidAction());
         chain.processAction("test");
         assertEquals("Action test not recognized\n".toString(), outContent.toString());
+    }
+
+    @Test
+    public void testGetSizeActionsWithEmptyChain() {
+        ActionsChain chain = new ActionsChain();
+        assertEquals(0, chain.getSizeActions());
+    }
+
+    @Test
+    public void testGetSizeActionsWithNotChain() {
+        ActionsChain chain = new ActionsChain();
+        chain.addAction(new LoadAction());
+        assertEquals(1, chain.getSizeActions());
     }
 
 }
