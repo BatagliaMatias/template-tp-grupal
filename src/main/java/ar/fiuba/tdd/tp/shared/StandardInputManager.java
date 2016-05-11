@@ -27,4 +27,12 @@ public class StandardInputManager {
             return Message.INPUT_ERROR.getText();
         }
     }
+
+    public void close() {
+        try {
+            standardInput.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
