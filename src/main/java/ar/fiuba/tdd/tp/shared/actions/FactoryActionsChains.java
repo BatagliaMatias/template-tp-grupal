@@ -18,7 +18,6 @@ public class FactoryActionsChains {
     public static ActionsChain serverChain() {
         ActionsChain chain = new ActionsChain();
         chain.addAction(new LoadAction());
-        chain.addAction(new InvalidAction());
         return chain;
     }
 }

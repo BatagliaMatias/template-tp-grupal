@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.server.nuevomotor;
 
-import java.awt.*;
 import java.util.HashMap;
 
 public class OpenDoor2 implements GameBuilder{

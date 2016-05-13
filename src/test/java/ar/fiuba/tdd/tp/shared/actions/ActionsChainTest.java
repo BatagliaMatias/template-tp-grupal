@@ -71,7 +71,6 @@ public class ActionsChainTest {
     public void testProcessActionWithInvalidAction() {
         ActionsChain chain = new ActionsChain();
         chain.addAction(new LoadAction());
-        chain.addAction(new InvalidAction());
         chain.processAction("test");
         assertEquals("Action test not recognized\n".toString(), outContent.toString());
     }

@@ -42,7 +42,7 @@ public class ConnectAction extends ClientAction {
         }
     }
 
-    public boolean canSolve(ActionsEnum action) {
-        return action.equals(ActionsEnum.CONNECT);
+    public boolean canSolve(String action) {
+        return action.equals("connect");
     }
 }

@@ -1,8 +1,6 @@
 package ar.fiuba.tdd.tp.shared.actions;
 
 import ar.fiuba.tdd.tp.client.ClientHelper;
-import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
-import ar.fiuba.tdd.tp.shared.actions.ExitAction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -17,16 +15,12 @@ public class ExitActionTest {
 
     @Test
     public void testCanSolveReturnTrue() {
-        assertTrue(action.canSolve(ActionsEnum.EXIT));
+        assertTrue(action.canSolve("exit"));
     }
 
     @Test
     public void testCanSolveReturnFalse() {
-        for (ActionsEnum act : ActionsEnum.values()) {
-            if (!(act.equals(ActionsEnum.EXIT))) {
-                assertFalse(action.canSolve(act));
-            }
-        }
+        assertFalse(action.canSolve("test"));
     }
 }
 

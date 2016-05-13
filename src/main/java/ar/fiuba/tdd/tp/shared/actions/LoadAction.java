@@ -20,7 +20,7 @@ public class LoadAction extends Action {
         }
     }
 
-    public boolean canSolve(ActionsEnum action) {
-        return action.equals(ActionsEnum.LOAD);
+    public boolean canSolve(String action) {
+        return action.equals("load");
     }
 }

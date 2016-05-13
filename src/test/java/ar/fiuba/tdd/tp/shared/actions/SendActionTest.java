@@ -5,8 +5,6 @@ package ar.fiuba.tdd.tp.shared.actions;
  */
 
 import ar.fiuba.tdd.tp.client.ClientHelper;
-import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
-import ar.fiuba.tdd.tp.shared.actions.SendAction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -18,8 +16,6 @@ public class SendActionTest {
 
     @Test
     public void testCanSolve() {
-        for (ActionsEnum act : ActionsEnum.values()) {
-            assertTrue(action.canSolve(act));
-        }
+        assertTrue(action.canSolve("test"));
     }
 }

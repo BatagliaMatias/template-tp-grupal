@@ -20,7 +20,7 @@ public class SendAction extends ClientAction {
         }
     }
 
-    public boolean canSolve(ActionsEnum action) {
+    public boolean canSolve(String action) {
         return true;
     }
 }

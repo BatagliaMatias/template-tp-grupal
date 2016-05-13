@@ -20,7 +20,7 @@ public class ExitAction extends ClientAction {
         }
     }
 
-    public boolean canSolve(ActionsEnum action) {
-        return action.equals(ActionsEnum.EXIT);
+    public boolean canSolve(String action) {
+        return action.equals("exit");
     }
 }

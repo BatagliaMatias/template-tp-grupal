@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.shared.actions;
 
-import ar.fiuba.tdd.tp.shared.actions.ActionsEnum;
-import ar.fiuba.tdd.tp.shared.actions.LoadAction;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -16,15 +14,11 @@ public class LoadActionTest {
 
     @Test
     public void testCanSolveReturnTrue() {
-        assertTrue(action.canSolve(ActionsEnum.LOAD));
+        assertTrue(action.canSolve("load"));
     }
 
     @Test
     public void testCanSolveReturnFalse() {
-        for (ActionsEnum act : ActionsEnum.values()) {
-            if (!(act.equals(ActionsEnum.LOAD))) {
-                assertFalse(action.canSolve(act));
-            }
-        }
+        assertFalse(action.canSolve("test"));
     }
 }

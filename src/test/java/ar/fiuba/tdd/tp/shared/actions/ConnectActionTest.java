@@ -15,15 +15,11 @@ public class ConnectActionTest {
 
     @Test
     public void testCanSolveReturnTrue() {
-        assertTrue(action.canSolve(ActionsEnum.CONNECT));
+        assertTrue(action.canSolve("connect"));
     }
 
     @Test
     public void testCanSolveReturnFalse() {
-        for (ActionsEnum act : ActionsEnum.values()) {
-            if (!(act.equals(ActionsEnum.CONNECT))) {
-                assertFalse(action.canSolve(act));
-            }
-        }
+        assertFalse(action.canSolve("test"));
     }
 }

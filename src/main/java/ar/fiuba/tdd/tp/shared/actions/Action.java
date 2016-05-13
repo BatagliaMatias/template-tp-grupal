@@ -13,7 +13,7 @@ public abstract class Action {
 
     public abstract void solve(String userAction);
 
-    public abstract boolean canSolve(ActionsEnum action);
+    public abstract boolean canSolve(String userAction);
 
     public void setNextAction(Action otherAction) {
         this.nextAction = otherAction;
@@ -21,12 +21,14 @@ public abstract class Action {
 
     public boolean canSolveRequest(String userAction) {
         String[] command = userAction.split(" ");
-        return this.canSolve(ActionsEnum.getEnum(command[0]));
+        return this.canSolve(command[0]);
     }
 
     public void reSendAction(String userAction) {
         if (this.nextAction != null) {
             this.nextAction.process(userAction);
+        } else {
+            System.out.println("Action " + userAction + " not recognized");
         }
     }
 
