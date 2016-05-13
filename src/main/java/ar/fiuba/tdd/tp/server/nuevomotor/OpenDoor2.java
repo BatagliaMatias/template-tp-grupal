@@ -43,7 +43,7 @@ public class OpenDoor2 implements GameBuilder{
 
         key.setState(keyStates);
 
-        box.setComponent("Key",key);
+        box.setComponent(key);
 
         Container door = new Container("Door");
 
@@ -59,7 +59,7 @@ public class OpenDoor2 implements GameBuilder{
 
         door.setState(doorState);
 
-        Command lookAt = new Command();
+        Command lookAt = new Command("look at");
 
         lookAt.setExecutableCommand((HashMap<String, Container> components)-> {
             StringBuffer buffer = new StringBuffer();
@@ -72,24 +72,24 @@ public class OpenDoor2 implements GameBuilder{
             return buffer.toString();
         });
 
-        lookAt.setComponent(box.getName(),box);
-        lookAt.setComponent(key.getName(),key);
-        lookAt.setComponent(door.getName(),door);
+        lookAt.setComponent(box);
+        lookAt.setComponent(key);
+        lookAt.setComponent(door);
 
-        gameOpenDoor2.setExecutableCommands("look at",lookAt);
+        gameOpenDoor2.setExecutableCommands(lookAt);
 
 
-        Command openBox = new Command();
+        Command openBox = new Command("open box");
 
-        openBox.setComponent(box.getName(),box);
+        openBox.setComponent(box);
 
         openBox.setExecutableCommand((HashMap<String, Container> components)-> components.get("Box").changeStatus("open"));
 
-        gameOpenDoor2.setExecutableCommands("open box",openBox);
+        gameOpenDoor2.setExecutableCommands(openBox);
 
-        Command pickKey = new Command();
+        Command pickKey = new Command("pick key");
 
-        pickKey.setComponent(key.getName(),key);
+        pickKey.setComponent(key);
 
         pickKey.setExecutableCommand((HashMap<String, Container> components)-> {
 
@@ -101,12 +101,12 @@ public class OpenDoor2 implements GameBuilder{
 
         });
 
-        gameOpenDoor2.setExecutableCommands("pick key",pickKey);
+        gameOpenDoor2.setExecutableCommands(pickKey);
 
-        Command openDoor = new Command();
+        Command openDoor = new Command("open door");
 
-        openDoor.setComponent(key.getName(),key);
-        openDoor.setComponent(door.getName(),door);
+        openDoor.setComponent(key);
+        openDoor.setComponent(door);
 
         openDoor.setExecutableCommand((HashMap<String, Container> components)-> {
 
@@ -118,11 +118,11 @@ public class OpenDoor2 implements GameBuilder{
 
         });
 
-        gameOpenDoor2.setExecutableCommands("open door",openDoor);
+        gameOpenDoor2.setExecutableCommands(openDoor);
 
         CommandWin win = new CommandWin();
 
-        win.setComponent(door.getName(),door);
+        win.setComponent(door);
         win.setWinnableCommand((HashMap<String, Container> components)-> components.get("Door").checkStatus("open"));
 
         gameOpenDoor2.setWinnersCommands(win);

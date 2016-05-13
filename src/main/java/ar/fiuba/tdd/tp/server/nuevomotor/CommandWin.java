@@ -11,8 +11,8 @@ public class CommandWin {
     public void setWinnableCommand(Winnable command){
         this.command = command;
     }
-    public void setComponent(String name,Container component){
-        this.componentes.put(name,component);
+    public void setComponent(Container component){
+        this.componentes.put(component.getName(), component);
     }
     public boolean win(){
         return this.command.win(this.componentes);

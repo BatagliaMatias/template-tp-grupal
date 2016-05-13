@@ -12,8 +12,8 @@ public class Game {
         this.winnersCommands.add(commandWin);
     }
 
-    public void setExecutableCommands(String condition, Command command){
-        this.executableCommands.put(condition,command);
+    public void setExecutableCommands(Command command){
+        this.executableCommands.put(command.getName(),command);
     }
 
     public String excute(String condition){

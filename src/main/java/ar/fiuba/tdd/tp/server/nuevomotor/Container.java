@@ -21,8 +21,8 @@ public class Container {
         return this.name;
     }
 
-    public void setComponent(String name,Container component){
-        this.componentsContained.put(name,component);
+    public void setComponent(Container component){
+        this.componentsContained.put(component.getName(), component);
     }
 
     public String changeStatus(String state){
