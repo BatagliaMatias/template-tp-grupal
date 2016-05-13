@@ -19,9 +19,11 @@ public class Command {
     public void setExecutableCommand(Executable executableCommand) {
         this.executableCommand = executableCommand;
     }
+
     public void setComponent(Container component) {
         this.components.put(component.getName(),component);
     }
+
     public String execute() {
         return this.executableCommand.execute(this.components);
     }

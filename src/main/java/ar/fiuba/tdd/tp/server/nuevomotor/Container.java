@@ -9,28 +9,27 @@ public class Container {
     State states;
     private String name;
 
-    public Container(String name){
+    public Container(String name) {
         this.name = name;
     }
 
-    public void setState(State state){
+    public void setState(State state) {
         this.states = state;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public void setComponent(Container component){
+    public void setComponent(Container component) {
         this.componentsContained.put(component.getName(), component);
     }
 
-    public String changeStatus(String state){
+    public String changeStatus(String state) {
         return this.states.changeStates(this.componentsContained,state);
     }
 
-    public boolean checkStatus(String state){
+    public boolean checkStatus(String state) {
         return this.states.checkStatus(state);
     }
-
 }

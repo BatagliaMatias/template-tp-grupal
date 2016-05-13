@@ -14,7 +14,7 @@ public class testGameOpenDoor2 {
 
         Game gameOpenDoor2 = (new OpenDoor2()).build();
 
-        assertEquals(gameOpenDoor2.excute("open door"),"Ey! Where do you go?! Room is locked");
+        assertEquals(gameOpenDoor2.execute("open door"),"Ey! Where do you go?! Room is locked");
 
     }
 
@@ -23,7 +23,7 @@ public class testGameOpenDoor2 {
 
         Game gameOpenDoor2 = (new OpenDoor2()).build();
 
-        assertEquals(gameOpenDoor2.excute("open box"),"The box is open");
+        assertEquals(gameOpenDoor2.execute("open box"),"The box is open");
 
     }
 
@@ -31,11 +31,11 @@ public class testGameOpenDoor2 {
     public void ganarJuego() {
 
         Game gameOpenDoor2 = (new OpenDoor2()).build();
-        gameOpenDoor2.excute("open box");
-        gameOpenDoor2.excute("pick key");
-        gameOpenDoor2.excute("open door");
+        gameOpenDoor2.execute("open box");
+        gameOpenDoor2.execute("pick key");
+        gameOpenDoor2.execute("open door");
 
-        assertTrue(gameOpenDoor2.iWin());
+        assertTrue(gameOpenDoor2.win());
 
     }
 
