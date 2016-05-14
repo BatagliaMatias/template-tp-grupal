@@ -50,3 +50,12 @@ cpdCheck {
     }
     source = sourceSets.main.allJava // only java, groovy and scala classes in 'main' sourceSets
 }
+
+jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/coverage"
+    }
+}
