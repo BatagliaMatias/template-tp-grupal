@@ -4,6 +4,6 @@ import java.util.HashMap;
 
 public interface Winnable {
 
-    public boolean win(HashMap<String, Container> Component);
+    boolean win(HashMap<String, Container> component);
 
 }

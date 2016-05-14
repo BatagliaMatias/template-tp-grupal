@@ -6,11 +6,25 @@ import java.util.HashMap;
 public class Container {
 
     private HashMap<String, Container> componentsContained = new HashMap<String, Container>();
+    private ArrayList<ContainerDependant> dependencies = new ArrayList<>();
     State states;
     private String name;
 
     public Container(String name) {
         this.name = name;
+    }
+
+    public void setDependencies(ContainerDependant dependency) {
+        this.dependencies.add(dependency);
+    }
+
+    public String getDependantMessage() {
+        for (ContainerDependant dependant : dependencies) {
+            if (!dependant.isDependantAvailable()) {
+                return dependant.getUnsuccessfulMessage();
+            }
+        }
+        return "";
     }
 
     public void setState(State state) {

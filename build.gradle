@@ -42,3 +42,11 @@ tasks.withType(FindBugs) {
         html.enabled true
     }
 }
+
+cpdCheck {
+    reports {
+        text.enabled = true
+        xml.enabled = false
+    }
+    source = sourceSets.main.allJava // only java, groovy and scala classes in 'main' sourceSets
+}

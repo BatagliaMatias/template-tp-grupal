@@ -7,37 +7,33 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class testGameOpenDoor2 {
+public class GameOpenDoor2Test {
 
     @Test
-    public void abrirSinLlave() {
-
+    public void openDoorWithoutKey() {
         Game gameOpenDoor2 = (new OpenDoor2()).build();
-
         assertEquals(gameOpenDoor2.execute("open door"),"Ey! Where do you go?! Room is locked");
-
     }
 
     @Test
-    public void abrirCaja() {
-
+    public void pickKeyWithoutOpenBox() {
         Game gameOpenDoor2 = (new OpenDoor2()).build();
-
-        assertEquals(gameOpenDoor2.execute("open box"),"The box is open");
-
+        assertEquals(gameOpenDoor2.execute("pick key"), "which key?");
     }
 
     @Test
-    public void ganarJuego() {
+    public void openBox() {
+        Game gameOpenDoor2 = (new OpenDoor2()).build();
+        assertEquals(gameOpenDoor2.execute("open box"),"The box is open");
+    }
 
+    @Test
+    public void winGame() {
         Game gameOpenDoor2 = (new OpenDoor2()).build();
         gameOpenDoor2.execute("open box");
         gameOpenDoor2.execute("pick key");
         gameOpenDoor2.execute("open door");
-
         assertTrue(gameOpenDoor2.win());
-
     }
-
 }
 
