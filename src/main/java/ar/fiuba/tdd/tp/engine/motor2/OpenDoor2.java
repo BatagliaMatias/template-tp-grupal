@@ -22,7 +22,7 @@ public class OpenDoor2 implements GameBuilder{
         State keyStates = new State();
         keyStates.setState("picked",false);
         keyStates.setState("visible",false);
-        keyStates.setLamdaModifierByCommandAndState("pick", "picked", "pick key");
+        keyStates.setLamdaModifierByCommandAndState("pick", "picked", "key picked");
         keyStates.setLamdaModifierByCommandAndState("visible", "visible", "");
 
         Container key = new Container("Key");

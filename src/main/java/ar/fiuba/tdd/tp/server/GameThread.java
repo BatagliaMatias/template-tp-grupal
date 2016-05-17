@@ -1,9 +1,7 @@
 package ar.fiuba.tdd.tp.server;
 
-import ar.fiuba.tdd.tp.engine.motor.*;
 import ar.fiuba.tdd.tp.engine.motor2.Game;
 import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
-import ar.fiuba.tdd.tp.server.exceptions.*;
 import ar.fiuba.tdd.tp.server.network.*;
 import ar.fiuba.tdd.tp.shared.*;
 
@@ -27,9 +25,9 @@ public class GameThread extends Thread {
     public void run() {
         try {
             this.init();
-        } catch (BadGameNameException e) {
-            this.network.messageToStandardOutput(e.getMessage());
-            return;
+       // } catch (BadGameNameException e) {
+       //     this.network.messageToStandardOutput(e.getMessage());
+       //     return;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             //TODO: cambiar esto
@@ -62,11 +60,12 @@ public class GameThread extends Thread {
         //this.network.sendMessage(this.motor.getWelcomeMessage());
         this.network.sendMessage("MENSAJE INICIAL");
         while (this.network.continuesReceivingMessages()) {
-            //outputLine = this.motor.processInput(this.network.getLastMessageReceived());
             outputLine = this.game.execute(this.network.getLastMessageReceived());
-            this.network.sendMessage(outputLine);
-            if (outputLine.equals(Message.WIN.getText())) {
+            if (this.game.win()) {
+                this.network.sendMessage(Message.WIN.getText());
                 break;
+            } else {
+                this.network.sendMessage(outputLine);
             }
         }
     }
@@ -79,14 +78,12 @@ public class GameThread extends Thread {
         this.network.messageToStandardOutput(message.toString());
     }
 
-    public void init() throws BadGameNameException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+    public void init() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
         this.network = new ServerNetworkFacade();
         this.connectionConfig = new ConnectionConfig();
         BuilderLoader loader = new BuilderLoader();
         GameBuilder builder = loader.load(this.gameName);
         this.game = builder.build();
-
-        //this.motor = new Motor(this.gameName);
         this.showGameLoaded();
     }
 }

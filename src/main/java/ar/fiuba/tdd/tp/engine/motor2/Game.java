@@ -17,7 +17,11 @@ public class Game {
     }
 
     public String execute(String condition) {
-        return this.executableCommands.get(condition).execute();
+        if (this.executableCommands.containsKey(condition)) {
+            return this.executableCommands.get(condition).execute();
+        } else {
+            return "Invalid command: ".concat(condition);
+        }
     }
 
     public boolean win() {
