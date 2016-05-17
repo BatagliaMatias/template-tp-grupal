@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
-import ar.fiuba.tdd.tp.engine.motor2.Game;
-import ar.fiuba.tdd.tp.engine.motor2.OpenDoor2;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
