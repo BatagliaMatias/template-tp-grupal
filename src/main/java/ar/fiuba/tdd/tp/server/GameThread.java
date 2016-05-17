@@ -1,10 +1,9 @@
 package ar.fiuba.tdd.tp.server;
 
-import ar.fiuba.tdd.tp.server.exceptions.BadGameNameException;
-import ar.fiuba.tdd.tp.server.motor.Motor;
-import ar.fiuba.tdd.tp.server.network.ServerNetworkFacade;
-import ar.fiuba.tdd.tp.shared.ConnectionConfig;
-import ar.fiuba.tdd.tp.shared.Message;
+import ar.fiuba.tdd.tp.engine.motor.*;
+import ar.fiuba.tdd.tp.server.exceptions.*;
+import ar.fiuba.tdd.tp.server.network.*;
+import ar.fiuba.tdd.tp.shared.*;
 
 import java.io.IOException;
 
