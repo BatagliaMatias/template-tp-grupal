@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp.server;
 
 import ar.fiuba.tdd.tp.engine.motor.*;
+import ar.fiuba.tdd.tp.engine.motor2.Game;
+import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 import ar.fiuba.tdd.tp.server.exceptions.*;
 import ar.fiuba.tdd.tp.server.network.*;
 import ar.fiuba.tdd.tp.shared.*;
@@ -14,8 +16,8 @@ public class GameThread extends Thread {
 
     ServerNetworkFacade network = null;
     ConnectionConfig connectionConfig = null;
-    Motor motor = null;
     private String gameName = "";
+    Game game = null;
 
     public GameThread(String name) {
         super();
@@ -27,6 +29,22 @@ public class GameThread extends Thread {
             this.init();
         } catch (BadGameNameException e) {
             this.network.messageToStandardOutput(e.getMessage());
+            return;
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            //TODO: cambiar esto
+            return;
+        } catch (IOException e) {
+            e.printStackTrace();
+            //TODO: cambiar esto
+            return;
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            //TODO: cambiar esto
+            return;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            //TODO: cambiar esto
             return;
         }
         try {
@@ -40,9 +58,12 @@ public class GameThread extends Thread {
 
     public void action() {
         String outputLine;
-        this.network.sendMessage(this.motor.getWelcomeMessage());
+        //TODO: cambiar esto
+        //this.network.sendMessage(this.motor.getWelcomeMessage());
+        this.network.sendMessage("MENSAJE INICIAL");
         while (this.network.continuesReceivingMessages()) {
-            outputLine = this.motor.processInput(this.network.getLastMessageReceived());
+            //outputLine = this.motor.processInput(this.network.getLastMessageReceived());
+            outputLine = this.game.execute(this.network.getLastMessageReceived());
             this.network.sendMessage(outputLine);
             if (outputLine.equals(Message.WIN.getText())) {
                 break;
@@ -58,10 +79,14 @@ public class GameThread extends Thread {
         this.network.messageToStandardOutput(message.toString());
     }
 
-    public void init() throws BadGameNameException {
+    public void init() throws BadGameNameException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
         this.network = new ServerNetworkFacade();
         this.connectionConfig = new ConnectionConfig();
-        this.motor = new Motor(this.gameName);
+        BuilderLoader loader = new BuilderLoader();
+        GameBuilder builder = loader.load(this.gameName);
+        this.game = builder.build();
+
+        //this.motor = new Motor(this.gameName);
         this.showGameLoaded();
     }
 }

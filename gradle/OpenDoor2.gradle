@@ -1,10 +1,11 @@
 //create a single Jar with all dependencies
-task fatJar(type: Jar) {
+task OpenDoor2(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Template Project fiuba tecnicas',
-                'Main-Class': 'ar.fiuba.tdd.tp.server.Server'
+        		'Implementation-Version': '',
+                'Main-Class': 'ar.fiuba.tdd.tp.engine.motor2.OpenDoor2'
     }
-    baseName = project.name
+    baseName = "OpenDoor2"
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
