@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
 
     @Test
-    public void openDoorWithoutKey() {
+    public void testExecuteInvalidCommand() {
         Game game = new Game();
         assertEquals(game.execute("test"), "Invalid command: test");
     }
