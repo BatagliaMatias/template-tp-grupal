@@ -56,9 +56,7 @@ public class GameThread extends Thread {
 
     public void action() {
         String outputLine;
-        //TODO: cambiar esto
-        //this.network.sendMessage(this.motor.getWelcomeMessage());
-        this.network.sendMessage("MENSAJE INICIAL");
+        this.network.sendMessage(this.getWelcomeMessage());
         while (this.network.continuesReceivingMessages()) {
             outputLine = this.game.execute(this.network.getLastMessageReceived());
             if (this.game.win()) {
@@ -72,7 +70,7 @@ public class GameThread extends Thread {
 
     public void showGameLoaded() {
         StringBuilder message = new StringBuilder();
-        message.append(this.gameName);
+        message.append(this.getGameNameParsed());
         message.append(Message.GAME_LOADED.getText());
         message.append(this.connectionConfig.getPort());
         this.network.messageToStandardOutput(message.toString());
@@ -85,5 +83,13 @@ public class GameThread extends Thread {
         GameBuilder builder = loader.load(this.gameName);
         this.game = builder.build();
         this.showGameLoaded();
+    }
+
+    public String getWelcomeMessage() {
+        return Message.WELCOME.getText().concat(this.getGameNameParsed());
+    }
+
+    public String getGameNameParsed() {
+        return this.gameName.replaceAll(".jar", "").replaceAll(".*/","");
     }
 }
