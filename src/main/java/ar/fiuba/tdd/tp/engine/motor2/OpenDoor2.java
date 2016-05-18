@@ -6,7 +6,7 @@ public class OpenDoor2 implements GameBuilder{
 
     @Override
     public Game build() {
-
+        CommonCommandFactory commonCommandFactory = new CommonCommandFactory();
         State boxStates = new State();
         boxStates.setState("open",false);
         boxStates.setState("visible",true);
@@ -40,17 +40,7 @@ public class OpenDoor2 implements GameBuilder{
         door.setState(doorState);
         door.setDependencies(new ContainerDependant(key, "picked", "Ey! Where do you go?! Room is locked"));
 
-        Command lookAt = new Command("look at");
-        lookAt.setExecutableCommand((HashMap<String, Container> components)-> {
-                StringBuffer buffer = new StringBuffer();
-                buffer.append("There are ");
-                components.forEach((componentsName,container)-> {
-                        if (container.checkStatus("visible")) {
-                            buffer.append(componentsName + " ");
-                        }
-                    });
-                return buffer.toString();
-            });
+        Command lookAt = commonCommandFactory.getLook("look at");
         lookAt.setComponent(box);
         lookAt.setComponent(key);
         lookAt.setComponent(door);

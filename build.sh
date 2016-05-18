@@ -9,3 +9,4 @@ echo "--------------------- Generating CLIENT jar --------------------- "
 #GAMES
 echo "--------------------- Generating GAMES jars --------------------- "
 ./gradlew OpenDoor2
+./gradlew PickStick

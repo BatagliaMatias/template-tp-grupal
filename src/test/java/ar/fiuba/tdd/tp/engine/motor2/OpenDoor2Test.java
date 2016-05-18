@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.engine.motor2;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class OpenDoor2Test {
@@ -32,6 +33,13 @@ public class OpenDoor2Test {
         gameOpenDoor2.execute("pick key");
         gameOpenDoor2.execute("open door");
         assertTrue(gameOpenDoor2.win());
+    }
+
+    @Test
+    public void build() throws Exception {
+        Game gameOpenDoor2 = (new OpenDoor2()).build();
+        assertEquals(gameOpenDoor2.execute("look at"),"There are Box Door ");
+        assertFalse(gameOpenDoor2.win());
     }
 }
 

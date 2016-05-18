@@ -46,10 +46,16 @@ public class BuilderLoader {
         return foundClasses;
     }
 
+    public static String getMainClass(String pathFile) throws IOException, IllegalArgumentException {
+        JarFile j = new JarFile(new File(pathFile));
+        return j.getManifest().getMainAttributes().getValue("Main-Class");
+    }
+
     public static GameBuilder load(String filePath)
             throws ClassNotFoundException, IOException,
             IllegalAccessException, InstantiationException {
         File file = new File(filePath);
+        String mainClass = getMainClass(filePath);
         URL[] urls = { new URL("jar:file:" + filePath + "!/") };
         ClassLoader loader = URLClassLoader.newInstance(urls);
         for (String classFile : scanJar(file)) {
@@ -60,7 +66,7 @@ public class BuilderLoader {
                 foundClass = Class.forName(classFile, true, loader);
             }
 
-            if (GameBuilder.class.isAssignableFrom(foundClass) && !foundClass.equals(GameBuilder.class)) {
+            if (mainClass.equals(classFile) && GameBuilder.class.isAssignableFrom(foundClass) && !foundClass.equals(GameBuilder.class)) {
                 return (GameBuilder)foundClass.newInstance();
             }
         }
