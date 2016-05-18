@@ -8,21 +8,12 @@ import java.util.HashMap;
 public class PickStick implements GameBuilder {
     @Override
     public Game build() {
-        CommonCommandFactory commonCommandFactory = new CommonCommandFactory();
-        State stickStates = new State();
-        stickStates.setState("picked",false);
-        stickStates.setState("visible",true);
-        stickStates.setLamdaModifierByCommandAndState("pick", "picked", "stick picked");
-        stickStates.setLamdaModifierByCommandAndState("visible", "visible", "");
-
-        Container stick = new Container("Stick");
-        stick.setState(stickStates);
-        stick.setDependencies(new ContainerDependant(stick, "visible", "which stick?"));
-
+        Container stick = buildStick();
         Command pickStick = new Command("pick stick");
         pickStick.setComponent(stick);
         pickStick.setExecutable("Stick", "pick");
 
+        CommonCommandFactory commonCommandFactory = new CommonCommandFactory();
         Command lookAt = commonCommandFactory.getLook("look at");
         lookAt.setComponent(stick);
 
@@ -38,5 +29,18 @@ public class PickStick implements GameBuilder {
 
         return gamePickStick;
 
+    }
+
+    private Container buildStick() {
+        State stickStates = new State();
+        stickStates.setState("picked",false);
+        stickStates.setState("visible",true);
+        stickStates.setLamdaModifierByCommandAndState("pick", "picked", "stick picked");
+        stickStates.setLamdaModifierByCommandAndState("visible", "visible", "");
+
+        Container stick = new Container("Stick");
+        stick.setState(stickStates);
+        stick.setDependencies(new ContainerDependant(stick, "visible", "which stick?"));
+        return stick;
     }
 }

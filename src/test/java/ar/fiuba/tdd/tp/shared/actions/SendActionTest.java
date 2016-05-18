@@ -4,9 +4,8 @@ package ar.fiuba.tdd.tp.shared.actions;
 import ar.fiuba.tdd.tp.client.ClientHelper;
 import ar.fiuba.tdd.tp.shared.Message;
 import org.junit.Test;
-
-import org.junit.After;
 import org.junit.Before;
+import org.junit.After;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

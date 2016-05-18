@@ -2,12 +2,12 @@ package ar.fiuba.tdd.tp.shared.actions;
 
 import ar.fiuba.tdd.tp.shared.Message;
 import org.junit.Test;
-import org.junit.After;
 import org.junit.Before;
-
+import org.junit.After;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -29,8 +29,8 @@ public class LoadActionTest {
         System.setOut(null);
         System.setErr(null);
     }
-    LoadAction action = new LoadAction();
 
+    LoadAction action = new LoadAction();
 
     @Test
     public void testCanSolveReturnTrue() {

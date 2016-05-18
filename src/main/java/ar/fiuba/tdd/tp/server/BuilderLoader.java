@@ -47,8 +47,8 @@ public class BuilderLoader {
     }
 
     public static String getMainClass(String pathFile) throws IOException, IllegalArgumentException {
-        JarFile j = new JarFile(new File(pathFile));
-        return j.getManifest().getMainAttributes().getValue("Main-Class");
+        JarFile jarFile = new JarFile(new File(pathFile));
+        return jarFile.getManifest().getMainAttributes().getValue("Main-Class");
     }
 
     public static GameBuilder load(String filePath)

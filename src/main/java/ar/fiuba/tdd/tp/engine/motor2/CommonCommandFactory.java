@@ -7,18 +7,18 @@ import java.util.HashMap;
  */
 public class CommonCommandFactory {
 
-    public Command getLook(String name){
+    public Command getLook(String name) {
         Command command = new Command(name);
         command.setExecutableCommand((HashMap<String, Container> components)-> {
-            StringBuffer buffer = new StringBuffer();
-            buffer.append("There are ");
-            components.forEach((componentsName,container)-> {
-                if (container.checkStatus("visible")) {
-                    buffer.append(componentsName + " ");
-                }
+                StringBuffer buffer = new StringBuffer();
+                buffer.append("There are ");
+                components.forEach((componentsName,container)-> {
+                    if (container.checkStatus("visible")) {
+                        buffer.append(componentsName + " ");
+                    }
+                });
+                return buffer.toString();
             });
-            return buffer.toString();
-        });
         return command;
     }
 
