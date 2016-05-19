@@ -1,5 +1,8 @@
-package ar.fiuba.tdd.tp.engine.motor2;
+package ar.fiuba.tdd.tp.engine.motor2.games;
 
+import ar.fiuba.tdd.tp.engine.motor2.Game;
+import ar.fiuba.tdd.tp.engine.motor2.GameState;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,7 +40,7 @@ public class OpenDoor2Test {
         this.game.execute("pick key");
         this.game.execute("open door");
         assertTrue(this.game.endGame());
-        assertEquals(GameState.Won, this.game.getState());
+        Assert.assertEquals(GameState.Won, this.game.getState());
     }
 
     @Test

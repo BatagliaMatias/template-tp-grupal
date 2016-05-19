@@ -1,15 +1,17 @@
-package ar.fiuba.tdd.tp.engine.motor2;
+package ar.fiuba.tdd.tp.engine.motor2.games;
+
+import ar.fiuba.tdd.tp.engine.motor2.*;
 
 import java.util.HashMap;
 
-public class OpenDoor2 implements GameBuilder{
+public class OpenDoor2 implements GameBuilder {
 
     @Override
     public Game build() {
         State boxStates = new State();
         boxStates.setState("open",false);
         boxStates.setState("visible",true);
-        boxStates.setModifier("open",(HashMap<String, Container> components,HashMap<String, Boolean> states)-> {
+        boxStates.setModifier("open",(HashMap<String, Container> components, HashMap<String, Boolean> states)-> {
                 states.put("open",true);
                 components.get("Key").changeStatus("visible");
                 return "The box is open";

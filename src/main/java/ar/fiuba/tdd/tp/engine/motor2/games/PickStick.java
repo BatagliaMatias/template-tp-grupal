@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.tp.engine.motor2;
+package ar.fiuba.tdd.tp.engine.motor2.games;
 
-import java.util.HashMap;
+import ar.fiuba.tdd.tp.engine.motor2.*;
 
 /**
  * Created by mbataglia on 18/05/16.

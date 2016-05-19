@@ -8,7 +8,7 @@ import ar.fiuba.tdd.tp.engine.motor2.*;
 public class ConcreteGameDriver implements GameDriver {
 
     Game game = null;
-    private String packageOfGames = "ar.fiuba.tdd.tp.engine.motor2.";
+    private String packageOfGames = "ar.fiuba.tdd.tp.engine.motor2.games.";
 
     public void initGame(String gameName) throws GameLoadFailedException {
         try {
