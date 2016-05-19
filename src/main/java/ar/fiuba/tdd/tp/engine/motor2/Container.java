@@ -7,7 +7,7 @@ public class Container {
 
     private HashMap<String, Container> componentsContained = new HashMap<String, Container>();
     private ArrayList<ContainerDependant> dependencies = new ArrayList<>();
-    State states;
+    State states = null;
     private String name;
 
     public Container(String name) {
@@ -44,6 +44,9 @@ public class Container {
     }
 
     public boolean checkStatus(String state) {
-        return this.states.checkStatus(state);
+        if (this.states != null ) {
+            return this.states.checkStatus(state);
+        }
+        return false;
     }
 }

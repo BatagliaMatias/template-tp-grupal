@@ -31,6 +31,7 @@ public class GameTest {
     @Test
     public void testSetCommandWinTrue() {
         game.setCommandWin(container, "open");
+        game.execute("test");
         assertTrue(game.win());
     }
 
@@ -42,18 +43,19 @@ public class GameTest {
 
     @Test
     public void testGameStateReady() {
-        assertEquals(game.getState(), GameState.READY);
+        assertEquals( GameState.READY, game.getState());
     }
 
     @Test
     public void testGameStateInProgress() {
+        game.setCommandWin(new Container("test"), "open");
         game.execute("invalid command");
-        assertEquals(game.getState(), GameState.IN_PROGRESS);
+        assertEquals(GameState.IN_PROGRESS, game.getState());
     }
 
     @Test
     public void testGameStateWin() {
-        game.win();
-        assertEquals(game.getState(), GameState.WIN);
+        game.execute("something");
+        assertEquals(GameState.WIN, game.getState());
     }
 }

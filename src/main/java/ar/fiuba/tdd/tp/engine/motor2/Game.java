@@ -26,24 +26,31 @@ public class Game {
 
     public String execute(String condition) {
         this.state = GameState.IN_PROGRESS;
-        if (this.executableCommands.containsKey(condition)) {
-            return this.executableCommands.get(condition).execute();
-        } else {
-            return "Invalid command: ".concat(condition);
+        try {
+            if (this.executableCommands.containsKey(condition)) {
+                return this.executableCommands.get(condition).execute();
+            } else {
+                return "Invalid command: ".concat(condition);
+            }
+        } finally {
+            this.checkIfGameWin();
         }
     }
 
     public boolean win() {
-        for (CommandWin command : this.winnersCommands) {
-            if (!command.win()) {
-                return false;
-            }
-        }
-        this.state = GameState.WIN;
-        return true;
+        return (this.state == GameState.WIN);
     }
 
     public GameState getState() {
         return this.state;
+    }
+
+    public void checkIfGameWin() {
+        for (CommandWin command : this.winnersCommands) {
+            if (!command.win()) {
+                return ;
+            }
+        }
+        this.state = GameState.WIN;
     }
 }
