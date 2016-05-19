@@ -16,6 +16,13 @@ public class Game {
         this.executableCommands.put(command.getName(),command);
     }
 
+    public void setCommandWin(Container container, String statusWin) {
+        CommandWin win = new CommandWin();
+        win.setComponent(container);
+        win.setWinnableCommand((HashMap<String, Container> components)-> container.checkStatus(statusWin));
+        this.setWinnersCommands(win);
+    }
+
     public String execute(String condition) {
         if (this.executableCommands.containsKey(condition)) {
             return this.executableCommands.get(condition).execute();

@@ -20,7 +20,7 @@ public class State {
     }
 
     public boolean checkStatus(String state) {
-        return this.states.get(state);
+        return ((this.states.containsKey(state)) ? (this.states.get(state)) : (false));
     }
 
     public void setLamdaModifierByCommandAndState(String command, String stateAdd, String message) {

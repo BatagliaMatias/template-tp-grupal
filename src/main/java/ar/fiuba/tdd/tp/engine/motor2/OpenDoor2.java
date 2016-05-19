@@ -62,12 +62,7 @@ public class OpenDoor2 implements GameBuilder{
         gameOpenDoor2.setExecutableCommands(openBox);
         gameOpenDoor2.setExecutableCommands(pickKey);
         gameOpenDoor2.setExecutableCommands(openDoor);
-
-        CommandWin win = new CommandWin();
-        win.setComponent(door);
-        win.setWinnableCommand((HashMap<String, Container> components)-> components.get("Door").checkStatus("open"));
-
-        gameOpenDoor2.setWinnersCommands(win);
+        gameOpenDoor2.setCommandWin(door, "open");
 
         return gameOpenDoor2;
     }

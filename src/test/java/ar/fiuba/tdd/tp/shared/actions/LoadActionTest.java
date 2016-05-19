@@ -1,17 +1,12 @@
 package ar.fiuba.tdd.tp.shared.actions;
 
 import ar.fiuba.tdd.tp.shared.Message;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 
 public class LoadActionTest {
 
@@ -44,10 +39,8 @@ public class LoadActionTest {
 
     @Test
     public void testBadParameterSolve() {
-
         action.solve("BadParameter");
         assertEquals(outContent.toString().replaceAll("\n", ""), Message.INVALID_COMMAND_FORMAT.getText());
-
     }
 
 }

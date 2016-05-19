@@ -13,10 +13,10 @@ public class CommonCommandFactory {
                 StringBuffer buffer = new StringBuffer();
                 buffer.append("There are ");
                 components.forEach((componentsName,container)-> {
-                    if (container.checkStatus("visible")) {
-                        buffer.append(componentsName + " ");
-                    }
-                });
+                        if (container.checkStatus("visible")) {
+                            buffer.append(componentsName + " ");
+                        }
+                    });
                 return buffer.toString();
             });
         return command;

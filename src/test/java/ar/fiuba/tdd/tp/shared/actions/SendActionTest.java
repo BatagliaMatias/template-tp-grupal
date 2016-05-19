@@ -1,21 +1,15 @@
 package ar.fiuba.tdd.tp.shared.actions;
 
-
 import ar.fiuba.tdd.tp.client.ClientHelper;
 import ar.fiuba.tdd.tp.shared.Message;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import org.junit.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.*;
 
 public class SendActionTest {
-
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -41,9 +35,7 @@ public class SendActionTest {
 
     @Test
     public void testBadParameterSolve() {
-
         action.solve("BadParameter");
         assertEquals(outContent.toString().replaceAll("\n", ""), Message.NO_SEND_CONNECTED.getText());
-
     }
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
  * Created by mbataglia on 18/05/16.
  */
 public class PickStick implements GameBuilder {
+
     @Override
     public Game build() {
         Container stick = buildStick();
@@ -20,15 +21,8 @@ public class PickStick implements GameBuilder {
         Game gamePickStick = new Game();
         gamePickStick.setExecutableCommands(lookAt);
         gamePickStick.setExecutableCommands(pickStick);
-
-        CommandWin win = new CommandWin();
-        win.setComponent(stick);
-        win.setWinnableCommand((HashMap<String, Container> components)-> components.get("Stick").checkStatus("picked"));
-
-        gamePickStick.setWinnersCommands(win);
-
+        gamePickStick.setCommandWin(stick, "picked");
         return gamePickStick;
-
     }
 
     private Container buildStick() {
