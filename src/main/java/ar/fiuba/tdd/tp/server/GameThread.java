@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 import ar.fiuba.tdd.tp.server.network.*;
 import ar.fiuba.tdd.tp.shared.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -25,24 +26,18 @@ public class GameThread extends Thread {
     public void run() {
         try {
             this.init();
-       // } catch (BadGameNameException e) {
-       //     this.network.messageToStandardOutput(e.getMessage());
-       //     return;
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            //TODO: cambiar esto
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            return;
+        } catch (IllegalAccessException | InstantiationException e) {
+            System.out.println("ERROR: No se pudo instanciar el GameBuilder ");
             return;
         } catch (IOException e) {
             e.printStackTrace();
             //TODO: cambiar esto
             return;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-            //TODO: cambiar esto
-            return;
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            //TODO: cambiar esto
+            System.out.println("ERROR: No se encontro la clase Main del jar");
             return;
         }
         try {
