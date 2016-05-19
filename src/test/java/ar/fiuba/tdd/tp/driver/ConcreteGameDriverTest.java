@@ -22,4 +22,10 @@ public class ConcreteGameDriverTest {
         assertEquals(GameState.Won, driver.getCurrentState());
 
     }
+    @Test
+    public void testGetGame() {
+        ConcreteGameDriver driver = new ConcreteGameDriver();
+        assertEquals(driver.getGame(),null);
+
+    }
 }
