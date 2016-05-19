@@ -9,8 +9,7 @@ public enum GameEnum {
     PICKSTICK(new FactoryPickStick()),
     WOLFSHEEPCOL(new FactoryWolfSheepCol()),
     OPENDOOR(new FactoryOpenDoor()),
-    TREASUREHUNT(new FactoryTreasureHunt()),
-    OPENDOOR2(new FactoryOpenDoor2());
+    TREASUREHUNT(new FactoryTreasureHunt());
 
     private FactoryGames factory;
 
