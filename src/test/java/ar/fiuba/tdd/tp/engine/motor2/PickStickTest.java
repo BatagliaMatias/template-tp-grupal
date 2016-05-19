@@ -19,13 +19,13 @@ public class PickStickTest {
     @Test
     public void build() throws Exception {
         assertEquals(this.game.execute("look at"),"There are Stick ");
-        assertFalse(this.game.win());
+        assertFalse(this.game.endGame());
     }
 
     @Test
     public void winGame() {
         this.game.execute("pick stick");
-        assertTrue(this.game.win());
+        assertTrue(this.game.endGame());
     }
 
     @Test

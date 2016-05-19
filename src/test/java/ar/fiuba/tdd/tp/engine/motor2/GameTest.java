@@ -32,13 +32,13 @@ public class GameTest {
     public void testSetCommandWinTrue() {
         game.setCommandWin(container, "open");
         game.execute("test");
-        assertTrue(game.win());
+        assertTrue(game.endGame());
     }
 
     @Test
     public void testSetCommandWinFalse() {
         game.setCommandWin(container, "invalid");
-        assertFalse(game.win());
+        assertFalse(game.endGame());
     }
 
     @Test

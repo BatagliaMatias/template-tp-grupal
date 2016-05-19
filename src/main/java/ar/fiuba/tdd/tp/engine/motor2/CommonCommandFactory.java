@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import ar.fiuba.tdd.tp.shared.Message;
+
 import java.util.HashMap;
 
 /**
@@ -22,8 +24,8 @@ public class CommonCommandFactory {
         return command;
     }
 
-    public Command help(String messageHelp) {
-        Command command = new Command("help");
+    public Command help(String name, String messageHelp) {
+        Command command = new Command(name);
         command.setExecutableCommand((HashMap<String, Container> components)-> {
                 String message = "HELP: ".concat(messageHelp);
                 return message;

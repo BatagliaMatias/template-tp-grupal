@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import ar.fiuba.tdd.tp.shared.Message;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -24,7 +25,7 @@ public class CommonCommandFactoryTest {
     @Test
     public void testHelp() throws Exception {
         CommonCommandFactory commonCommandFactory = new CommonCommandFactory();
-        Command help = commonCommandFactory.help("help message");
+        Command help = commonCommandFactory.help("help", "help message");
         assertEquals(help.execute(),"HELP: help message");
     }
 }

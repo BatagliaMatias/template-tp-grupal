@@ -37,8 +37,12 @@ public class Game {
         }
     }
 
-    public boolean win() {
-        return (this.state == GameState.Won);
+    public boolean endGame() {
+        return ((this.state == GameState.Won) || (this.state == GameState.Lost));
+    }
+
+    public String getFinalMessage() {
+        return this.state.getMessage();
     }
 
     public GameState getState() {
@@ -52,5 +56,9 @@ public class Game {
             }
         }
         this.state = GameState.Won;
+    }
+
+    public void setState(GameState newState) {
+        this.state = newState;
     }
 }

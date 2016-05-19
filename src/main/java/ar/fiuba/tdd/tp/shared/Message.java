@@ -14,6 +14,7 @@ public enum Message {
     EXIT_MESSAGE("EXIT"),
     NO_SEND_CONNECTED("Cant send command because you aren't connected to any game"),
     WIN("YOU WIN THE GAME"),
+    LOST("YOU LOST THE GAME"),
     WELCOME("Welcome to "),
     INIT_CLIENT("Client RUNNING! Enter command"),
     INIT_SERVER("Server RUNNING! Enter command"),

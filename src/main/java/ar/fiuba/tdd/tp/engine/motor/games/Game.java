@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.engine.motor.games;
 
 import ar.fiuba.tdd.tp.engine.motor.commands.Exit;
 import ar.fiuba.tdd.tp.engine.motor.commands.GameCommand;
-import ar.fiuba.tdd.tp.engine.motor.commands.Help;
 import ar.fiuba.tdd.tp.engine.motor.commands.WhatCanIDoWith;
 import ar.fiuba.tdd.tp.shared.Message;
 
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Game {
-    private static final String helpMessage = "Default Help";
+    private static final String helpMessage = "Default Helps";
     protected List<GameCommand> commands = new ArrayList<GameCommand>();
 
     public static String getHelp() {
@@ -22,7 +21,6 @@ public abstract class Game {
     abstract String getGameOverMessage();
 
     public String getWelcomeMessage() {
-        commands.add(new Help());
         commands.add(new Exit());
         String gameName = this.getGameName();
         return Message.WELCOME.getText().concat(gameName);

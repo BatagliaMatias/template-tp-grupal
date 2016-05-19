@@ -57,7 +57,7 @@ public class OpenDoor2 implements GameBuilder{
         openDoor.setComponent(door);
         openDoor.setExecutable("Door", "open");
 
-        Command help = commonCommandFactory.help("A door locked.. where can you find a key?");
+        Command help = commonCommandFactory.help("help", "A door locked.. where can you find a key?");
 
         Game gameOpenDoor2 = new Game();
         gameOpenDoor2.setExecutableCommands(help);

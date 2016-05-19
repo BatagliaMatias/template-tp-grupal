@@ -10,7 +10,7 @@ public class ConcreteGameDriver implements GameDriver {
     Game game = null;
     private String packageOfGames = "ar.fiuba.tdd.tp.engine.motor2.";
 
-    public void initGame(String gameName) throws GameLoadFailedException{
+    public void initGame(String gameName) throws GameLoadFailedException {
         try {
             Class<?> gameClass = Class.forName(packageOfGames.concat(gameName));
             GameBuilder builder = (GameBuilder)gameClass.newInstance();

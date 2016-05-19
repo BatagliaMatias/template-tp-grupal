@@ -43,6 +43,6 @@ public class WolfSheepCol extends Game {
 
     @Override
     String getGameOverMessage() {
-        return "You win, what a genius!";
+        return "You won, what a genius!";
     }
 }

@@ -54,8 +54,8 @@ public class GameThread extends Thread {
         this.network.sendMessage(this.getWelcomeMessage());
         while (this.network.continuesReceivingMessages()) {
             outputLine = this.game.execute(this.network.getLastMessageReceived());
-            if (this.game.win()) {
-                this.network.sendMessage(Message.WIN.getText());
+            if (this.game.endGame()) {
+                this.network.sendMessage(this.game.getFinalMessage());
                 break;
             } else {
                 this.network.sendMessage(outputLine);

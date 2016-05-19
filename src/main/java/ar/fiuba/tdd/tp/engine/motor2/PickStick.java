@@ -18,13 +18,14 @@ public class PickStick implements GameBuilder {
         Command lookAt = commonCommandFactory.getLook("look at");
         lookAt.setComponent(stick);
 
-        Command help = commonCommandFactory.help("You have to pick that stick over there.");
+        Command help = commonCommandFactory.help("help", "You have to pick that stick over there.");
 
         Game gamePickStick = new Game();
         gamePickStick.setExecutableCommands(help);
         gamePickStick.setExecutableCommands(lookAt);
         gamePickStick.setExecutableCommands(pickStick);
         gamePickStick.setCommandWin(stick, "picked");
+
         return gamePickStick;
     }
 

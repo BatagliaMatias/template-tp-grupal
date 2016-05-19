@@ -36,14 +36,14 @@ public class OpenDoor2Test {
         this.game.execute("open box");
         this.game.execute("pick key");
         this.game.execute("open door");
-        assertTrue(this.game.win());
+        assertTrue(this.game.endGame());
         assertEquals(GameState.Won, this.game.getState());
     }
 
     @Test
     public void testGameInProgress() {
         this.game.execute("open box");
-        assertFalse(this.game.win());
+        assertFalse(this.game.endGame());
         assertEquals(GameState.InProgress, this.game.getState());
     }
 
@@ -56,7 +56,7 @@ public class OpenDoor2Test {
     public void testBuild() {
         Game gameOpenDoor2 = (new OpenDoor2()).build();
         assertEquals(gameOpenDoor2.execute("look at"),"There are Box Door ");
-        assertFalse(gameOpenDoor2.win());
+        assertFalse(gameOpenDoor2.endGame());
     }
 }
 

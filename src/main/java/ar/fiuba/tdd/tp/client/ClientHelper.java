@@ -44,7 +44,7 @@ public class ClientHelper {
     public void sendMessageAndReceive(String messageToSend) {
         network.sendMessage(messageToSend);
         network.messageToStandardOutput(network.receiveMessage());
-        if (network.getLastMessageReceived().equals(Message.WIN.getText())) {
+        if (this.haveToEndConnection()) {
             this.endConnection();
         }
     }
@@ -57,6 +57,12 @@ public class ClientHelper {
             String userCommand = standardInput.read();
             chain.processAction(userCommand);
         }
+    }
+
+    public boolean haveToEndConnection() {
+        String message = network.getLastMessageReceived();
+        return (message.equals(Message.WIN.getText()) || message.equals(Message.LOST.getText()));
+
     }
 
 
