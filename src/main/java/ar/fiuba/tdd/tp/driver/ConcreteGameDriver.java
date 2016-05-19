@@ -10,13 +10,13 @@ public class ConcreteGameDriver implements GameDriver {
     Game game = null;
     private String packageOfGames = "ar.fiuba.tdd.tp.engine.motor2.";
 
-    public void initGame(String gameName) {
+    public void initGame(String gameName) throws GameLoadFailedException{
         try {
             Class<?> gameClass = Class.forName(packageOfGames.concat(gameName));
             GameBuilder builder = (GameBuilder)gameClass.newInstance();
             game = builder.build();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            System.out.print("No se pudo instanciar el juego: ".concat(gameName));
+            throw new GameLoadFailedException("No se pudo instanciar el juego: ".concat(gameName));
         }
     }
 
@@ -24,7 +24,11 @@ public class ConcreteGameDriver implements GameDriver {
         return game.execute(cmd);
     }
 
-    public GameState getGameState() {
+    public GameState getCurrentState() {
         return game.getState();
+    }
+
+    public Game getGame() {
+        return this.game;
     }
 }

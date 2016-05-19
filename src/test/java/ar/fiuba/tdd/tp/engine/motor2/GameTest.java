@@ -43,19 +43,19 @@ public class GameTest {
 
     @Test
     public void testGameStateReady() {
-        assertEquals( GameState.READY, game.getState());
+        assertEquals( GameState.Ready, game.getState());
     }
 
     @Test
     public void testGameStateInProgress() {
         game.setCommandWin(new Container("test"), "open");
         game.execute("invalid command");
-        assertEquals(GameState.IN_PROGRESS, game.getState());
+        assertEquals(GameState.InProgress, game.getState());
     }
 
     @Test
     public void testGameStateWin() {
         game.execute("something");
-        assertEquals(GameState.WIN, game.getState());
+        assertEquals(GameState.Won, game.getState());
     }
 }

@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.driver;
 
-import ar.fiuba.tdd.tp.engine.motor2.GameState;
+import ar.fiuba.tdd.tp.engine.motor2.*;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,15 +11,15 @@ import static org.junit.Assert.*;
 public class ConcreteGameDriverTest {
 
     @Test
-    public void testOpenDoor2() {
+    public void testOpenDoor2() throws GameLoadFailedException {
         GameDriver driver = new ConcreteGameDriver();
         driver.initGame("OpenDoor2");
-        assertEquals(GameState.READY, driver.getGameState());
+        assertEquals(GameState.Ready, driver.getCurrentState());
         driver.sendCommand("open box");
-        assertEquals(GameState.IN_PROGRESS, driver.getGameState());
+        assertEquals(GameState.InProgress, driver.getCurrentState());
         driver.sendCommand("pick key");
         driver.sendCommand("open door");
-        assertEquals(GameState.WIN, driver.getGameState());
+        assertEquals(GameState.Won, driver.getCurrentState());
 
     }
 }

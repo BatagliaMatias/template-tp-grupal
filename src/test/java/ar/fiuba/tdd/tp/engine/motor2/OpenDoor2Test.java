@@ -33,7 +33,7 @@ public class OpenDoor2Test {
         gameOpenDoor2.execute("pick key");
         gameOpenDoor2.execute("open door");
         assertTrue(gameOpenDoor2.win());
-        assertEquals(GameState.WIN, gameOpenDoor2.getState());
+        assertEquals(GameState.Won, gameOpenDoor2.getState());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class OpenDoor2Test {
         Game gameOpenDoor2 = (new OpenDoor2()).build();
         gameOpenDoor2.execute("open box");
         assertFalse(gameOpenDoor2.win());
-        assertEquals(GameState.IN_PROGRESS, gameOpenDoor2.getState());
+        assertEquals(GameState.InProgress, gameOpenDoor2.getState());
     }
 
     @Test

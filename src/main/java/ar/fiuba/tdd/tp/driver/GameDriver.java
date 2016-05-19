@@ -7,9 +7,9 @@ import ar.fiuba.tdd.tp.engine.motor2.GameState;
  */
 public interface GameDriver {
 
-    void initGame(String jarPath);
+    void initGame(String jarPath) throws GameLoadFailedException;
 
     String sendCommand(String cmd);
 
-    GameState getGameState();
+    GameState getCurrentState();
 }
