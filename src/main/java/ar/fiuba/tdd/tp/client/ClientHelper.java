@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.client;
 
-import ar.fiuba.tdd.tp.client.config.GameStates;
+import ar.fiuba.tdd.tp.client.config.ClientState;
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
 import ar.fiuba.tdd.tp.shared.Message;
 import ar.fiuba.tdd.tp.shared.StandardInputManager;
@@ -12,7 +12,7 @@ import ar.fiuba.tdd.tp.shared.actions.FactoryActionsChains;
  * Created by jorlando on 26/04/16.
  */
 public class ClientHelper {
-    public GameStates gameState = GameStates.WAITING;
+    public ClientState gameState = ClientState.WAITING;
     ClientNetworkFacade network = null;
 
     public boolean isConnected() {
@@ -20,15 +20,15 @@ public class ClientHelper {
     }
 
     public void endConnection() {
-        this.setGameState(GameStates.ENDED);
+        this.setGameState(ClientState.ENDED);
         this.getNetwork().endConnection();
     }
 
-    public GameStates getGameState() {
+    public ClientState getGameState() {
         return this.gameState;
     }
 
-    public void setGameState(GameStates newState) {
+    public void setGameState(ClientState newState) {
         this.gameState = newState;
     }
 
@@ -38,7 +38,7 @@ public class ClientHelper {
 
     public void setNetwork(ClientNetworkFacade newNet) {
         this.network = newNet;
-        this.setGameState(GameStates.RUNNING);
+        this.setGameState(ClientState.RUNNING);
     }
 
     public void sendMessageAndReceive(String messageToSend) {

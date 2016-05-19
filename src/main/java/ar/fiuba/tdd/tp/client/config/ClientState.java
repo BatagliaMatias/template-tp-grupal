@@ -3,7 +3,7 @@ package ar.fiuba.tdd.tp.client.config;
 /**
  * Created by jorlando on 27/04/16.
  */
-public enum GameStates {
+public enum ClientState {
     RUNNING("running", true),
     WAITING("wainting", false),
     ENDED("ended", false);
@@ -11,7 +11,7 @@ public enum GameStates {
     private final String name;
     private final boolean connected;
 
-    GameStates(String newName, boolean connec) {
+    ClientState(String newName, boolean connec) {
         this.name = newName;
         this.connected = connec;
     }

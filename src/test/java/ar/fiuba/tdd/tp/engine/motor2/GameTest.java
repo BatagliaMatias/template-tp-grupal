@@ -39,4 +39,21 @@ public class GameTest {
         game.setCommandWin(container, "invalid");
         assertFalse(game.win());
     }
+
+    @Test
+    public void testGameStateReady() {
+        assertEquals(game.getState(), GameState.READY);
+    }
+
+    @Test
+    public void testGameStateInProgress() {
+        game.execute("invalid command");
+        assertEquals(game.getState(), GameState.IN_PROGRESS);
+    }
+
+    @Test
+    public void testGameStateWin() {
+        game.win();
+        assertEquals(game.getState(), GameState.WIN);
+    }
 }

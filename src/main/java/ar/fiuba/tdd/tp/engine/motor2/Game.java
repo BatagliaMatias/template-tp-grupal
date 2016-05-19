@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 public class Game {
 
+    GameState state = GameState.READY;
     private ArrayList<CommandWin> winnersCommands = new ArrayList<CommandWin>();
     private HashMap<String, Command> executableCommands = new HashMap<String, Command>();
 
@@ -24,6 +25,7 @@ public class Game {
     }
 
     public String execute(String condition) {
+        this.state = GameState.IN_PROGRESS;
         if (this.executableCommands.containsKey(condition)) {
             return this.executableCommands.get(condition).execute();
         } else {
@@ -37,6 +39,11 @@ public class Game {
                 return false;
             }
         }
+        this.state = GameState.WIN;
         return true;
+    }
+
+    public GameState getState() {
+        return this.state;
     }
 }
