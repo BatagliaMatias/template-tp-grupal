@@ -22,4 +22,13 @@ public class CommonCommandFactory {
         return command;
     }
 
+    public Command help(String messageHelp) {
+        Command command = new Command("help");
+        command.setExecutableCommand((HashMap<String, Container> components)-> {
+                String message = "HELP: ".concat(messageHelp);
+                return message;
+            });
+        return command;
+    }
+
 }

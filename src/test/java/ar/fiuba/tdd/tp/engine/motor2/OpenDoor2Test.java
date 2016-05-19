@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,40 +9,47 @@ import static org.junit.Assert.assertTrue;
 
 public class OpenDoor2Test {
 
+    Game game = null;
+
+    @Before
+    public void setUp() {
+        this.game = (new OpenDoor2()).build();
+    }
+
     @Test
     public void testOpenDoorWithoutKey() {
-        Game gameOpenDoor2 = (new OpenDoor2()).build();
-        assertEquals(gameOpenDoor2.execute("open door"),"Ey! Where do you go?! Room is locked");
+        assertEquals(this.game.execute("open door"),"Ey! Where do you go?! Room is locked");
     }
 
     @Test
     public void testPickKeyWithoutOpenBox() {
-        Game gameOpenDoor2 = (new OpenDoor2()).build();
-        assertEquals(gameOpenDoor2.execute("pick key"), "which key?");
+        assertEquals(this.game.execute("pick key"), "which key?");
     }
 
     @Test
     public void testOpenBox() {
-        Game gameOpenDoor2 = (new OpenDoor2()).build();
-        assertEquals(gameOpenDoor2.execute("open box"),"The box is open");
+        assertEquals(this.game.execute("open box"),"The box is open");
     }
 
     @Test
     public void testWinGame() {
-        Game gameOpenDoor2 = (new OpenDoor2()).build();
-        gameOpenDoor2.execute("open box");
-        gameOpenDoor2.execute("pick key");
-        gameOpenDoor2.execute("open door");
-        assertTrue(gameOpenDoor2.win());
-        assertEquals(GameState.Won, gameOpenDoor2.getState());
+        this.game.execute("open box");
+        this.game.execute("pick key");
+        this.game.execute("open door");
+        assertTrue(this.game.win());
+        assertEquals(GameState.Won, this.game.getState());
     }
 
     @Test
     public void testGameInProgress() {
-        Game gameOpenDoor2 = (new OpenDoor2()).build();
-        gameOpenDoor2.execute("open box");
-        assertFalse(gameOpenDoor2.win());
-        assertEquals(GameState.InProgress, gameOpenDoor2.getState());
+        this.game.execute("open box");
+        assertFalse(this.game.win());
+        assertEquals(GameState.InProgress, this.game.getState());
+    }
+
+    @Test
+    public void testHelp() {
+        assertEquals("HELP: A door locked.. where can you find a key?", this.game.execute("help"));
     }
 
     @Test

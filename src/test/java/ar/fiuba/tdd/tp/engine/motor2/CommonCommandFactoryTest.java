@@ -20,4 +20,11 @@ public class CommonCommandFactoryTest {
         lookAt.setComponent(stick);
         assertEquals(lookAt.execute(),"There are Stick ");
     }
+
+    @Test
+    public void testHelp() throws Exception {
+        CommonCommandFactory commonCommandFactory = new CommonCommandFactory();
+        Command help = commonCommandFactory.help("help message");
+        assertEquals(help.execute(),"HELP: help message");
+    }
 }

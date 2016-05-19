@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
-import org.junit.Test;
+import org.junit.*;
 
 import static org.junit.Assert.*;
 
@@ -9,17 +9,27 @@ import static org.junit.Assert.*;
  */
 public class PickStickTest {
 
+    Game game = null;
+
+    @Before
+    public void setUp() {
+        this.game = (new PickStick()).build();
+    }
+
     @Test
     public void build() throws Exception {
-        Game gamePickStick = (new PickStick()).build();
-        assertEquals(gamePickStick.execute("look at"),"There are Stick ");
-        assertFalse(gamePickStick.win());
+        assertEquals(this.game.execute("look at"),"There are Stick ");
+        assertFalse(this.game.win());
     }
 
     @Test
     public void winGame() {
-        Game gamePickStick = (new PickStick()).build();
-        gamePickStick.execute("pick stick");
-        assertTrue(gamePickStick.win());
+        this.game.execute("pick stick");
+        assertTrue(this.game.win());
+    }
+
+    @Test
+    public void testHelp() {
+        assertEquals("HELP: You have to pick that stick over there.", this.game.execute("help"));
     }
 }
