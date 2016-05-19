@@ -58,4 +58,16 @@ public class GameTest {
         game.execute("something");
         assertEquals(GameState.Won, game.getState());
     }
+
+    @Test
+    public void testSetStateOk() {
+        game.setState(GameState.Won);
+        assertEquals(GameState.Won,game.getState());
+    }
+
+    @Test
+    public void testFinalMessage() {
+        game.setState(GameState.Won);
+        assertEquals(game.getFinalMessage(),"YOU WIN THE GAME");
+    }
 }
