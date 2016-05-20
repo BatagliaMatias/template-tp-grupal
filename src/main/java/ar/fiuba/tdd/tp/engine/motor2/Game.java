@@ -58,6 +58,10 @@ public class Game {
         this.state = GameState.Won;
     }
 
+    public void loseGame(){
+        this.state = GameState.Lost;
+    }
+
     public void setState(GameState newState) {
         this.state = newState;
     }

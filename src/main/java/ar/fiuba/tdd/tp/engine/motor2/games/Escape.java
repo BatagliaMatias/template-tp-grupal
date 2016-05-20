@@ -280,12 +280,29 @@ public class Escape implements GameBuilder {
             if(sotano.contains(personaje)){
                 sotano.removeComponent(personaje);
                 sotanoAbajo.setComponent(personaje);
+                if(!personaje.contains(martillo)){
+                    gameEscape.loseGame();
+                    return "Olvidaste el martillo";
+                }
                 return "Bajaste un piso en el sotano";
             }
             return "Que Baranda??";
         });
 
         gameEscape.setExecutableCommands(useBaranda);
+
+        Command useEscalera = new Command("use Escalera");
+        useEscalera.setExecutableCommand((HashMap<String, Container> components)-> {
+            if(sotano.contains(personaje)){
+                sotano.removeComponent(personaje);
+                sotanoAbajo.setComponent(personaje);
+                gameEscape.loseGame();
+                return "Se rompió el escalon, moriste!";
+            }
+            return "Que Escalera??";
+        });
+
+        gameEscape.setExecutableCommands(useEscalera);
 
         Command breakVentana = new Command("break Ventana using Martillo");
         breakVentana.setExecutableCommand((HashMap<String, Container> components)-> {

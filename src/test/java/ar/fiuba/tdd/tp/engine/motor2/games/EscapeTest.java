@@ -42,4 +42,52 @@ public class EscapeTest {
         assertEquals(GameState.Won,driver.getCurrentState());
     }
 
+    @Test
+    public void lostGameMartillo() throws GameLoadFailedException {
+        GameDriver  driver = new ConcreteGameDriver();
+        driver.initGame("Escape");
+        driver.sendCommand("goto BibliotecaAcceso");
+        driver.sendCommand("goto Pasillo");
+        driver.sendCommand("goto Salon3");
+        driver.sendCommand("pick Llave");
+        driver.sendCommand("goto Pasillo");
+        driver.sendCommand("goto Salon1");
+        driver.sendCommand("move CuadroBarco");
+        driver.sendCommand("open CajaFuerte using Llave");
+        driver.sendCommand("pick Credencial");
+        driver.sendCommand("put Foto in Credencial");
+        driver.sendCommand("goto Pasillo");
+        driver.sendCommand("goto BibliotecaAcceso");
+        driver.sendCommand("show Credencial in Bibliotecario");
+        driver.sendCommand("goto Biblioteca");
+        driver.sendCommand("move LibroViejo");
+        driver.sendCommand("goto Sotano");
+        driver.sendCommand("use Baranda");
+        assertEquals(GameState.Lost,driver.getCurrentState());
+    }
+
+    @Test
+    public void lostGameEscalera() throws GameLoadFailedException {
+        GameDriver  driver = new ConcreteGameDriver();
+        driver.initGame("Escape");
+        driver.sendCommand("goto BibliotecaAcceso");
+        driver.sendCommand("goto Pasillo");
+        driver.sendCommand("goto Salon3");
+        driver.sendCommand("pick Llave");
+        driver.sendCommand("goto Pasillo");
+        driver.sendCommand("goto Salon1");
+        driver.sendCommand("move CuadroBarco");
+        driver.sendCommand("open CajaFuerte using Llave");
+        driver.sendCommand("pick Credencial");
+        driver.sendCommand("put Foto in Credencial");
+        driver.sendCommand("goto Pasillo");
+        driver.sendCommand("goto BibliotecaAcceso");
+        driver.sendCommand("show Credencial in Bibliotecario");
+        driver.sendCommand("goto Biblioteca");
+        driver.sendCommand("move LibroViejo");
+        driver.sendCommand("goto Sotano");
+        driver.sendCommand("use Escalera");
+        assertEquals(GameState.Lost,driver.getCurrentState());
+    }
+
 }
