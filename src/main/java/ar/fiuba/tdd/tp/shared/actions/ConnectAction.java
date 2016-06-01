@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp.shared.actions;
 
 import ar.fiuba.tdd.tp.client.ClientHelper;
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
-import ar.fiuba.tdd.tp.shared.ConnectionConfig;
+import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 import ar.fiuba.tdd.tp.shared.Message;
 
 import java.io.IOException;

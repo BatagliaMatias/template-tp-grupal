@@ -4,6 +4,7 @@ import ar.fiuba.tdd.tp.engine.motor2.Game;
 import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 import ar.fiuba.tdd.tp.server.network.*;
 import ar.fiuba.tdd.tp.shared.*;
+import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp.server.network;
 
 
-import ar.fiuba.tdd.tp.shared.ConnectionConfig;
-import ar.fiuba.tdd.tp.shared.NetworkFacade;
+import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
+import ar.fiuba.tdd.tp.shared.network.NetworkFacade;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -14,7 +14,7 @@ public class ServerNetworkFacade extends NetworkFacade {
         ServerSocket listeningSocket = new ServerSocket(connection.getPort());
         Socket clientSocket = listeningSocket.accept();
         outputStream = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), ENCODING), true);
-        inputStream = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), ENCODING));
+        this.startReader(clientSocket);
     }
 
 }

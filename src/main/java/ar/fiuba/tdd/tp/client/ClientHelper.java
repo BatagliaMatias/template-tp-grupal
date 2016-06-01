@@ -7,7 +7,6 @@ import ar.fiuba.tdd.tp.shared.StandardInputManager;
 import ar.fiuba.tdd.tp.shared.actions.ActionsChain;
 import ar.fiuba.tdd.tp.shared.actions.FactoryActionsChains;
 
-
 /**
  * Created by jorlando on 26/04/16.
  */
@@ -41,10 +40,9 @@ public class ClientHelper {
         this.setGameState(ClientState.RUNNING);
     }
 
-    public void sendMessageAndReceive(String messageToSend) {
+    public void sendMessage(String messageToSend) {
         network.sendMessage(messageToSend);
-        network.messageToStandardOutput(network.receiveMessage());
-        if (this.haveToEndConnection()) {
+        if (network.endgameMessageReceived()) {
             this.endConnection();
         }
     }
@@ -58,12 +56,4 @@ public class ClientHelper {
             chain.processAction(userCommand);
         }
     }
-
-    public boolean haveToEndConnection() {
-        String message = network.getLastMessageReceived();
-        return (message.equals(Message.WIN.getText()) || message.equals(Message.LOST.getText()));
-
-    }
-
-
 }

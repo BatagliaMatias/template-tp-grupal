@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.shared;
 
+import ar.fiuba.tdd.tp.shared.network.PortSequence;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

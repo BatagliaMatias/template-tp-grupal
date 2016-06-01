@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.shared;
+package ar.fiuba.tdd.tp.shared.network;
 
 /**
  * Created by jorlando on 28/04/16.
