@@ -52,6 +52,7 @@ public abstract class NetworkFacade {
         try {
             Thread.sleep(msToWait);
         } catch (InterruptedException e) {
+            System.out.println("Fail sleeping");
         }
     }
 }
