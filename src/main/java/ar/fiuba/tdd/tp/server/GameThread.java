@@ -54,12 +54,15 @@ public class GameThread extends Thread {
         String outputLine;
         this.network.sendMessage(this.getWelcomeMessage());
         while (this.network.continuesReceivingMessages()) {
-            outputLine = this.game.execute(this.network.getLastMessageReceived());
-            if (this.game.endGame()) {
-                this.network.sendMessage(this.game.getFinalMessage());
-                break;
-            } else {
-                this.network.sendMessage(outputLine);
+            if (this.network.hasMessageToProcess()) {
+                outputLine = this.game.execute(this.network.getLastMessageReceived());
+                if (this.game.endGame()) {
+                    this.network.sendMessage(this.game.getFinalMessage());
+                    break;
+                } else {
+                    this.network.sendMessage(outputLine);
+                }
+                this.network.cleanMessage();
             }
         }
     }
@@ -69,7 +72,7 @@ public class GameThread extends Thread {
         message.append(this.getGameNameParsed());
         message.append(Message.GAME_LOADED.getText());
         message.append(this.connectionConfig.getPort());
-        this.network.messageToStandardOutput(message.toString());
+        System.out.println(">> Received -> ".concat(message.toString()));
     }
 
     public void init() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {

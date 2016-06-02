@@ -3,7 +3,7 @@ task OpenDoor2(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Template Project fiuba tecnicas',
         		'Implementation-Version': '',
-                'Main-Class': 'ar.fiuba.tdd.tp.engine.motor2.OpenDoor2'
+                'Main-Class': 'ar.fiuba.tdd.tp.engine.motor2.games.OpenDoor2'
     }
     baseName = "OpenDoor2"
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }

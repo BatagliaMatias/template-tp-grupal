@@ -25,29 +25,35 @@ public class NetworkReader extends Thread {
         } catch (IOException | NullPointerException e) {
             this.lastMessageReceived = null;
             state = NetworkState.ENDED;
+            System.out.println("TERMINE EL READ NetworkReader");
         }
-
         return this.lastMessageReceived;
     }
 
     public void run() {
-        this.read();
+        while (this.continuesReceivingMessages()) {
+            this.read();
+        }
     }
 
     public void messageToStandardOutput(String message) {
-        System.out.println(">> ".concat(message));
+        System.out.println(">> Received -> ".concat(message));
     }
 
     public void end() {
         try {
             this.inputStream.close();
         } catch (IOException e) {
-            System.out.print("ERROR: Clossing connection Reader");
+            System.out.print("ERROR: Closing connection Reader");
         }
     }
 
     public String getLastMessageReceived() {
         return this.lastMessageReceived;
+    }
+
+    public void cleanMessage() {
+        this.lastMessageReceived = null;
     }
 
     public boolean continuesReceivingMessages() {

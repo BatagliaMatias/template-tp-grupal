@@ -19,4 +19,12 @@ public class ServerNetworkFacade extends NetworkFacade {
         this.startReader(clientSocket);
     }
 
+    public boolean hasMessageToProcess() {
+        return (this.getLastMessageReceived() != null);
+    }
+
+    public void cleanMessage() {
+        this.reader.cleanMessage();
+    }
+
 }

@@ -14,6 +14,7 @@ public abstract class NetworkFacade {
     protected static final String ENCODING = "UTF-8";
     protected PrintWriter outputStream;
     protected NetworkReader reader = null;
+    protected Integer msToWait = 500;
 
     public NetworkFacade() {
     }
@@ -30,6 +31,7 @@ public abstract class NetworkFacade {
     }
 
     public boolean continuesReceivingMessages() {
+        this.sleep();
         return this.reader.continuesReceivingMessages();
     }
 
@@ -44,5 +46,12 @@ public abstract class NetworkFacade {
     public boolean endgameMessageReceived() {
         String message = this.reader.getLastMessageReceived();
         return (message.equals(Message.WIN.getText()) || message.equals(Message.LOST.getText()));
+    }
+
+    public void sleep() {
+        try {
+            Thread.sleep(msToWait);
+        } catch (InterruptedException e) {
+        }
     }
 }
