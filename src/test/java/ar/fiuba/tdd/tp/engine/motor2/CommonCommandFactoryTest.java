@@ -1,9 +1,8 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
-import ar.fiuba.tdd.tp.shared.Message;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by mbataglia on 18/05/16.

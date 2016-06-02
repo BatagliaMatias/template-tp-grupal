@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.server;
 
-import static org.junit.Assert.assertEquals;
-
 /**
  * Created by mbataglia on 18/05/16.
  */

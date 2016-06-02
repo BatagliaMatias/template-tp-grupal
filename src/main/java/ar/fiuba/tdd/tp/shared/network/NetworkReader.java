@@ -22,10 +22,11 @@ public class NetworkReader extends Thread {
         try {
             this.lastMessageReceived = inputStream.readLine();
             this.messageToStandardOutput(this.lastMessageReceived);
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             this.lastMessageReceived = null;
             state = NetworkState.ENDED;
         }
+
         return this.lastMessageReceived;
     }
 

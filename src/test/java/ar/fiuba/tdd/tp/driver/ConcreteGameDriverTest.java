@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.driver;
 
-import ar.fiuba.tdd.tp.engine.motor2.*;
+import ar.fiuba.tdd.tp.engine.motor2.GameState;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

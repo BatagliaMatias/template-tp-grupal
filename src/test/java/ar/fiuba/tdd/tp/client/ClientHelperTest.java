@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.client;
 
 import ar.fiuba.tdd.tp.client.config.ClientState;
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

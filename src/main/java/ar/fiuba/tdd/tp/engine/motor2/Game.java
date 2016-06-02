@@ -58,7 +58,7 @@ public class Game {
         this.state = GameState.Won;
     }
 
-    public void loseGame(){
+    public void loseGame() {
         this.state = GameState.Lost;
     }
 

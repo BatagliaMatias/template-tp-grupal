@@ -43,11 +43,11 @@ public class Container {
         return this.states.changeStates(this.componentsContained,state);
     }
 
-    public boolean contains(Container component){
+    public boolean contains(Container component) {
         return this.componentsContained.containsValue(component);
     }
 
-    public void removeComponent (Container component){
+    public void removeComponent(Container component) {
         this.componentsContained.remove(component.getName());
     }
 

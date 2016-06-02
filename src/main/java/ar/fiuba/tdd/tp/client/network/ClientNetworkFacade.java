@@ -1,11 +1,12 @@
 package ar.fiuba.tdd.tp.client.network;
 
-import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 import ar.fiuba.tdd.tp.shared.Message;
+import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 import ar.fiuba.tdd.tp.shared.network.NetworkFacade;
-import ar.fiuba.tdd.tp.shared.network.NetworkReader;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**

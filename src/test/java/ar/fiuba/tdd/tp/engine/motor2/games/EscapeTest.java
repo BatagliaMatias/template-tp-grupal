@@ -6,7 +6,7 @@ import ar.fiuba.tdd.tp.driver.GameLoadFailedException;
 import ar.fiuba.tdd.tp.engine.motor2.GameState;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by mbataglia on 20/05/16.

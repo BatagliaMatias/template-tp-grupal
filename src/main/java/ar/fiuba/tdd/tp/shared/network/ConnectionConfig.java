@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.shared.network;
 
-import ar.fiuba.tdd.tp.shared.network.PortSequence;
-
 /**
  * Created by jorlando on 27/04/16.
  */

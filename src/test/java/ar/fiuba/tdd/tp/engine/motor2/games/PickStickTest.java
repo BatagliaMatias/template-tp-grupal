@@ -1,7 +1,8 @@
 package ar.fiuba.tdd.tp.engine.motor2.games;
 
 import ar.fiuba.tdd.tp.engine.motor2.Game;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 

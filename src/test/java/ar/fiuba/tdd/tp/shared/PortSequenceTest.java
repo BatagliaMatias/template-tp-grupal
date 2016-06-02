@@ -3,7 +3,8 @@ package ar.fiuba.tdd.tp.shared;
 import ar.fiuba.tdd.tp.shared.network.PortSequence;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by jorlando on 03/05/16.

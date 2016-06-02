@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
-import ar.fiuba.tdd.tp.shared.Message;
-
 import java.util.HashMap;
 
 /**
