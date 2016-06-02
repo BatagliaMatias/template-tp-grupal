@@ -2,6 +2,8 @@ package ar.fiuba.tdd.tp.engine.motor2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Game {
 
@@ -14,13 +16,34 @@ public class Game {
     }
 
     public void setExecutableCommands(Command command) {
-        this.executableCommands.put(command.getName(),command);
+        this.executableCommands.put(command.getName(), command);
     }
+
+    public void addTimedEvent(boolean repeat, long delay, Event event) {
+        Timer timer = new Timer();
+        TimerTask eventTask = new TimerTask() {
+            @Override
+            public void run() {
+                sendMessage(event.execute());
+            }
+        };
+        if (repeat) {
+            timer.schedule(eventTask, delay, delay);
+        } else {
+            timer.schedule(eventTask, delay);
+        }
+    }
+
+    public void sendMessage(String msg) {
+        // TODO
+        System.out.println(msg);
+    }
+
 
     public void setCommandWin(Container container, String statusWin) {
         CommandWin win = new CommandWin();
         win.setComponent(container);
-        win.setWinnableCommand((HashMap<String, Container> components)-> container.checkStatus(statusWin));
+        win.setWinnableCommand((HashMap<String, Container> components) -> container.checkStatus(statusWin));
         this.setWinnersCommands(win);
     }
 
@@ -49,10 +72,14 @@ public class Game {
         return this.state;
     }
 
+    public void setState(GameState newState) {
+        this.state = newState;
+    }
+
     public void checkIfGameWin() {
         for (CommandWin command : this.winnersCommands) {
             if (!command.win()) {
-                return ;
+                return;
             }
         }
         this.state = GameState.Won;
@@ -60,9 +87,5 @@ public class Game {
 
     public void loseGame() {
         this.state = GameState.Lost;
-    }
-
-    public void setState(GameState newState) {
-        this.state = newState;
     }
 }

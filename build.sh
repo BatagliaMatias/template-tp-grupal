@@ -10,3 +10,4 @@ echo "--------------------- Generating CLIENT jar --------------------- "
 echo "--------------------- Generating GAMES jars --------------------- "
 ./gradlew OpenDoor2
 ./gradlew PickStick
+./gradlew WolfSheepCol
