@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import ar.fiuba.tdd.tp.server.PlayerConnection;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
@@ -10,6 +12,7 @@ public class Game {
     GameState state = GameState.Ready;
     private ArrayList<CommandWin> winnersCommands = new ArrayList<CommandWin>();
     private HashMap<String, Command> executableCommands = new HashMap<String, Command>();
+    private ArrayList<PlayerConnection> players = new ArrayList<PlayerConnection>();
 
     public void setWinnersCommands(CommandWin commandWin) {
         this.winnersCommands.add(commandWin);
@@ -32,6 +35,10 @@ public class Game {
         } else {
             timer.schedule(eventTask, delay);
         }
+    }
+
+    public void addPlayer(PlayerConnection player) {
+        players.add(player);
     }
 
     public void sendMessage(String msg) {

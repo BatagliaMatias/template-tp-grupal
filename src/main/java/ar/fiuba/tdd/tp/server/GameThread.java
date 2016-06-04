@@ -8,6 +8,8 @@ import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  * Created by jorlando on 28/04/16.
@@ -16,8 +18,8 @@ public class GameThread extends Thread {
 
     ServerNetworkFacade network = null;
     ConnectionConfig connectionConfig = null;
-    private String gameName = "";
     Game game = null;
+    private String gameName = "";
 
     public GameThread(String name) {
         super();
@@ -41,13 +43,33 @@ public class GameThread extends Thread {
             System.out.println("ERROR: No se encontro la clase Main del jar");
             return;
         }
+        /*
         try {
             this.network.initConnection(this.connectionConfig);
         } catch (IOException e) {
             this.network.messageToStandardOutput(Message.GAME_INIT_ERROR.getText());
             return;
+        }*/
+        //this.action();
+        this.acceptLoop();
+    }
+
+    public void acceptLoop() {
+        try {
+            ServerSocket listeningSocket = new ServerSocket(this.connectionConfig.getPort());
+            while (true) {
+                Socket clientSocket = listeningSocket.accept();
+                int id = PlayerIDProvider.getInstance().getID();
+                System.out.println("Nuevo cliente: " + id);
+                PlayerConnection player = new PlayerConnection(clientSocket, id, game,getWelcomeMessage());
+                player.start();
+                game.addPlayer(player);
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        this.action();
     }
 
     public void action() {
@@ -76,7 +98,7 @@ public class GameThread extends Thread {
     }
 
     public void init() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
-        this.network = new ServerNetworkFacade();
+        //this.network = new ServerNetworkFacade();
         this.connectionConfig = new ConnectionConfig();
         BuilderLoader loader = new BuilderLoader();
         GameBuilder builder = loader.load(this.gameName);
@@ -89,6 +111,6 @@ public class GameThread extends Thread {
     }
 
     public String getGameNameParsed() {
-        return this.gameName.replaceAll(".jar", "").replaceAll(".*/","");
+        return this.gameName.replaceAll(".jar", "").replaceAll(".*/", "");
     }
 }
