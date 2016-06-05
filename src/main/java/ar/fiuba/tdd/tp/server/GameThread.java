@@ -8,18 +8,17 @@ import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 
 /**
  * Created by jorlando on 28/04/16.
  */
 public class GameThread extends Thread {
 
-    ServerNetworkFacade network = null;
+    ServerNetworkFacade network = new ServerNetworkFacade();
     ConnectionConfig connectionConfig = null;
     Game game = null;
     private String gameName = "";
+    private PlayerIDProvider idProvider = new PlayerIDProvider();
 
     public GameThread(String name) {
         super();
@@ -43,28 +42,17 @@ public class GameThread extends Thread {
             System.out.println("ERROR: No se encontro la clase Main del jar");
             return;
         }
-        /*
-        try {
-            this.network.initConnection(this.connectionConfig);
-        } catch (IOException e) {
-            this.network.messageToStandardOutput(Message.GAME_INIT_ERROR.getText());
-            return;
-        }*/
-        //this.action();
         this.acceptLoop();
     }
 
     public void acceptLoop() {
         try {
-            ServerSocket listeningSocket = new ServerSocket(this.connectionConfig.getPort());
+            network.initConnection(connectionConfig);
             while (true) {
-                Socket clientSocket = listeningSocket.accept();
-                int id = PlayerIDProvider.getInstance().getID();
-                System.out.println("Nuevo cliente: " + id);
-                PlayerConnection player = new PlayerConnection(clientSocket, id, game,getWelcomeMessage());
+                PlayerConnection player = new PlayerConnection(network.acceptClient(), idProvider, game, getWelcomeMessage());
+                System.out.println("Nuevo cliente ");
                 player.start();
                 game.addPlayer(player);
-
             }
 
         } catch (IOException e) {

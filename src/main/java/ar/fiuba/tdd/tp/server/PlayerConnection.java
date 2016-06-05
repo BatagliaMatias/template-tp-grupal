@@ -14,10 +14,12 @@ public class PlayerConnection extends Thread {
     private PrintWriter output;
     private Game game;
     private int id;
+    private PlayerIDProvider idProvider;
 
-    public PlayerConnection(Socket socket, int id, Game game, String welcomeMessage) {
+    public PlayerConnection(Socket socket, PlayerIDProvider idProvider, Game game, String welcomeMessage) {
         this.game = game;
-        this.id = id;
+        this.id = idProvider.getID();
+        this.idProvider = idProvider;
         this.socket = socket;
         try {
             output = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"), true);
@@ -30,16 +32,15 @@ public class PlayerConnection extends Thread {
 
     public void run() {
         String incomingMessage = "";
-        while ((game.getState() != GameState.Lost) && (game.getState() != GameState.Won) && (incomingMessage != null) ) {
+        while ((game.getState() != GameState.Lost) && (game.getState() != GameState.Won) && (incomingMessage != null)) {
             try {
                 incomingMessage = input.readLine();
-                if (incomingMessage.isEmpty()) {
+                if (incomingMessage.equalsIgnoreCase("disconnect")) {
                     endConnection();
                 }
                 System.out.println("Cliente " + id + " mando mensaje: " + incomingMessage);
-                String response = game.execute(incomingMessage);
+                game.process(incomingMessage,id);
                 //TEMPORAL
-                sendMessage(response);
             } catch (Exception e) {
                 incomingMessage = null;
             }
@@ -51,17 +52,18 @@ public class PlayerConnection extends Thread {
         try {
             output.println(END_CONNECTION_MESSAGE);
             socket.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        PlayerIDProvider.getInstance().freeID(id);
+        idProvider.freeID(id);
         System.out.println("Disconnected client " + id);
     }
 
     public void sendMessage(String message) {
-        System.out.println("Enviando mensaje: " + message);
-        output.println(message);
+        if (this.socket.isConnected()) {
+            //System.out.println("Enviando mensaje: " + message);
+            output.println(message);
+        }
     }
 
     public int getID() {

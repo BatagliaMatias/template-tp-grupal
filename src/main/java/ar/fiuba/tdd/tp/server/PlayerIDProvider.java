@@ -9,14 +9,7 @@ public class PlayerIDProvider {
     private int lastID = 0;
     private Queue<Integer> freeIDs = new LinkedList<Integer>();
 
-    protected PlayerIDProvider() {
-    }
-
-    public static PlayerIDProvider getInstance() {
-        if (instance == null) {
-            instance = new PlayerIDProvider();
-        }
-        return instance;
+    public PlayerIDProvider() {
     }
 
     public int getID() {

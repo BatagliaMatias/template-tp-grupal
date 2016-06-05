@@ -5,9 +5,10 @@ import java.util.HashMap;
 
 public class Container {
 
+    State states = null;
+    private Container parent = null;
     private HashMap<String, Container> componentsContained = new HashMap<String, Container>();
     private ArrayList<ContainerDependant> dependencies = new ArrayList<>();
-    State states = null;
     private String name;
 
     public Container(String name) {
@@ -35,12 +36,25 @@ public class Container {
         return this.name;
     }
 
+    public Container getParent() {
+        return parent;
+    }
+
+    public void setParent(Container parent) {
+        this.parent = parent;
+    }
+
     public void setComponent(Container component) {
         this.componentsContained.put(component.getName(), component);
+        component.setParent(this);
+    }
+
+    public int getSize() {
+        return componentsContained.size();
     }
 
     public String changeStatus(String state) {
-        return this.states.changeStates(this.componentsContained,state);
+        return this.states.changeStates(this.componentsContained, state);
     }
 
     public boolean contains(Container component) {
@@ -52,7 +66,7 @@ public class Container {
     }
 
     public boolean checkStatus(String state) {
-        if (this.states != null ) {
+        if (this.states != null) {
             return this.states.checkStatus(state);
         }
         return false;

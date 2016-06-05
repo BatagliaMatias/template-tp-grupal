@@ -8,8 +8,10 @@ import java.util.HashMap;
 /**
  * Created by mbataglia on 19/05/16.
  */
+
+@SuppressWarnings("ALL")
 public class Escape implements GameBuilder {
-    @SuppressWarnings("CPD-START")
+
 
     @Override
     public Game build() {
