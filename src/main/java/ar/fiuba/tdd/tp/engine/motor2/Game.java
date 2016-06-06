@@ -159,10 +159,11 @@ public class Game {
             return false;
         }
         Container playerContainer = player.getContainer();
-        String res = "";
+        StringBuffer buf = new StringBuffer();
         for (Container container : playerContainer.getParent().getComponents()) {
-            res = res + " Theres is a " + container.getName();
+            buf.append(" Theres is a " + container.getName());
         }
+        String res = buf.toString();
         sendMessageTo(player.getID(), res);
         return true;
     }

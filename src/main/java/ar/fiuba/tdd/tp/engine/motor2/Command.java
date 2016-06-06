@@ -22,13 +22,13 @@ public class Command {
 
     public void setExecutable(String componentName, String newStatus) {
         this.setExecutableCommand((HashMap<String, Container> components) -> {
-            for (Container container : components.values()) {
-                String message = container.getDependantMessage();
-                if (message != "") {
-                    return message;
+                for (Container container : components.values()) {
+                    String message = container.getDependantMessage();
+                    if (message != "") {
+                        return message;
+                    }
                 }
-            }
-            return components.get(componentName).changeStatus(newStatus);
+                return components.get(componentName).changeStatus(newStatus);
         });
     }
 

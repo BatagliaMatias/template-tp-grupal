@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 
 public class WolfSheepCol implements GameBuilder {
-    @SuppressWarnings("ALL")
+    @SuppressWarnings("CPD-START")
 
     @Override
     public Game build() {

@@ -5,7 +5,7 @@ import ar.fiuba.tdd.tp.engine.motor2.*;
 import java.util.HashMap;
 
 public class OpenDoor2 implements GameBuilder {
-    @SuppressWarnings("ALL")
+    @SuppressWarnings("CPD-START")
 
     @Override
     public Game build() {

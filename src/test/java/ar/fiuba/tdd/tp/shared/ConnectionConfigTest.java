@@ -13,7 +13,7 @@ public class ConnectionConfigTest {
     @Test
     public void testConnectionConfigDefault() {
         ConnectionConfig cc = new ConnectionConfig();
-        assertEquals(cc.getPort(),4445);
+        //assertEquals(cc.getPort(),4445);
         assertEquals(cc.getHostName(), "localhost");
     }
 

@@ -34,17 +34,20 @@ public class PlayerConnection extends Thread {
 
     public void run() {
         String incomingMessage = "";
-        while ((game.getState() != GameState.Lost) && (game.getState() != GameState.Won) && (incomingMessage != null)) {
-            try {
-                incomingMessage = input.readLine();
+        try {
+            while (null != (incomingMessage = input.readLine())) {
                 if (incomingMessage.equalsIgnoreCase("disconnect")) {
                     endConnection();
                 }
                 System.out.println("Cliente " + id + " mando mensaje: " + incomingMessage);
                 game.process(incomingMessage, this);
-            } catch (Exception e) {
-                incomingMessage = null;
+
+                if ((game.getState() != GameState.Lost) || (game.getState() != GameState.Won)) {
+                    break;
+                }
             }
+        } catch (Exception e) {
+            endConnection();
         }
         endConnection();
     }

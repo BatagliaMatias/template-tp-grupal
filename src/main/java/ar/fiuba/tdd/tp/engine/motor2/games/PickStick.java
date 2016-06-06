@@ -6,7 +6,7 @@ import ar.fiuba.tdd.tp.engine.motor2.*;
  * Created by mbataglia on 18/05/16.
  */
 public class PickStick implements GameBuilder {
-    @SuppressWarnings("ALL")
+    @SuppressWarnings("CPD-START")
 
     @Override
     public Game build() {

@@ -7,7 +7,7 @@ import ar.fiuba.tdd.tp.engine.motor2.PlayerCommand;
 
 
 public class TreasureHunt implements GameBuilder {
-    @SuppressWarnings("ALL")
+    @SuppressWarnings("CPD-START")
 
     @Override
     public Game build() {
