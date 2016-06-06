@@ -144,7 +144,7 @@ public class WolfSheepCol implements GameBuilder {
         wolfSheepCol.setExecutableCommands(crossNorth);
         wolfSheepCol.setExecutableCommands(crossSouth);
 
-        wolfSheepCol.setWinCondition(() ->
+        wolfSheepCol.setWinCondition((Container player) ->
                 (northShore.contains(wolf) && northShore.contains(sheep) && northShore.contains(col)));
 
         return wolfSheepCol;

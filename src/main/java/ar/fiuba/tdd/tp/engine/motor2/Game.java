@@ -12,9 +12,12 @@ public class Game {
     GameState state = GameState.Ready;
     private ArrayList<CommandWin> winnersCommands = new ArrayList<CommandWin>();
     private HashMap<String, Command> executableCommands = new HashMap<String, Command>();
+    private HashMap<String, PlayerCommand> playerCommands = new HashMap<>();
     private ArrayList<PlayerConnection> players = new ArrayList<PlayerConnection>();
     private Condition winCondition = null;
     private Condition loseCondition = null;
+    private int lastPlayerToExecute = 0;
+    private Container initialPosition = null;
 
     public void setWinCondition(Condition winCondition) {
         this.winCondition = winCondition;
@@ -28,8 +31,16 @@ public class Game {
         this.executableCommands.put(command.getName(), command);
     }
 
+    public void setPlayerCommand(PlayerCommand command) {
+        this.playerCommands.put(command.getName(), command);
+    }
+
     public void setWinnersCommands(CommandWin commandWin) {
         this.winnersCommands.add(commandWin);
+    }
+
+    public void setInitialPosition(Container position) {
+        this.initialPosition = position;
     }
 
     public void addTimedEvent(boolean repeat, long delay, Event event) {
@@ -48,6 +59,12 @@ public class Game {
     }
 
     public void addPlayer(PlayerConnection player) {
+        sendMessageToAll("player " + player.getID() + " has entered the game");
+        if (initialPosition != null) {
+            Container playerContainer = new Container("player" + player.getID());
+            initialPosition.setComponent(playerContainer);
+            player.setContainer(playerContainer);
+        }
         players.add(player);
     }
 
@@ -72,9 +89,17 @@ public class Game {
         this.setWinnersCommands(win);
     }
 
-    public void process(String command, int playerID) {
-        String result = this.execute(command);
+    public void process(String command, PlayerConnection player) {
+        if (checkLookAroundCommand(command, player)) {
+            return;
+        }
+        runNormalCommand(command, player);
+    }
 
+    private void runNormalCommand(String command, PlayerConnection player) {
+        int playerID = player.getID();
+        lastPlayerToExecute = playerID;
+        String result = this.execute(command, player);
         if (result.equals(INVALID_COMMAND_MESSAGE)) {
             sendMessageTo(playerID, result);
         } else {
@@ -85,32 +110,34 @@ public class Game {
         }
     }
 
-    public String execute(String condition) {
+    public String execute(String condition, PlayerConnection player) {
         this.state = GameState.InProgress;
         try {
             if (this.executableCommands.containsKey(condition)) {
                 return this.executableCommands.get(condition).execute();
-            } else {
-                return INVALID_COMMAND_MESSAGE;
             }
+            if (this.playerCommands.containsKey(condition)) {
+                return this.playerCommands.get(condition).execute(player.getContainer());
+            }
+            return INVALID_COMMAND_MESSAGE;
         } finally {
             this.checkIfGameWin();
-            this.checkWinCondition();
-            this.checkLoseCondition();
+            this.checkWinCondition(player.getContainer());
+            this.checkLoseCondition(player.getContainer());
         }
     }
 
-    private void checkWinCondition() {
+    private void checkWinCondition(Container player) {
         if (winCondition != null) {
-            if (winCondition.applies()) {
+            if (winCondition.applies(player)) {
                 this.state = GameState.Won;
             }
         }
     }
 
-    private void checkLoseCondition() {
+    private void checkLoseCondition(Container player) {
         if (loseCondition != null) {
-            if (loseCondition.applies()) {
+            if (loseCondition.applies(player)) {
                 this.state = GameState.Lost;
             }
         }
@@ -121,7 +148,32 @@ public class Game {
     }
 
     public String getFinalMessage() {
+        if (lastPlayerToExecute > 0) {
+            return "Player " + lastPlayerToExecute + " has " + this.state.getMessage();
+        }
         return this.state.getMessage();
+    }
+
+    public boolean checkLookAroundCommand(String cmd, PlayerConnection player) {
+        if ((!cmd.equalsIgnoreCase("look around")) || (player.getContainer() == null)) {
+            return false;
+        }
+        Container playerContainer = player.getContainer();
+        String res = "";
+        for (Container container : playerContainer.getParent().getComponents()) {
+            res = res + " Theres is a " + container.getName();
+        }
+        sendMessageTo(player.getID(), res);
+        return true;
+    }
+
+    public void removePlayer(PlayerConnection player) {
+        sendMessageToAll("Player " + player.getID() + " has left the game");
+        players.remove(player);
+        Container playerContainer = player.getContainer();
+        if (playerContainer != null) {
+            playerContainer.getParent().removeComponent(playerContainer);
+        }
     }
 
     public GameState getState() {
@@ -142,6 +194,18 @@ public class Game {
             }
         }
         this.state = GameState.Won;
+    }
+
+    public String execute(String condition) {
+        this.state = GameState.InProgress;
+        try {
+            if (this.executableCommands.containsKey(condition)) {
+                return this.executableCommands.get(condition).execute();
+            }
+            return INVALID_COMMAND_MESSAGE;
+        } finally {
+            this.checkIfGameWin();
+        }
     }
 
     public void loseGame() {

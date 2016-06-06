@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.engine.motor2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Container {
 
@@ -47,6 +48,15 @@ public class Container {
     public void setComponent(Container component) {
         this.componentsContained.put(component.getName(), component);
         component.setParent(this);
+    }
+
+    public ArrayList<Container> getComponents() {
+        ArrayList<Container> components = new ArrayList<>();
+        for (Map.Entry<String, Container> entry : componentsContained.entrySet()) {
+            Container value = entry.getValue();
+            components.add(value);
+        }
+        return components;
     }
 
     public int getSize() {

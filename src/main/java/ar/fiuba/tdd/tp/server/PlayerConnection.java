@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.server;
 
+import ar.fiuba.tdd.tp.engine.motor2.Container;
 import ar.fiuba.tdd.tp.engine.motor2.Game;
 import ar.fiuba.tdd.tp.engine.motor2.GameState;
 
@@ -15,6 +16,7 @@ public class PlayerConnection extends Thread {
     private Game game;
     private int id;
     private PlayerIDProvider idProvider;
+    private Container container = null;
 
     public PlayerConnection(Socket socket, PlayerIDProvider idProvider, Game game, String welcomeMessage) {
         this.game = game;
@@ -39,8 +41,7 @@ public class PlayerConnection extends Thread {
                     endConnection();
                 }
                 System.out.println("Cliente " + id + " mando mensaje: " + incomingMessage);
-                game.process(incomingMessage,id);
-                //TEMPORAL
+                game.process(incomingMessage, this);
             } catch (Exception e) {
                 incomingMessage = null;
             }
@@ -55,6 +56,7 @@ public class PlayerConnection extends Thread {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        game.removePlayer(this);
         idProvider.freeID(id);
         System.out.println("Disconnected client " + id);
     }
@@ -68,5 +70,13 @@ public class PlayerConnection extends Thread {
 
     public int getID() {
         return id;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
+
+    public void setContainer(Container container) {
+        this.container = container;
     }
 }

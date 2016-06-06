@@ -69,6 +69,6 @@ public class GameTest {
     @Test
     public void testFinalMessage() {
         game.setState(GameState.Won);
-        assertEquals(game.getFinalMessage(),"YOU WIN THE GAME");
+        assertEquals(game.getFinalMessage(),"WON THE GAME");
     }
 }

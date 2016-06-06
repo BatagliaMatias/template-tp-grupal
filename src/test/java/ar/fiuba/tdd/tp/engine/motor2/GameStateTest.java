@@ -21,11 +21,11 @@ public class GameStateTest {
 
     @Test
     public void testGetMessageWon() {
-        assertEquals("YOU WIN THE GAME", GameState.Won.getMessage());
+        assertEquals("WON THE GAME", GameState.Won.getMessage());
     }
 
     @Test
     public void testGetMessageLost() {
-        assertEquals("YOU LOST THE GAME", GameState.Lost.getMessage());
+        assertEquals("LOST THE GAME", GameState.Lost.getMessage());
     }
 }
