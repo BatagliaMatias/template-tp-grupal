@@ -5,8 +5,9 @@ import ar.fiuba.tdd.tp.engine.motor2.Game;
 import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 import ar.fiuba.tdd.tp.engine.motor2.PlayerCommand;
 
-@SuppressWarnings("ALL")
+
 public class TreasureHunt implements GameBuilder {
+    @SuppressWarnings("ALL")
 
     @Override
     public Game build() {
@@ -103,7 +104,7 @@ public class TreasureHunt implements GameBuilder {
         treasureHunt.setPlayerCommand(pickTreasure);
 
         treasureHunt.addTimedEvent(true, 50000, () -> {
-            if (box.getParent() == room2){
+            if (box.getParent() == room2) {
                 room2.removeComponent(box);
                 room1.setComponent(box);
             } else {

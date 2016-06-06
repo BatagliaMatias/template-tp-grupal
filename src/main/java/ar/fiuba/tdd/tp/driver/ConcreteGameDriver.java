@@ -15,7 +15,7 @@ public class ConcreteGameDriver implements GameDriver {
     public void initGame(String gameName) throws GameLoadFailedException {
         try {
             Class<?> gameClass = Class.forName(packageOfGames.concat(gameName));
-            GameBuilder builder = (GameBuilder)gameClass.newInstance();
+            GameBuilder builder = (GameBuilder) gameClass.newInstance();
             game = builder.build();
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             throw new GameLoadFailedException("No se pudo instanciar el juego: ".concat(gameName));

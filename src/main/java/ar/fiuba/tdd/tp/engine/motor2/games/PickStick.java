@@ -6,6 +6,7 @@ import ar.fiuba.tdd.tp.engine.motor2.*;
  * Created by mbataglia on 18/05/16.
  */
 public class PickStick implements GameBuilder {
+    @SuppressWarnings("ALL")
 
     @Override
     public Game build() {
@@ -31,8 +32,8 @@ public class PickStick implements GameBuilder {
 
     private Container buildStick() {
         State stickStates = new State();
-        stickStates.setState("picked",false);
-        stickStates.setState("visible",true);
+        stickStates.setState("picked", false);
+        stickStates.setState("visible", true);
         stickStates.setLamdaModifierByCommandAndState("pick", "picked", "stick picked");
         stickStates.setLamdaModifierByCommandAndState("visible", "visible", "");
 

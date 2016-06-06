@@ -5,24 +5,25 @@ import ar.fiuba.tdd.tp.engine.motor2.*;
 import java.util.HashMap;
 
 public class OpenDoor2 implements GameBuilder {
+    @SuppressWarnings("ALL")
 
     @Override
     public Game build() {
         State boxStates = new State();
-        boxStates.setState("open",false);
-        boxStates.setState("visible",true);
-        boxStates.setModifier("open",(HashMap<String, Container> components, HashMap<String, Boolean> states)-> {
-                states.put("open",true);
-                components.get("Key").changeStatus("visible");
-                return "The box is open";
-            });
+        boxStates.setState("open", false);
+        boxStates.setState("visible", true);
+        boxStates.setModifier("open", (HashMap<String, Container> components, HashMap<String, Boolean> states) -> {
+            states.put("open", true);
+            components.get("Key").changeStatus("visible");
+            return "The box is open";
+        });
 
         Container box = new Container("Box");
         box.setState(boxStates);
 
         State keyStates = new State();
-        keyStates.setState("picked",false);
-        keyStates.setState("visible",false);
+        keyStates.setState("picked", false);
+        keyStates.setState("visible", false);
         keyStates.setLamdaModifierByCommandAndState("pick", "picked", "key picked");
         keyStates.setLamdaModifierByCommandAndState("visible", "visible", "");
 
@@ -32,8 +33,8 @@ public class OpenDoor2 implements GameBuilder {
         box.setComponent(key);
 
         State doorState = new State();
-        doorState.setState("open",false);
-        doorState.setState("visible",true);
+        doorState.setState("open", false);
+        doorState.setState("visible", true);
         doorState.setLamdaModifierByCommandAndState("open", "open", "The door is open");
 
 
@@ -49,7 +50,7 @@ public class OpenDoor2 implements GameBuilder {
 
         Command openBox = new Command("open box");
         openBox.setComponent(box);
-        openBox.setExecutableCommand((HashMap<String, Container> components)-> components.get("Box").changeStatus("open"));
+        openBox.setExecutableCommand((HashMap<String, Container> components) -> components.get("Box").changeStatus("open"));
 
         Command pickKey = new Command("pick key");
         pickKey.setComponent(key);

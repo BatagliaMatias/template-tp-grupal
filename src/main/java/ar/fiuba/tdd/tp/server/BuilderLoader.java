@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.server;
 /**
  * Created by jorlando on 16/05/16.
  */
+
 import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 
 import java.io.File;
@@ -29,7 +30,7 @@ public class BuilderLoader {
 
     private static String processEntry(JarEntry entry) {
         String name = entry.getName();
-        return escape(name.substring(0,name.lastIndexOf(".class")));
+        return escape(name.substring(0, name.lastIndexOf(".class")));
     }
 
     private static List<String> scanJar(File file) throws IOException, IllegalArgumentException {
@@ -47,11 +48,12 @@ public class BuilderLoader {
     }
 
     public static String getMainClass(String pathFile) throws IOException, IllegalArgumentException {
-        JarFile jarFile = new JarFile(new File(pathFile));;
+        JarFile jarFile = new JarFile(new File(pathFile));
+        ;
         String mainClass = "";
         try {
             mainClass = jarFile.getManifest().getMainAttributes().getValue("Main-Class");
-        } catch (Exception e ) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             jarFile.close();
@@ -64,7 +66,7 @@ public class BuilderLoader {
             IllegalAccessException, InstantiationException {
         File file = new File(filePath);
         String mainClass = getMainClass(filePath);
-        URL[] urls = { new URL("jar:file:" + filePath + "!/") };
+        URL[] urls = {new URL("jar:file:" + filePath + "!/")};
         ClassLoader loader = URLClassLoader.newInstance(urls);
         for (String classFile : scanJar(file)) {
             Class<?> foundClass;
@@ -75,7 +77,7 @@ public class BuilderLoader {
             }
 
             if (mainClass.equals(classFile) && GameBuilder.class.isAssignableFrom(foundClass) && !foundClass.equals(GameBuilder.class)) {
-                return (GameBuilder)foundClass.newInstance();
+                return (GameBuilder) foundClass.newInstance();
             }
         }
         return null;

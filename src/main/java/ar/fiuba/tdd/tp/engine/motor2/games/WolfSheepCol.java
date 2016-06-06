@@ -7,8 +7,9 @@ import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 
 import java.util.HashMap;
 
-@SuppressWarnings("ALL")
+
 public class WolfSheepCol implements GameBuilder {
+    @SuppressWarnings("ALL")
 
     @Override
     public Game build() {

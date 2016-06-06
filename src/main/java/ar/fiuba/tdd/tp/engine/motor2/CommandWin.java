@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public class CommandWin {
 
-    private HashMap<String, Container> componentes = new HashMap<String, Container>();
     Winnable command = null;
+    private HashMap<String, Container> componentes = new HashMap<String, Container>();
 
     public void setWinnableCommand(Winnable command) {
         this.command = command;
