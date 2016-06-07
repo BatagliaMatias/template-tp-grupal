@@ -5,40 +5,40 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.*;
+
 public class RandomCommandTest {
+
     @Test
-    public void testRandomNever() {
-        RandomCommand randomCommand = new RandomCommand("never");
-        randomCommand.setExecutableCommand((HashMap<String, Container> components)-> {
-            return "Lucky";
+    public void executeOne() throws Exception {
+        RandomCommand randomCommand = new RandomCommand("random");
+        Command oneCommand = new Command("one");
+        oneCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "one";
         });
-        randomCommand.setProbability(0);
-        Assert.assertEquals("Not lucky",randomCommand.execute());
+
+        randomCommand.addOptionCommand(oneCommand);
+
+        Assert.assertEquals("one",randomCommand.execute());
     }
 
     @Test
-    public void testRandomAlways() {
-        RandomCommand randomCommand = new RandomCommand("always");
-        randomCommand.setExecutableCommand((HashMap<String, Container> components)-> {
-            return "Lucky";
-        });
-        randomCommand.setProbability(1);
-        Assert.assertEquals("Lucky",randomCommand.execute());
-    }
-
-    @Test
-    public void testRandomNeverCustomCommand() {
-        RandomCommand randomCommand = new RandomCommand("never");
-        randomCommand.setExecutableCommand((HashMap<String, Container> components)-> {
-            return "Lucky";
+    public void executeMoreOptions() throws Exception {
+        RandomCommand randomCommand = new RandomCommand("random");
+        Command oneCommand = new Command("one");
+        oneCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Command one";
         });
 
-        Command notLuckyCommand = new Command("bad luck");
-        notLuckyCommand.setExecutableCommand((HashMap<String, Container> components)-> {
-            return "Custom bad luck";
+        Command twoCommand = new Command("two");
+        twoCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Command two";
         });
-        randomCommand.setProbability(0);
-        randomCommand.setNotLuckyCommand(notLuckyCommand);
-        Assert.assertEquals("Custom bad luck",randomCommand.execute());
+
+        randomCommand.addOptionCommand(oneCommand);
+        randomCommand.addOptionCommand(twoCommand);
+
+
+        Assert.assertTrue(randomCommand.execute().startsWith("Command"));
     }
 }

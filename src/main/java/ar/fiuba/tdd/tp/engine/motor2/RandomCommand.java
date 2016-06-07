@@ -1,43 +1,26 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class RandomCommand extends Command {
-    private double probability;
-    private Command notLuckyCommand;
+    private ArrayList<Command> options;
     public RandomCommand(String name) {
         super(name);
-        probability = 0.5;
-        notLuckyCommand = new Command("default");
-        notLuckyCommand.setExecutableCommand((HashMap<String, Container> components)-> {
-            return "Not lucky";
-        });
-
+        options  = new ArrayList<>();
     }
 
-    public void setProbability(double probability) {
-        if (probability > 1){
-            this.probability = 1;
-        }else{
-            this.probability = probability;
-        }
+    public void addOptionCommand(Command option) {
+        options.add(option);
     }
 
-    public void setNotLuckyCommand(Command notLuckyCommand) {
-        this.notLuckyCommand = notLuckyCommand;
-    }
-
-    private boolean isLucky() {
-        return Math.random() <= probability;
+    private Command getRandomOption() {
+        int optionNumber = new Random().nextInt(options.size());
+        return options.get(optionNumber);
     }
 
     @Override
     public String execute() {
-        if(isLucky()){
-            return super.execute();
-        }
-       else{
-            return notLuckyCommand.execute();
-        }
+        return getRandomOption().execute();
     }
 }
