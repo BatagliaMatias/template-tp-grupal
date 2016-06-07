@@ -27,13 +27,18 @@ public class RandomCommandTest {
     }
 
     @Test
-    public void testRandomNeverCustomMsj() {
+    public void testRandomNeverCustomCommand() {
         RandomCommand randomCommand = new RandomCommand("never");
         randomCommand.setExecutableCommand((HashMap<String, Container> components)-> {
             return "Lucky";
         });
-        randomCommand.setProbability(0);
-        randomCommand.setNotLuckyMsg("No no no");
-        Assert.assertEquals("No no no",randomCommand.execute());
+
+        Command notLuckyCommand = new Command("bad luck");
+        notLuckyCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Custom bad luck";
+        });
+
+        randomCommand.setNotLuckyCommand(notLuckyCommand);
+        Assert.assertEquals("Custom bad luck",randomCommand.execute());
     }
 }

@@ -1,12 +1,18 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import java.util.HashMap;
+
 public class RandomCommand extends Command {
     private double probability;
-    private String notLuckyMsg;
+    private Command notLuckyCommand;
     public RandomCommand(String name) {
         super(name);
-        probability = 0.1;
-        notLuckyMsg = "Not lucky";
+        probability = 0.5;
+        notLuckyCommand = new Command("default");
+        notLuckyCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Not lucky";
+        });
+
     }
 
     public void setProbability(double probability) {
@@ -17,8 +23,8 @@ public class RandomCommand extends Command {
         }
     }
 
-    public void setNotLuckyMsg(String notLuckyMsg) {
-        this.notLuckyMsg = notLuckyMsg;
+    public void setNotLuckyCommand(Command notLuckyCommand) {
+        this.notLuckyCommand = notLuckyCommand;
     }
 
     private boolean isLucky() {
@@ -31,7 +37,7 @@ public class RandomCommand extends Command {
             return super.execute();
         }
        else{
-            return notLuckyMsg;
+            return notLuckyCommand.execute();
         }
     }
 }
