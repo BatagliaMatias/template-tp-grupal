@@ -39,10 +39,10 @@ public class PlayerConnection extends Thread {
                 if (incomingMessage.equalsIgnoreCase("disconnect")) {
                     endConnection();
                 }
-                System.out.println("Cliente " + id + " mando mensaje: " + incomingMessage);
+                //System.out.println("Cliente " + id + " mando mensaje: " + incomingMessage);
                 game.process(incomingMessage, this);
 
-                if ((game.getState() != GameState.Lost) || (game.getState() != GameState.Won)) {
+                if ((game.getState() == GameState.Lost) || (game.getState() == GameState.Won)) {
                     break;
                 }
             }
