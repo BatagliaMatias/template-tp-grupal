@@ -37,7 +37,7 @@ public class RandomCommandTest {
         notLuckyCommand.setExecutableCommand((HashMap<String, Container> components)-> {
             return "Custom bad luck";
         });
-
+        randomCommand.setProbability(0);
         randomCommand.setNotLuckyCommand(notLuckyCommand);
         Assert.assertEquals("Custom bad luck",randomCommand.execute());
     }
