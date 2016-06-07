@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp.engine.motor2;
 
 import java.util.HashMap;
 
-public class Command {
+public class Command implements Event {
 
     public String name;
     Executable executableCommand;
