@@ -16,6 +16,7 @@ apply plugin: "jacoco"
 apply from: 'gradle/fatjar.gradle'
 apply from: 'gradle/quality.gradle'
 apply from: 'gradle/OpenDoor2.gradle'
+apply from: 'gradle/OpenDoor.gradle'
 apply from: 'gradle/PickStick.gradle'
 apply from: 'gradle/WolfSheepCol.gradle'
 apply from: 'gradle/TreasureHunt.gradle'
