@@ -21,8 +21,7 @@ public class RandomCommand extends Command {
     public void desactiveCommand(Command command) {
         commands.put(command,false);
     }
-
-
+    
     private List<Command> getActiveCommands() {
         return commands.entrySet().stream()
                 .filter(entry -> entry.getValue())

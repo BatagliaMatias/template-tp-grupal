@@ -41,4 +41,48 @@ public class RandomCommandTest {
 
         Assert.assertTrue(randomCommand.execute().startsWith("Command"));
     }
+
+    @Test
+    public void executeMoreOptionsDesactivate() throws Exception {
+        RandomCommand randomCommand = new RandomCommand("random");
+        Command oneCommand = new Command("one");
+        oneCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Command one";
+        });
+
+        Command twoCommand = new Command("two");
+        twoCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Command two";
+        });
+
+        randomCommand.addOptionCommand(oneCommand);
+        randomCommand.desactiveCommand(oneCommand);
+        randomCommand.addOptionCommand(twoCommand);
+
+
+        Assert.assertTrue(randomCommand.execute().equals("Command two"));
+    }
+
+    @Test
+    public void executeMoreOptionsDesactivateActivate() throws Exception {
+        RandomCommand randomCommand = new RandomCommand("random");
+        Command oneCommand = new Command("one");
+        oneCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Command one";
+        });
+
+        Command twoCommand = new Command("two");
+        twoCommand.setExecutableCommand((HashMap<String, Container> components)-> {
+            return "Command two";
+        });
+
+        randomCommand.addOptionCommand(oneCommand);
+        randomCommand.desactiveCommand(oneCommand);
+        randomCommand.addOptionCommand(twoCommand);
+        randomCommand.desactiveCommand(twoCommand);
+        randomCommand.activeCommand(twoCommand);
+
+
+        Assert.assertTrue(randomCommand.execute().equals("Command two"));
+    }
 }
