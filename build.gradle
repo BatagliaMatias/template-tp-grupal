@@ -20,6 +20,7 @@ apply from: 'gradle/OpenDoor.gradle'
 apply from: 'gradle/PickStick.gradle'
 apply from: 'gradle/WolfSheepCol.gradle'
 apply from: 'gradle/TreasureHunt.gradle'
+apply from: 'gradle/CursedObject.gradle'
 apply from: 'gradle/server.gradle'
 apply from: 'gradle/client.gradle'
 

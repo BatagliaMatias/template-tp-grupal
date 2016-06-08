@@ -13,3 +13,4 @@ echo "--------------------- Generating GAMES jars --------------------- "
 ./gradlew WolfSheepCol
 ./gradlew TreasureHunt
 ./gradlew OpenDoor
+./gradlew CursedObject
