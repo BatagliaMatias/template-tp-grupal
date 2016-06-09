@@ -280,11 +280,7 @@ public class Escape2 implements GameBuilder {
         });
 
         long milisegundosPorMinuto = 60000;
-        Container energia = new Container("energia");
-        gameEscape2.addTimedEvent(false, milisegundosPorMinuto * 2, () -> {
-            bibliotecario.setComponent(energia);
-            return "El bibliotecario se desperto!";
-        });
+
 
         RandomCommand bibliotecarioMove = new RandomCommand("bibliotecarioMove");
 
@@ -363,8 +359,13 @@ public class Escape2 implements GameBuilder {
         bibliotecarioMove.desactiveCommand(bibliotecarioToBibliotecaAcceso);
         bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
 
+        Container energia = new Container("energia");
+        gameEscape2.addTimedEvent(false, milisegundosPorMinuto * 2, () -> {
+            bibliotecario.setComponent(energia);
+            gameEscape2.addTimedEvent(true, milisegundosPorMinuto * 4,bibliotecarioMove);
+            return "El bibliotecario se desperto!";
+        });
 
-        gameEscape2.addTimedEvent(true, milisegundosPorMinuto * 4,bibliotecarioMove);
 
 
         gameEscape2.setPlayerCommand(pickFoto);
