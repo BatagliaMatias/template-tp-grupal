@@ -34,7 +34,6 @@ public class Escape2 implements GameBuilder {
         salon1.setComponent(cuadroBarco);
         salon1.setComponent(botellaLicor);
 
-
         //salon2
         Container salon2 = new Container("salon2");
         Container martillo = new Container("martillo");
@@ -69,7 +68,7 @@ public class Escape2 implements GameBuilder {
         sotanoAbajo.setComponent(ventana);
 
 
-        PlayerCommand pickFoto = new PlayerCommand("pick foto");
+        PlayerCommand pickFoto = new PlayerCommand("pick Foto");
         pickFoto.setPlayerCommand((Container player) -> {
             if (player.getParent() == pasillo) {
                 player.setComponent(foto);
@@ -99,7 +98,7 @@ public class Escape2 implements GameBuilder {
         });
 
         PlayerCommand gotoSalon2 = new PlayerCommand("goto Salon2");
-        gotoSalon1.setPlayerCommand((Container player) -> {
+        gotoSalon2.setPlayerCommand((Container player) -> {
             if (player.getParent() == pasillo) {
                 pasillo.removeComponent(player);
                 salon2.setComponent(player);
@@ -109,7 +108,7 @@ public class Escape2 implements GameBuilder {
         });
 
         PlayerCommand gotoSalon3 = new PlayerCommand("goto Salon3");
-        gotoSalon1.setPlayerCommand((Container player) -> {
+        gotoSalon3.setPlayerCommand((Container player) -> {
             if (player.getParent() == pasillo) {
                 pasillo.removeComponent(player);
                 salon3.setComponent(player);
@@ -174,7 +173,7 @@ public class Escape2 implements GameBuilder {
         });
 
         PlayerCommand pickCredencial = new PlayerCommand("pick Credencial");
-        openCajaFuerte.setPlayerCommand((Container player) -> {
+        pickCredencial.setPlayerCommand((Container player) -> {
             if (player.getParent() == salon1 && !salon1.contains(cajaFuerte) && salon1.contains(credencial)) {
                 salon1.removeComponent(credencial);
                 player.setComponent(credencial);
@@ -197,7 +196,7 @@ public class Escape2 implements GameBuilder {
         showCredencial.setPlayerCommand((Container player) -> {
             if(player.getParent().contains(bibliotecario)) {
                 if (player.contains(credencial) && credencial.contains(foto)) {
-                    bibliotecario.setComponent(player);
+                    bibliotecario.setComponent(credencial);
                     return "Linda credencial";
                 } else {
                     return "Tu credencial no tiene foto";
@@ -208,7 +207,7 @@ public class Escape2 implements GameBuilder {
 
         PlayerCommand gotoBiblioteca = new PlayerCommand("goto Biblioteca");
         gotoBiblioteca.setPlayerCommand((Container player) -> {
-            if (player.getParent() == bibliotecaAcceso && (bibliotecario.contains(player) || !bibliotecaAcceso.contains(bibliotecario))) {
+            if (player.getParent() == bibliotecaAcceso && (bibliotecario.contains(credencial) || !bibliotecaAcceso.contains(bibliotecario))) {
                 biblioteca.setComponent(player);
                 bibliotecaAcceso.removeComponent(player);
                 return "Entraste a la biblioteca";
@@ -280,6 +279,92 @@ public class Escape2 implements GameBuilder {
             return "No puedo";
         });
 
+        long milisegundosPorMinuto = 60000;
+        Container energia = new Container("energia");
+        gameEscape2.addTimedEvent(false, milisegundosPorMinuto * 2, () -> {
+            bibliotecario.setComponent(energia);
+            return "El bibliotecario se desperto!";
+        });
+
+        RandomCommand bibliotecarioMove = new RandomCommand("bibliotecarioMove");
+
+        Command bibliotecarioToBibliotecaAcceso = new Command("bibliotecarioToBibliotecaAcceso");
+        Command bibliotecarioToPasillo = new Command("bibliotecarioToPasillo");
+        Command bibliotecarioToBiblioteca = new Command("bibliotecarioToBiblioteca");
+        Command bibliotecarioToSotano = new Command("bibliotecarioToSotano");
+
+
+        bibliotecarioToBibliotecaAcceso.setExecutableCommand((HashMap<String, Container> components)-> {
+            bibliotecarioMove.activeCommand(bibliotecarioToPasillo);
+            bibliotecarioMove.activeCommand(bibliotecarioToBiblioteca);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToBibliotecaAcceso);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
+            if(pasillo.contains(bibliotecario)){
+                pasillo.removeComponent(bibliotecario);
+            }else{
+                biblioteca.removeComponent(bibliotecario);
+            }
+            bibliotecaAcceso.setComponent(bibliotecario);
+            return "El bibliotecario se movio a Biblioteca Acceso";
+        });
+
+        bibliotecarioToPasillo.setExecutableCommand((HashMap<String, Container> components)-> {
+            bibliotecarioMove.desactiveCommand(bibliotecarioToPasillo);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToBiblioteca);
+            bibliotecarioMove.activeCommand(bibliotecarioToBibliotecaAcceso);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
+            bibliotecaAcceso.removeComponent(bibliotecario);
+            pasillo.setComponent(bibliotecario);
+            return "El bibliotecario se movio al Pasillo";
+        });
+
+        bibliotecarioToBiblioteca.setExecutableCommand((HashMap<String, Container> components)-> {
+            bibliotecarioMove.desactiveCommand(bibliotecarioToPasillo);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToBiblioteca);
+            bibliotecarioMove.activeCommand(bibliotecarioToBibliotecaAcceso);
+            if(!biblioteca.contains(libroViejo)){
+                bibliotecarioMove.activeCommand(bibliotecarioToSotano);
+            }else{
+                bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
+            }
+
+            if(bibliotecaAcceso.contains(bibliotecario)){
+                bibliotecaAcceso.removeComponent(bibliotecario);
+            }else{
+                sotano.removeComponent(bibliotecario);
+            }
+
+            biblioteca.setComponent(bibliotecario);
+            //deberia chequear si hay jugadores en la biblioteca, y si no los tiene
+            //el bibliotecario, hacerlos perder
+
+            return "El bibliotecario se movio a la Biblioteca";
+        });
+
+        bibliotecarioToSotano.setExecutableCommand((HashMap<String, Container> components)-> {
+            bibliotecarioMove.desactiveCommand(bibliotecarioToPasillo);
+            bibliotecarioMove.activeCommand(bibliotecarioToBiblioteca);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToBibliotecaAcceso);
+            bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
+            biblioteca.removeComponent(bibliotecario);
+            sotano.setComponent(bibliotecario);
+
+            //deberia chequear si hay jugadores en el sotano, y si no los tiene
+            //el bibliotecario, hacerlos perder
+
+            return "El bibliotecario se movio al Sotano";
+        });
+
+        bibliotecarioMove.addOptionCommand(bibliotecarioToBibliotecaAcceso);
+        bibliotecarioMove.addOptionCommand(bibliotecarioToPasillo);
+        bibliotecarioMove.addOptionCommand(bibliotecarioToBiblioteca);
+        bibliotecarioMove.addOptionCommand(bibliotecarioToSotano);
+
+        bibliotecarioMove.desactiveCommand(bibliotecarioToBibliotecaAcceso);
+        bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
+
+
+        gameEscape2.addTimedEvent(true, milisegundosPorMinuto * 4,bibliotecarioMove);
 
 
         gameEscape2.setPlayerCommand(pickFoto);
