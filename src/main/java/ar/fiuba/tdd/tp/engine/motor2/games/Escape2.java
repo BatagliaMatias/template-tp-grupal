@@ -192,7 +192,94 @@ public class Escape2 implements GameBuilder {
             }
             return "No puedo";
         });
-        
+
+        PlayerCommand showCredencial = new PlayerCommand("show Credencial in Bibliotecario");
+        showCredencial.setPlayerCommand((Container player) -> {
+            if(player.getParent().contains(bibliotecario)) {
+                if (player.contains(credencial) && credencial.contains(foto)) {
+                    bibliotecario.setComponent(player);
+                    return "Linda credencial";
+                } else {
+                    return "Tu credencial no tiene foto";
+                }
+            }
+            return "No estoy en la misma habitacion que el biblotecario";
+        });
+
+        PlayerCommand gotoBiblioteca = new PlayerCommand("goto Biblioteca");
+        gotoBiblioteca.setPlayerCommand((Container player) -> {
+            if (player.getParent() == bibliotecaAcceso && (bibliotecario.contains(player) || !bibliotecaAcceso.contains(bibliotecario))) {
+                biblioteca.setComponent(player);
+                bibliotecaAcceso.removeComponent(player);
+                return "Entraste a la biblioteca";
+            }
+            return "No puedo";
+        });
+
+        PlayerCommand moveLibroViejo = new PlayerCommand("move LibroViejo");
+        moveLibroViejo.setPlayerCommand((Container player) -> {
+            if (player.getParent() == biblioteca && biblioteca.contains(libroViejo)) {
+                biblioteca.removeComponent(libroViejo);
+                return "Apareció el sotano";
+            }
+            return "Que libro??";
+        });
+
+        PlayerCommand gotoSotano = new PlayerCommand("goto Sotano");
+        gotoSotano.setPlayerCommand((Container player) -> {
+            if (player.getParent() == biblioteca && !biblioteca.contains(libroViejo)) {
+                biblioteca.removeComponent(player);
+                sotano.setComponent(player);
+                return "Entraste al sotano";
+            }
+            return "Que Sotano??";
+        });
+
+        PlayerCommand useBaranda = new PlayerCommand("use Baranda");
+        useBaranda.setPlayerCommand((Container player) -> {
+            if (player.getParent() == sotano) {
+                sotano.removeComponent(player);
+                sotanoAbajo.setComponent(player);
+                if (!player.contains(martillo)) {
+                    //gameEscape2.loseGame();
+                    return "Olvidaste el martillo";
+                }
+                return "Bajaste un piso en el sotano";
+            }
+            return "Que Baranda??";
+        });
+
+        PlayerCommand useEscalera = new PlayerCommand("use Escalera");
+        useEscalera.setPlayerCommand((Container player) -> {
+            if (player.getParent() == sotano) {
+                sotano.removeComponent(player);
+                //sotanoAbajo.setComponent(player);
+                //gameEscape2.loseGame();
+                return "Se rompió el escalon, moriste!";
+            }
+            return "Que Escalera??";
+        });
+
+        PlayerCommand breakVentana = new PlayerCommand("break Ventana using Martillo");
+        breakVentana.setPlayerCommand((Container player) -> {
+            if (player.getParent() == sotanoAbajo && player.contains(martillo)) {
+                sotanoAbajo.removeComponent(ventana);
+                sotanoAbajo.setComponent(ventanaRota);
+                return "Rompista la ventana!";
+            }
+            return "Que Ventana??";
+        });
+
+        PlayerCommand gotoAfuera = new PlayerCommand("goto Afuera");
+        gotoAfuera.setPlayerCommand((Container player) -> {
+            if (player.getParent() == sotanoAbajo && sotanoAbajo.contains(ventanaRota)) {
+                sotanoAbajo.removeComponent(player);
+                afuera.setComponent(player);
+                return "Escape!";
+            }
+            return "No puedo";
+        });
+
 
 
         gameEscape2.setPlayerCommand(pickFoto);
@@ -207,7 +294,17 @@ public class Escape2 implements GameBuilder {
         gameEscape2.setPlayerCommand(openCajaFuerte);
         gameEscape2.setPlayerCommand(pickCredencial);
         gameEscape2.setPlayerCommand(putFotoInCredencial);
+        gameEscape2.setPlayerCommand(showCredencial);
+        gameEscape2.setPlayerCommand(gotoBiblioteca);
+        gameEscape2.setPlayerCommand(moveLibroViejo);
+        gameEscape2.setPlayerCommand(gotoSotano);
+        gameEscape2.setPlayerCommand(useBaranda);
+        gameEscape2.setPlayerCommand(useEscalera);
+        gameEscape2.setPlayerCommand(breakVentana);
+        gameEscape2.setPlayerCommand(gotoAfuera);
         gameEscape2.setExecutableCommands(help);
+        gameEscape2.setWinCondition((Container player) -> (afuera.contains(player)));
+
         return gameEscape2;
 
     }

@@ -15,3 +15,4 @@ echo "--------------------- Generating GAMES jars --------------------- "
 ./gradlew OpenDoor
 ./gradlew CursedObject
 ./gradlew TowersOfHanoi
+./gradlew Escape2

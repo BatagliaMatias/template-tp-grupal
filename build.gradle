@@ -22,6 +22,7 @@ apply from: 'gradle/TowersOfHanoi.gradle'
 apply from: 'gradle/WolfSheepCol.gradle'
 apply from: 'gradle/TreasureHunt.gradle'
 apply from: 'gradle/CursedObject.gradle'
+apply from: 'gradle/Escape2.gradle'
 apply from: 'gradle/server.gradle'
 apply from: 'gradle/client.gradle'
 
