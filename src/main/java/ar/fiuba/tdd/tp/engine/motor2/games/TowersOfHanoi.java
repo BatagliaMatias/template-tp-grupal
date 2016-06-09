@@ -18,11 +18,11 @@ public class TowersOfHanoi implements GameBuilder{
         Container disk2 = new Container("2");
         Container disk3 = new Container("3");
         Container disk4 = new Container("4");
-        towersOfHanoi.setInitialPosition(towerA);
-        towerA.setComponent(disk4);
-        towerA.setComponent(disk3);
-        towerA.setComponent(disk2);
+        //towersOfHanoi.setInitialPosition(towerA);
         towerA.setComponent(disk1);
+        towerA.setComponent(disk2);
+        towerA.setComponent(disk3);
+        towerA.setComponent(disk4);
 
         PlayerCommand moveAToB = new PlayerCommand("A to B");
         moveAToB.setPlayerCommand((Container player) -> {
@@ -38,7 +38,7 @@ public class TowersOfHanoi implements GameBuilder{
         });
 
         PlayerCommand moveBToA = new PlayerCommand("B to A");
-        moveAToB.setPlayerCommand((Container player) -> {
+        moveBToA.setPlayerCommand((Container player) -> {
             int diskA = calculateDisk(towerA);
             int diskB = calculateDisk(towerB);
 
@@ -51,7 +51,7 @@ public class TowersOfHanoi implements GameBuilder{
         });
 
         PlayerCommand moveAToC = new PlayerCommand("A to C");
-        moveAToB.setPlayerCommand((Container player) -> {
+        moveAToC.setPlayerCommand((Container player) -> {
             int diskA = calculateDisk(towerA);
             int diskC = calculateDisk(towerC);
 
@@ -64,7 +64,7 @@ public class TowersOfHanoi implements GameBuilder{
         });
 
         PlayerCommand moveBToC = new PlayerCommand("B to C");
-        moveAToB.setPlayerCommand((Container player) -> {
+        moveBToC.setPlayerCommand((Container player) -> {
             int diskC = calculateDisk(towerC);
             int diskB = calculateDisk(towerB);
 
@@ -77,7 +77,7 @@ public class TowersOfHanoi implements GameBuilder{
         });
 
         PlayerCommand moveCToA = new PlayerCommand("C to A");
-        moveAToB.setPlayerCommand((Container player) -> {
+        moveCToA.setPlayerCommand((Container player) -> {
             int diskA = calculateDisk(towerA);
             int diskC = calculateDisk(towerC);
 
@@ -90,7 +90,7 @@ public class TowersOfHanoi implements GameBuilder{
         });
 
         PlayerCommand moveCToB = new PlayerCommand("C to B");
-        moveAToB.setPlayerCommand((Container player) -> {
+        moveCToB.setPlayerCommand((Container player) -> {
             int diskC = calculateDisk(towerC);
             int diskB = calculateDisk(towerB);
 
@@ -102,27 +102,46 @@ public class TowersOfHanoi implements GameBuilder{
             return "you cant move that";
         });
 
+        PlayerCommand checkTopA = new PlayerCommand("check top A");
+        checkTopA.setPlayerCommand((Container player) -> getTop(towerA));
+
+        PlayerCommand checkTopB = new PlayerCommand("check top B");
+        checkTopB.setPlayerCommand((Container player) -> getTop(towerB));
+
+        PlayerCommand checkTopC = new PlayerCommand("check top C");
+        checkTopC.setPlayerCommand((Container player) -> getTop(towerC));
+
         towersOfHanoi.setPlayerCommand(moveAToB);
         towersOfHanoi.setPlayerCommand(moveAToC);
         towersOfHanoi.setPlayerCommand(moveBToA);
         towersOfHanoi.setPlayerCommand(moveBToC);
         towersOfHanoi.setPlayerCommand(moveCToA);
         towersOfHanoi.setPlayerCommand(moveCToB);
+        towersOfHanoi.setPlayerCommand(checkTopA);
+        towersOfHanoi.setPlayerCommand(checkTopB);
+        towersOfHanoi.setPlayerCommand(checkTopC);
 
         towersOfHanoi.setWinCondition((Container player) -> (containsAllDisks(towerB) || containsAllDisks(towerC)));
         return towersOfHanoi;
     }
 
-    private int calculateDisk(Container tower){
+
+    private int calculateDisk(Container tower) {
         if(tower.getComponents().isEmpty()){
             return 0;
         }else{
-            return Integer.parseInt(tower.getComponents().get(tower.getComponents().size() - 1).getName());
+            return Integer.parseInt(tower.getComponents().get(0).getName());
         }
     }
 
-    private Container removeDisk(Container tower){
-        Container disk = tower.getComponents().get(tower.getComponents().size() - 1);
+    private String getTop(Container tower) {
+
+        return tower.getComponents().isEmpty() ? "The tower is empty" : tower.getComponents().get(0).getName();
+
+    }
+
+    private Container removeDisk(Container tower) {
+        Container disk = tower.getComponents().get(0);
         tower.removeComponent(disk);
         return disk;
     }
