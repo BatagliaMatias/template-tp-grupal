@@ -211,6 +211,10 @@ public class Escape2 implements GameBuilder {
                 biblioteca.setComponent(player);
                 bibliotecaAcceso.removeComponent(player);
                 return "Entraste a la biblioteca";
+            }else{
+                if(player.getParent() == bibliotecaAcceso && (bibliotecaAcceso.contains(bibliotecario) && !bibliotecario.contains(credencial))){
+                    gameEscape2.loseGame(player);
+                }
             }
             return "No puedo";
         });
@@ -253,7 +257,7 @@ public class Escape2 implements GameBuilder {
             if (player.getParent() == sotano) {
                 sotano.removeComponent(player);
                 //sotanoAbajo.setComponent(player);
-                //gameEscape2.loseGame();
+                gameEscape2.loseGame(player);
                 return "Se rompió el escalon, moriste!";
             }
             return "Que Escalera??";
@@ -331,8 +335,12 @@ public class Escape2 implements GameBuilder {
             }
 
             biblioteca.setComponent(bibliotecario);
-            //deberia chequear si hay jugadores en la biblioteca, y si no los tiene
-            //el bibliotecario, hacerlos perder
+
+            for(Container player : gameEscape2.getPlayers()){
+                if(player.getParent() == biblioteca && !player.contains(credencial) && bibliotecario.contains(credencial)){
+                    gameEscape2.loseGame(player);
+                }
+            }
 
             return "El bibliotecario se movio a la Biblioteca";
         });
@@ -345,8 +353,11 @@ public class Escape2 implements GameBuilder {
             biblioteca.removeComponent(bibliotecario);
             sotano.setComponent(bibliotecario);
 
-            //deberia chequear si hay jugadores en el sotano, y si no los tiene
-            //el bibliotecario, hacerlos perder
+            for(Container player : gameEscape2.getPlayers()){
+                if(player.getParent() == sotano && !player.contains(credencial) && bibliotecario.contains(credencial)){
+                    gameEscape2.loseGame(player);
+                }
+            }
 
             return "El bibliotecario se movio al Sotano";
         });
@@ -391,7 +402,11 @@ public class Escape2 implements GameBuilder {
         gameEscape2.setExecutableCommands(help);
         gameEscape2.setWinCondition((Container player) -> (afuera.contains(player)));
 
+
+        gameEscape2.setMaxPlayers(4);
         return gameEscape2;
 
     }
+
+
 }

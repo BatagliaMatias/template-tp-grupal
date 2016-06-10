@@ -120,7 +120,7 @@ public class TowersOfHanoi implements GameBuilder{
         towersOfHanoi.setPlayerCommand(checkTopA);
         towersOfHanoi.setPlayerCommand(checkTopB);
         towersOfHanoi.setPlayerCommand(checkTopC);
-
+        towersOfHanoi.setMaxPlayers(1);
         towersOfHanoi.setWinCondition((Container player) -> (containsAllDisks(towerB) || containsAllDisks(towerC)));
         return towersOfHanoi;
     }

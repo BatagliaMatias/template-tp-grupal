@@ -49,10 +49,12 @@ public class GameThread extends Thread {
         try {
             network.initConnection(connectionConfig);
             while (true) {
-                PlayerConnection player = new PlayerConnection(network.acceptClient(), idProvider, game, getWelcomeMessage());
-                System.out.println("Nuevo cliente ");
-                player.start();
-                game.addPlayer(player);
+                if(!game.isFull()) {
+                    PlayerConnection player = new PlayerConnection(network.acceptClient(), idProvider, game, getWelcomeMessage());
+                    System.out.println("Nuevo cliente ");
+                    player.start();
+                    game.addPlayer(player);
+                }
             }
 
         } catch (IOException e) {
