@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'ar.fiuba.tdd.tp-tp-grupal'
-version '1.0'
+version ''
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -15,6 +15,16 @@ apply plugin: 'pmd'
 apply plugin: "jacoco"
 apply from: 'gradle/fatjar.gradle'
 apply from: 'gradle/quality.gradle'
+apply from: 'gradle/OpenDoor2.gradle'
+apply from: 'gradle/OpenDoor.gradle'
+apply from: 'gradle/PickStick.gradle'
+apply from: 'gradle/TowersOfHanoi.gradle'
+apply from: 'gradle/WolfSheepCol.gradle'
+apply from: 'gradle/TreasureHunt.gradle'
+apply from: 'gradle/CursedObject.gradle'
+apply from: 'gradle/Escape2.gradle'
+apply from: 'gradle/server.gradle'
+apply from: 'gradle/client.gradle'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -40,5 +50,22 @@ tasks.withType(FindBugs) {
     reports {
         xml.enabled false
         html.enabled true
+    }
+}
+
+cpdCheck {
+    reports {
+        text.enabled = true
+        xml.enabled = false
+    }
+    source = sourceSets.main.allJava // only java, groovy and scala classes in 'main' sourceSets
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/coverage"
     }
 }

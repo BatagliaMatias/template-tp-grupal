@@ -1,0 +1,11 @@
+//create a single Jar with all dependencies
+task WolfSheepCol(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Template Project fiuba tecnicas',
+        		'Implementation-Version': '',
+                'Main-Class': 'ar.fiuba.tdd.tp.engine.motor2.games.WolfSheepCol'
+    }
+    baseName = "WolfSheepCol"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

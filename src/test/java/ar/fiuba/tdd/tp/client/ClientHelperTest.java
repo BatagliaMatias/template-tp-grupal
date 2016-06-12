@@ -1,8 +1,7 @@
 package ar.fiuba.tdd.tp.client;
 
-import ar.fiuba.tdd.tp.client.config.GameStates;
+import ar.fiuba.tdd.tp.client.config.ClientState;
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -17,7 +16,7 @@ public class ClientHelperTest {
     @Test
     public void testClientHelperConstructor() {
         ClientHelper client = new ClientHelper();
-        assertEquals(client.getGameState(), GameStates.WAITING);
+        assertEquals(client.getGameState(), ClientState.WAITING);
         assertEquals(client.getNetwork(), null);
     }
 
@@ -30,8 +29,8 @@ public class ClientHelperTest {
     @Test
     public void testSetGameState() {
         ClientHelper client = new ClientHelper();
-        client.setGameState(GameStates.ENDED);
-        assertEquals(client.getGameState(), GameStates.ENDED);
+        client.setGameState(ClientState.ENDED);
+        assertEquals(client.getGameState(), ClientState.ENDED);
     }
 
     @Test
@@ -40,6 +39,6 @@ public class ClientHelperTest {
         ClientHelper client = new ClientHelper();
         client.setNetwork(clientNetworkFacade);
         assertEquals(client.getNetwork(), clientNetworkFacade);
-        assertEquals(client.getGameState(), GameStates.RUNNING);
+        assertEquals(client.getGameState(), ClientState.RUNNING);
     }
 }

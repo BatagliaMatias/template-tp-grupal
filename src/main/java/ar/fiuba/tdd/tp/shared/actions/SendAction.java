@@ -14,13 +14,13 @@ public class SendAction extends ClientAction {
 
     public void solve(String userAction) {
         if (this.clientHelper.isConnected()) {
-            this.clientHelper.sendMessageAndReceive(userAction);
+            this.clientHelper.sendMessage(userAction);
         } else {
             System.out.println(Message.NO_SEND_CONNECTED.getText());
         }
     }
 
-    public boolean canSolve(ActionsEnum action) {
+    public boolean canSolve(String action) {
         return true;
     }
 }

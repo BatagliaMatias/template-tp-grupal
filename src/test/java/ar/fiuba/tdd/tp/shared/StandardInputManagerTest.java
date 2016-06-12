@@ -3,9 +3,8 @@ package ar.fiuba.tdd.tp.shared;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by jorlando on 03/05/16.

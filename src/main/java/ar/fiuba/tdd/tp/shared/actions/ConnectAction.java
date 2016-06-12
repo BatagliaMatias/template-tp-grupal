@@ -2,8 +2,8 @@ package ar.fiuba.tdd.tp.shared.actions;
 
 import ar.fiuba.tdd.tp.client.ClientHelper;
 import ar.fiuba.tdd.tp.client.network.ClientNetworkFacade;
-import ar.fiuba.tdd.tp.shared.ConnectionConfig;
 import ar.fiuba.tdd.tp.shared.Message;
+import ar.fiuba.tdd.tp.shared.network.ConnectionConfig;
 
 import java.io.IOException;
 
@@ -42,7 +42,7 @@ public class ConnectAction extends ClientAction {
         }
     }
 
-    public boolean canSolve(ActionsEnum action) {
-        return action.equals(ActionsEnum.CONNECT);
+    public boolean canSolve(String action) {
+        return action.equals("connect");
     }
 }

@@ -1,0 +1,11 @@
+//create a single Jar with all dependencies
+task client(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Template Project fiuba tecnicas',
+        		'Implementation-Version': '',
+                'Main-Class': 'ar.fiuba.tdd.tp.client.Client'
+    }
+    baseName = "client"
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
