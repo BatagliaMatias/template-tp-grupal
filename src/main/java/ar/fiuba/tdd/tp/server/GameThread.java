@@ -49,7 +49,7 @@ public class GameThread extends Thread {
         try {
             network.initConnection(connectionConfig);
             while (true) {
-                if(!game.isFull()) {
+                if (!game.isFull()) {
                     PlayerConnection player = new PlayerConnection(network.acceptClient(), idProvider, game, getWelcomeMessage());
                     System.out.println("Nuevo cliente ");
                     player.start();

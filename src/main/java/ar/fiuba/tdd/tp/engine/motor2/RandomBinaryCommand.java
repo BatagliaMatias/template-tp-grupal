@@ -3,23 +3,24 @@ package ar.fiuba.tdd.tp.engine.motor2;
 import java.util.HashMap;
 
 public class RandomBinaryCommand extends Command {
+
     private double probability;
     private Command notLuckyCommand;
+
     public RandomBinaryCommand(String name) {
         super(name);
         probability = 0.5;
         notLuckyCommand = new Command("default");
         notLuckyCommand.setExecutableCommand((HashMap<String, Container> components)-> {
-            return "Not lucky";
-        });
+                return "Not lucky";
+            });
 
     }
 
     public void setProbability(double probability) {
-        if (probability > 1){
+        this.probability = probability;
+        if (probability > 1) {
             this.probability = 1;
-        }else{
-            this.probability = probability;
         }
     }
 
@@ -33,11 +34,9 @@ public class RandomBinaryCommand extends Command {
 
     @Override
     public String execute() {
-        if(isLucky()){
+        if (isLucky()) {
             return super.execute();
         }
-       else{
-            return notLuckyCommand.execute();
-        }
+        return notLuckyCommand.execute();
     }
 }

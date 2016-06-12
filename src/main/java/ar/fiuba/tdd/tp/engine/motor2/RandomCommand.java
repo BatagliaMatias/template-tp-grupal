@@ -4,7 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RandomCommand extends Command {
+
     private HashMap<Command,Boolean> commands;
+    
     public RandomCommand(String name) {
         super(name);
         commands = new HashMap<>();

@@ -54,7 +54,7 @@ public class Game {
             @Override
             public void run() {
                 sendMessageToAll(event.execute());
-                for(PlayerConnection player : players){
+                for (PlayerConnection player : players) {
                     checkLoseCondition(player.getContainer());
                 }
             }
@@ -111,10 +111,9 @@ public class Game {
         int playerID = player.getID();
         lastPlayerToExecute = playerID;
         String result = this.execute(command, player);
-        if (result.equals(INVALID_COMMAND_MESSAGE)) {
-            sendMessageTo(playerID, result);
-        } else {
-            sendMessageToAll("player " + playerID + " has " + result);
+        sendMessageTo(playerID, result);
+        if (!(result.equals(INVALID_COMMAND_MESSAGE))) {
+            sendMessageToAll("Player " + playerID + " executed: " + command);
         }
         if (endGame()) {
             sendMessageToAll(getFinalMessage());
@@ -149,8 +148,8 @@ public class Game {
     private void checkLoseCondition(Container player) {
         if (loseCondition != null) {
             if (loseCondition.applies(player)) {
-                for(PlayerConnection playerConnection : players){
-                    if(playerConnection.getContainer() == player){
+                for (PlayerConnection playerConnection : players) {
+                    if (playerConnection.getContainer() == player) {
                         sendMessageToAll("Perdio: " + player.getName());
                         playerConnection.endConnection();
                         players.remove(playerConnection);
@@ -165,9 +164,9 @@ public class Game {
         return ((this.state == GameState.Won) || (this.state == GameState.Lost));
     }
 
-    public ArrayList<Container> getPlayers(){
+    public ArrayList<Container> getPlayers() {
         ArrayList<Container> playersContainers = new ArrayList<>();
-        for (PlayerConnection playerConnection : players){
+        for (PlayerConnection playerConnection : players) {
             playersContainers.add(playerConnection.getContainer());
         }
         return  playersContainers;
@@ -240,14 +239,14 @@ public class Game {
     }
 
     public void loseGame(Container player) {
-        for (PlayerConnection playerConnection : players){
-            if(playerConnection.getContainer() == player){
+        for (PlayerConnection playerConnection : players) {
+            if (playerConnection.getContainer() == player) {
                 removePlayer(playerConnection);
             }
         }
     }
 
     public boolean isFull() {
-        return players.size()>= maxPlayers;
+        return players.size() >= maxPlayers;
     }
 }
