@@ -145,7 +145,7 @@ public class Game {
         }
     }
 
-    private void checkLoseCondition(Container player) {
+    public void checkLoseCondition(Container player) {
         if (loseCondition != null) {
             if (loseCondition.applies(player)) {
                 for (PlayerConnection playerConnection : players) {
