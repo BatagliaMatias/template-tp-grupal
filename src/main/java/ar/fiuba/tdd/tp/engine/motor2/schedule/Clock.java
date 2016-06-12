@@ -15,14 +15,18 @@ public class Clock {
     }
 
     public Boolean isTheIntervalElapsed(long interval) {
-        if ((this.nowDateInMinutes > this.initialDateInMinutes) && ((this.nowDateInMinutes % interval) == 0)) {
+        if (this.notInit() && (((this.nowDateInMinutes - this.initialDateInMinutes) % (interval / 1000)) == 0)) {
             return true;
         }
         return false;
     }
 
+    public Boolean notInit() {
+        return (this.nowDateInMinutes > this.initialDateInMinutes);
+    }
+
     public long actualTimeInMinutes() {
-        return (long)Math.floor((((new Date()).getTime()) / (60000)))*1000;
+        return (long)Math.floor((((new Date()).getTime()) / (double)(60000)));
     }
 
     public void reload() {

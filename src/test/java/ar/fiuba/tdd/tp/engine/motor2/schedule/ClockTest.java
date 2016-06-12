@@ -22,7 +22,7 @@ public class ClockTest {
 
     @Test
     public void testActualTimeInMinutes() {
-        long dateInMinute = (long)Math.floor((((new Date()).getTime()) / (60000)))*1000;
+        long dateInMinute = (long) Math.floor((((new Date()).getTime()) / (long)(60000)));
         assertEquals(dateInMinute, this.clock.actualTimeInMinutes());
     }
 
@@ -51,20 +51,20 @@ public class ClockTest {
     public void testIsTheIntervalElapsedInitialEqualsNow() {
         this.clock.setInitialDateInMinutes(1);
         this.clock.setNowDateInMinutes(1);
-        assertFalse(this.clock.isTheIntervalElapsed(1));
+        assertFalse(this.clock.isTheIntervalElapsed(1000));
     }
 
     @Test
     public void testIsTheIntervalElapsedInitialNotEqualsNowButNotIntervalElapsed() {
         this.clock.setInitialDateInMinutes(0);
-        this.clock.setNowDateInMinutes(1000);
+        this.clock.setNowDateInMinutes(1);
         assertFalse(this.clock.isTheIntervalElapsed(2000));
     }
 
     @Test
     public void testIsTheIntervalElapsedInitialNotEqualsNowAndIntervalElapsed() {
         this.clock.setInitialDateInMinutes(0);
-        this.clock.setNowDateInMinutes(2000);
+        this.clock.setNowDateInMinutes(2);
         assertTrue(this.clock.isTheIntervalElapsed(2000));
     }
 

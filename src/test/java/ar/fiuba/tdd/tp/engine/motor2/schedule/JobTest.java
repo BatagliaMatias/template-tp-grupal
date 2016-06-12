@@ -50,14 +50,14 @@ public class JobTest {
     @Test
     public void testHasToExecuteFirstExecutionTrueRepeatable() {
         Job jobTest = new Job(true, interval, ()-> { return "test"; });
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes+2000);
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
         assertTrue(jobTest.hasToExecute(this.clock));
     }
 
     @Test
     public void testHasToExecuteFirstExecutionFalseRepeatable() {
         Job jobTest = new Job(false, interval, ()-> { return "test"; });
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes+2000);
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
         assertTrue(jobTest.hasToExecute(this.clock));
     }
 
@@ -65,7 +65,7 @@ public class JobTest {
     public void testHasToExecuteSecondExecutionTrueRepeatable() {
         Job jobTest = new Job(true, interval, ()-> { return "test"; });
         jobTest.execute();
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes+2000);
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
         assertTrue(jobTest.hasToExecute(this.clock));
     }
 
@@ -73,7 +73,7 @@ public class JobTest {
     public void testHasToExecuteSecondExecutionFalseRepeatable() {
         Job jobTest = new Job(false, interval, ()-> { return "test"; });
         jobTest.execute();
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes+2000);
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
         assertFalse(jobTest.hasToExecute(this.clock));
     }
 
