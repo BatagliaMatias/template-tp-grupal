@@ -5,6 +5,8 @@ import java.util.HashMap;
 public class RandomBinaryCommand extends Command {
     private double probability;
     private Command notLuckyCommand;
+    private RandomGenerator rng = new RandomGenerator();
+
     public RandomBinaryCommand(String name) {
         super(name);
         probability = 0.5;
@@ -27,8 +29,8 @@ public class RandomBinaryCommand extends Command {
         this.notLuckyCommand = notLuckyCommand;
     }
 
-    private boolean isLucky() {
-        return Math.random() <= probability;
+    public boolean isLucky() {
+        return rng.getRandomNumber() <= probability;
     }
 
     @Override
@@ -39,5 +41,9 @@ public class RandomBinaryCommand extends Command {
        else{
             return notLuckyCommand.execute();
         }
+    }
+
+    public void setNumberGenerator(RandomGenerator rng) {
+        this.rng = rng;
     }
 }
