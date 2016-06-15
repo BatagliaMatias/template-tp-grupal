@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RandomCommand extends Command {
+    private RandomGenerator rng = new RandomGenerator();
     private HashMap<Command,Boolean> commands;
     public RandomCommand(String name) {
         super(name);
@@ -29,13 +30,17 @@ public class RandomCommand extends Command {
                 .collect(Collectors.toList());
     }
 
-    private Command getRandomOption() {
-        int optionNumber = new Random().nextInt(getActiveCommands().size());
+    public Command getRandomOption() {
+        int optionNumber = rng.getRandomInt(getActiveCommands().size());
         return getActiveCommands().get(optionNumber);
     }
 
     @Override
     public String execute() {
         return getRandomOption().execute();
+    }
+
+    public void setNumberGenerator(RandomGenerator rng) {
+        this.rng = rng;
     }
 }
