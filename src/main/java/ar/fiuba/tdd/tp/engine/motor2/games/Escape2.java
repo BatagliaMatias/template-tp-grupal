@@ -45,8 +45,10 @@ public class Escape2 implements GameBuilder {
         salon3.setComponent(llave);
 
         //BiblotecaAcceso
+        Container energia = new Container("energia");
         Container bibliotecaAcceso = new Container("bibliotecaAcceso");
         Container bibliotecario = new Container("bibliotecario");
+        bibliotecario.setComponent(energia);
         bibliotecaAcceso.setComponent(bibliotecario);
 
         //Bibloteca
@@ -163,6 +165,16 @@ public class Escape2 implements GameBuilder {
             return "Que Cuadro con un Barco?";
         });
 
+        PlayerCommand pickBotellaLicor = new PlayerCommand("pick BotellaLicor");
+        pickBotellaLicor.setPlayerCommand((Container player) -> {
+            if (player.getParent() == salon1 && salon1.contains(botellaLicor)) {
+                salon1.removeComponent(botellaLicor);
+                player.setComponent(botellaLicor);
+                return "Tenes el Licor";
+            }
+            return "Que Cuadro con un Barco?";
+        });
+
         PlayerCommand openCajaFuerte = new PlayerCommand("open CajaFuerte using Llave");
         openCajaFuerte.setPlayerCommand((Container player) -> {
             if (player.getParent() == salon1 && !salon1.contains(cuadroBarco) && player.contains(llave)) {
@@ -207,7 +219,9 @@ public class Escape2 implements GameBuilder {
 
         PlayerCommand gotoBiblioteca = new PlayerCommand("goto Biblioteca");
         gotoBiblioteca.setPlayerCommand((Container player) -> {
-            if (player.getParent() == bibliotecaAcceso && (bibliotecario.contains(credencial) || !bibliotecaAcceso.contains(bibliotecario))) {
+            if (player.getParent() == bibliotecaAcceso && (bibliotecario.contains(credencial)
+                    || !bibliotecaAcceso.contains(bibliotecario)
+                    || !bibliotecario.contains(energia))) {
                 biblioteca.setComponent(player);
                 bibliotecaAcceso.removeComponent(player);
                 return "Entraste a la biblioteca";
@@ -370,11 +384,27 @@ public class Escape2 implements GameBuilder {
         bibliotecarioMove.desactiveCommand(bibliotecarioToBibliotecaAcceso);
         bibliotecarioMove.desactiveCommand(bibliotecarioToSotano);
 
-        Container energia = new Container("energia");
-        gameEscape2.addTimedEvent(false, milisegundosPorMinuto * 2, () -> {
-            bibliotecario.setComponent(energia);
-            gameEscape2.addTimedEvent(true, milisegundosPorMinuto * 4,bibliotecarioMove);
-            return "El bibliotecario se desperto!";
+
+
+
+        PlayerCommand giveLicor = new PlayerCommand("give BotellaLicor in Bibliotecario");
+        giveLicor.setPlayerCommand((Container player) -> {
+            if(player.getParent().contains(bibliotecario)) {
+                if (player.contains(botellaLicor)) {
+                    bibliotecario.removeComponent(energia);
+
+                    gameEscape2.addTimedEvent(false, milisegundosPorMinuto * 2, () -> {
+                        bibliotecario.setComponent(energia);
+                        gameEscape2.addTimedEvent(true, milisegundosPorMinuto * 4,bibliotecarioMove);
+                        return "El bibliotecario se desperto enojado!";
+                    });
+
+                    return "Se tomo todo el Licor";
+                } else {
+                    return "No tengo el Licor";
+                }
+            }
+            return "No estoy en la misma habitacion que el biblotecario";
         });
 
 
@@ -387,6 +417,7 @@ public class Escape2 implements GameBuilder {
         gameEscape2.setPlayerCommand(gotoPasillo);
         gameEscape2.setPlayerCommand(pickLLave);
         gameEscape2.setPlayerCommand(pickMartillo);
+        gameEscape2.setPlayerCommand(pickBotellaLicor);
         gameEscape2.setPlayerCommand(moveCuadroBarco);
         gameEscape2.setPlayerCommand(openCajaFuerte);
         gameEscape2.setPlayerCommand(pickCredencial);
@@ -399,6 +430,7 @@ public class Escape2 implements GameBuilder {
         gameEscape2.setPlayerCommand(useEscalera);
         gameEscape2.setPlayerCommand(breakVentana);
         gameEscape2.setPlayerCommand(gotoAfuera);
+        gameEscape2.setPlayerCommand(giveLicor);
         gameEscape2.setExecutableCommands(help);
         gameEscape2.setWinCondition((Container player) -> (afuera.contains(player)));
 
