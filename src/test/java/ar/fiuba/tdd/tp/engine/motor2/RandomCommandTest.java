@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class RandomCommandTest {
 
     @Test
-    public void testGetRandomOptions() {
+    public void GetRandomOptions() {
         RandomGeneratorMock rng = new RandomGeneratorMock();
         ArrayList<Integer> intSequence = new ArrayList<Integer>();
         intSequence.add(3);

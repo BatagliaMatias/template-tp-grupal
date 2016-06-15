@@ -1,26 +1,28 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class RandomCommand extends Command {
     private RandomGenerator rng = new RandomGenerator();
-    private HashMap<Command,Boolean> commands;
+    private LinkedHashMap<Command, Boolean> commands;
+
     public RandomCommand(String name) {
         super(name);
-        commands = new HashMap<>();
+        commands = new LinkedHashMap<>();
     }
 
     public void addOptionCommand(Command command) {
-        commands.put(command,true);
+        commands.put(command, true);
     }
 
     public void activeCommand(Command command) {
-        commands.put(command,true);
+        commands.put(command, true);
     }
 
     public void desactiveCommand(Command command) {
-        commands.put(command,false);
+        commands.put(command, false);
     }
 
     private List<Command> getActiveCommands() {
