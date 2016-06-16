@@ -8,6 +8,7 @@ import ar.fiuba.tdd.tp.shared.Message;
 public enum GameState {
     Ready(""),
     InProgress(""),
+    End(""),
     Won(Message.WIN.getText()),
     Lost(Message.LOST.getText());
 

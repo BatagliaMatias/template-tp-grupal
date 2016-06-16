@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.driver;
 import ar.fiuba.tdd.tp.engine.motor2.Game;
 import ar.fiuba.tdd.tp.engine.motor2.GameBuilder;
 import ar.fiuba.tdd.tp.engine.motor2.GameState;
+import ar.fiuba.tdd.tp.server.PlayerConnection;
 
 /**
  * Created by jorlando on 19/05/16.
@@ -24,6 +25,10 @@ public class ConcreteGameDriver implements GameDriver {
 
     public String sendCommand(String cmd) {
         return game.execute(cmd);
+    }
+
+    public String sendCommand(String cmd, PlayerConnection player) {
+        return game.execute(cmd, player);
     }
 
     public GameState getCurrentState() {

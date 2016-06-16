@@ -15,7 +15,7 @@ public class SchedulerTest {
 
     Scheduler scheduler;
     int jobExecutions = 0;
-    Job job = new Job(true, 1, () -> {
+    Job job = new Job(false, 2, () -> {
             jobExecutions++;
             return "test";
         });
@@ -68,12 +68,13 @@ public class SchedulerTest {
 
     @Test
     public void testRunExecuteJob() {
+        this.scheduler.start();
         this.scheduler.addJob(job);
         //Seteo la hora inicial hace dos minutos
-        this.scheduler.clock.setInitialDateInMinutes((this.scheduler.clock.actualTimeInMinutes() - 2));
+        this.scheduler.clock.setInitialDateInMinutes((this.scheduler.clock.actualTimeInMinutes() - 4));
         //Seteo que corrio hace dos minutos, el job deberia correr cada un minuto
-        this.scheduler.lastRun = (this.scheduler.clock.actualTimeInMinutes() - 2);
-        this.scheduler.start();
+        this.scheduler.lastRun = (this.scheduler.clock.actualTimeInMinutes() - 4);
+
         this.sleep();
         assertEquals(1, this.jobExecutions);
         assertTrue(this.scheduler.cycles > 0);

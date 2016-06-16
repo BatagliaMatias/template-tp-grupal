@@ -17,6 +17,7 @@ public class PlayerConnection extends Thread {
     private int id;
     private PlayerIDProvider idProvider;
     private Container container = null;
+    public GameState state = GameState.InProgress;
 
     public PlayerConnection(Socket socket, PlayerIDProvider idProvider, Game game, String welcomeMessage) {
         this.game = game;
@@ -28,7 +29,7 @@ public class PlayerConnection extends Thread {
             input = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
             output.println(welcomeMessage);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Falle al iniciar el Socket");
         }
     }
 
@@ -62,6 +63,7 @@ public class PlayerConnection extends Thread {
         game.removePlayer(this);
         idProvider.freeID(id);
         System.out.println("Disconnected client " + id);
+        state = GameState.End;
     }
 
     public void sendMessage(String message) {
@@ -81,5 +83,13 @@ public class PlayerConnection extends Thread {
 
     public void setContainer(Container container) {
         this.container = container;
+    }
+
+    public GameState getGameState() {
+        return this.state;
+    }
+
+    public void lostGame() {
+        this.state = GameState.Lost;
     }
 }

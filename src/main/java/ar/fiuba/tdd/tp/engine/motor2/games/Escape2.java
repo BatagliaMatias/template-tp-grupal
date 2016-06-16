@@ -48,6 +48,8 @@ public class Escape2 implements GameBuilder {
         Container energia = new Container("energia");
         Container bibliotecaAcceso = new Container("bibliotecaAcceso");
         Container bibliotecario = new Container("bibliotecario");
+        gameEscape2.addContainer(bibliotecario);
+        gameEscape2.addContainer(energia);
         bibliotecario.setComponent(energia);
         bibliotecaAcceso.setComponent(bibliotecario);
 
@@ -394,6 +396,7 @@ public class Escape2 implements GameBuilder {
                     gameEscape2.addTimedEvent(false, 2, () -> {
                         bibliotecario.setComponent(energia);
                         gameEscape2.addTimedEvent(true, 4,bibliotecarioMove);
+                        System.out.println("El bibliotecario se desperto enojado!");
                         return "El bibliotecario se desperto enojado!";
                     });
 

@@ -5,8 +5,6 @@ import ar.fiuba.tdd.tp.server.PlayerConnection;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Game {
     private static final String INVALID_COMMAND_MESSAGE = "Invalid command";
@@ -20,11 +18,27 @@ public class Game {
     private int lastPlayerToExecute = 0;
     private Container initialPosition = null;
     private int maxPlayers = 10;
-    Scheduler scheduler;
+    public Scheduler scheduler;
+
+    public ArrayList<Container> containers = new ArrayList<Container>();
 
     public Game() {
         this.scheduler = new Scheduler(this);
         this.scheduler.start();
+    }
+
+
+    public void addContainer(Container container) {
+        this.containers.add(container);
+    }
+
+    public Container getContainer(String nameContainer) {
+        for (Container container : this.containers) {
+            if (container.getName() == nameContainer) {
+                return container;
+            }
+        }
+        return null;
     }
 
     public void setMaxPlayers(int maxPlayers) {
@@ -141,6 +155,7 @@ public class Game {
             if (loseCondition.applies(player)) {
                 for (PlayerConnection playerConnection : players) {
                     if (playerConnection.getContainer() == player) {
+                        System.out.println("Perdio: " + player.getName());
                         sendMessageToAll("Perdio: " + player.getName());
                         playerConnection.endConnection();
                         players.remove(playerConnection);
@@ -185,6 +200,8 @@ public class Game {
     }
 
     public void removePlayer(PlayerConnection player) {
+        System.out.println("Player " + player.getID() + " has left the game");
+        player.lostGame();
         sendMessageToAll("Player " + player.getID() + " has left the game");
         players.remove(player);
         Container playerContainer = player.getContainer();
