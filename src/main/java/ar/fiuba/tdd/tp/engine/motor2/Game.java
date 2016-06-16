@@ -76,6 +76,15 @@ public class Game {
         }
     }
 
+    public void sendMessageToAllExcept(int id, String msg) {
+        for (PlayerConnection player : players) {
+            if (player.getID() != id) {
+                player.sendMessage(msg);
+            }
+        }
+    }
+
+
     public void sendMessageTo(int id, String msg) {
         for (PlayerConnection player : players) {
             if (player.getID() == id) {
@@ -104,7 +113,7 @@ public class Game {
         String result = this.execute(command, player);
         sendMessageTo(playerID, result);
         if (!(result.equals(INVALID_COMMAND_MESSAGE))) {
-            sendMessageToAll("Player " + playerID + " executed: " + command);
+            sendMessageToAllExcept(playerID,"Player " + playerID + " executed: " + command);
         }
         if (endGame()) {
             sendMessageToAll(getFinalMessage());
