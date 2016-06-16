@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import ar.fiuba.tdd.tp.engine.motor2.schedule.*;
 import ar.fiuba.tdd.tp.server.PlayerConnection;
 
 import java.util.ArrayList;
@@ -19,6 +20,12 @@ public class Game {
     private int lastPlayerToExecute = 0;
     private Container initialPosition = null;
     private int maxPlayers = 10;
+    Scheduler scheduler;
+
+    public Game() {
+        this.scheduler = new Scheduler(this);
+        this.scheduler.start();
+    }
 
     public void setMaxPlayers(int maxPlayers) {
         this.maxPlayers = maxPlayers;
@@ -49,25 +56,9 @@ public class Game {
     }
 
     public void addTimedEvent(boolean repeat, long delay, Event event) {
-        Timer timer = new Timer();
-        TimerTask eventTask = new TimerTask() {
-            @Override
-            public void run() {
-                sendMessageToAll(event.execute());
-                for(PlayerConnection player : players){
-                    checkLoseCondition(player.getContainer());
-                }
-            }
-        };
-        if (repeat) {
-            timer.schedule(eventTask, delay, delay);
-        } else {
-            timer.schedule(eventTask, delay);
-        }
-
+        Job newJob = new Job(repeat, delay, event);
+        this.scheduler.addJob(newJob);
     }
-
-
 
     public void addPlayer(PlayerConnection player) {
         sendMessageToAll("player " + player.getID() + " has entered the game");
@@ -93,14 +84,6 @@ public class Game {
         }
     }
 
-    public void sendMessageToAllExcept(int id, String msg) {
-        for (PlayerConnection player : players) {
-            if (player.getID() != id) {
-                player.sendMessage(msg);
-            }
-        }
-    }
-
     public void setCommandWin(Container container, String statusWin) {
         CommandWin win = new CommandWin();
         win.setComponent(container);
@@ -119,11 +102,9 @@ public class Game {
         int playerID = player.getID();
         lastPlayerToExecute = playerID;
         String result = this.execute(command, player);
-        if (result.equals(INVALID_COMMAND_MESSAGE)) {
-            sendMessageTo(playerID, result);
-        } else {
-            sendMessageTo(playerID,"player " + playerID + ": " + result);
-            sendMessageToAllExcept(playerID,"player " + playerID +" execute: "+command);
+        sendMessageTo(playerID, result);
+        if (!(result.equals(INVALID_COMMAND_MESSAGE))) {
+            sendMessageToAll("Player " + playerID + " executed: " + command);
         }
         if (endGame()) {
             sendMessageToAll(getFinalMessage());
@@ -155,11 +136,11 @@ public class Game {
         }
     }
 
-    private void checkLoseCondition(Container player) {
+    public void checkLoseCondition(Container player) {
         if (loseCondition != null) {
             if (loseCondition.applies(player)) {
-                for(PlayerConnection playerConnection : players){
-                    if(playerConnection.getContainer() == player){
+                for (PlayerConnection playerConnection : players) {
+                    if (playerConnection.getContainer() == player) {
                         sendMessageToAll("Perdio: " + player.getName());
                         playerConnection.endConnection();
                         players.remove(playerConnection);
@@ -174,9 +155,9 @@ public class Game {
         return ((this.state == GameState.Won) || (this.state == GameState.Lost));
     }
 
-    public ArrayList<Container> getPlayers(){
+    public ArrayList<Container> getPlayers() {
         ArrayList<Container> playersContainers = new ArrayList<>();
-        for (PlayerConnection playerConnection : players){
+        for (PlayerConnection playerConnection : players) {
             playersContainers.add(playerConnection.getContainer());
         }
         return  playersContainers;
@@ -249,14 +230,14 @@ public class Game {
     }
 
     public void loseGame(Container player) {
-        for (PlayerConnection playerConnection : players){
-            if(playerConnection.getContainer() == player){
+        for (PlayerConnection playerConnection : players) {
+            if (playerConnection.getContainer() == player) {
                 removePlayer(playerConnection);
             }
         }
     }
 
     public boolean isFull() {
-        return players.size()>= maxPlayers;
+        return players.size() >= maxPlayers;
     }
 }

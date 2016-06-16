@@ -19,9 +19,9 @@ public class OpenDoor implements GameBuilder {
 
         PlayerCommand openDoor = new PlayerCommand("open door");
         openDoor.setPlayerCommand((Container player) -> {
-            roomB.setComponent(player);
-            return "moved to room B";
-        });
+                roomB.setComponent(player);
+                return "moved to room B";
+            });
 
         openDoorGame.setPlayerCommand(openDoor);
         openDoorGame.setWinCondition((Container player) -> (roomB.contains(player)));

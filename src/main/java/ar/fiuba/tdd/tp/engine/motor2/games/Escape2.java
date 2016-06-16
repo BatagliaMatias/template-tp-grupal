@@ -297,8 +297,6 @@ public class Escape2 implements GameBuilder {
             return "No puedo";
         });
 
-        long milisegundosPorMinuto = 60000;
-
 
         RandomCommand bibliotecarioMove = new RandomCommand("bibliotecarioMove");
 
@@ -393,9 +391,9 @@ public class Escape2 implements GameBuilder {
                 if (player.contains(botellaLicor)) {
                     bibliotecario.removeComponent(energia);
 
-                    gameEscape2.addTimedEvent(false, milisegundosPorMinuto * 2, () -> {
+                    gameEscape2.addTimedEvent(false, 2, () -> {
                         bibliotecario.setComponent(energia);
-                        gameEscape2.addTimedEvent(true, milisegundosPorMinuto * 4,bibliotecarioMove);
+                        gameEscape2.addTimedEvent(true, 4,bibliotecarioMove);
                         return "El bibliotecario se desperto enojado!";
                     });
 
@@ -439,6 +437,4 @@ public class Escape2 implements GameBuilder {
         return gameEscape2;
 
     }
-
-
 }
