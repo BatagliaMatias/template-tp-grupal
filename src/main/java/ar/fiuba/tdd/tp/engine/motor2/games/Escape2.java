@@ -219,14 +219,14 @@ public class Escape2 implements GameBuilder {
 
         PlayerCommand gotoBiblioteca = new PlayerCommand("goto Biblioteca");
         gotoBiblioteca.setPlayerCommand((Container player) -> {
-            if (player.getParent() == bibliotecaAcceso && (bibliotecario.contains(credencial)
+            if (player.getParent() == bibliotecaAcceso && (player.contains(credencial)
                     || !bibliotecaAcceso.contains(bibliotecario)
                     || !bibliotecario.contains(energia))) {
                 biblioteca.setComponent(player);
                 bibliotecaAcceso.removeComponent(player);
                 return "Entraste a la biblioteca";
             }else{
-                if(player.getParent() == bibliotecaAcceso && (bibliotecaAcceso.contains(bibliotecario) && !bibliotecario.contains(credencial))){
+                if(player.getParent() == bibliotecaAcceso && (bibliotecaAcceso.contains(bibliotecario))){
                     gameEscape2.loseGame(player);
                 }
             }
@@ -351,7 +351,7 @@ public class Escape2 implements GameBuilder {
             biblioteca.setComponent(bibliotecario);
 
             for(Container player : gameEscape2.getPlayers()){
-                if(player.getParent() == biblioteca && !player.contains(credencial) && bibliotecario.contains(credencial)){
+                if(player.getParent() == biblioteca && !player.contains(credencial)){
                     gameEscape2.loseGame(player);
                 }
             }
@@ -368,7 +368,7 @@ public class Escape2 implements GameBuilder {
             sotano.setComponent(bibliotecario);
 
             for(Container player : gameEscape2.getPlayers()){
-                if(player.getParent() == sotano && !player.contains(credencial) && bibliotecario.contains(credencial)){
+                if(player.getParent() == sotano && !player.contains(credencial)){
                     gameEscape2.loseGame(player);
                 }
             }
