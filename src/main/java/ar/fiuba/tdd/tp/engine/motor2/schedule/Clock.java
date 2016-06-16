@@ -12,10 +12,12 @@ public class Clock {
 
     public Clock() {
         this.initialDateInMinutes = this.actualTimeInMinutes();
+        this.nowDateInMinutes = this.actualTimeInMinutes();
     }
 
+    // interval: intervalo en minutos
     public Boolean isTheIntervalElapsed(long interval) {
-        if (this.notInit() && (((this.nowDateInMinutes - this.initialDateInMinutes) % (interval / 1000)) == 0)) {
+        if (this.notInit() && (((this.nowDateInMinutes - this.initialDateInMinutes) % interval) == 0)) {
             return true;
         }
         return false;

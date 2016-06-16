@@ -28,6 +28,7 @@ public class ClockTest {
 
     @Test
     public void testReload() {
+        this.clock.setNowDateInMinutes(0);
         assertEquals(0, this.clock.nowDateInMinutes);
         this.clock.reload();
         assertNotEquals(0, this.clock.nowDateInMinutes);
@@ -35,7 +36,6 @@ public class ClockTest {
 
     @Test
     public void testSetNowDateInMinutes() {
-        assertEquals(0, this.clock.nowDateInMinutes);
         this.clock.setNowDateInMinutes(1);
         assertEquals(1, this.clock.nowDateInMinutes);
     }
@@ -51,21 +51,21 @@ public class ClockTest {
     public void testIsTheIntervalElapsedInitialEqualsNow() {
         this.clock.setInitialDateInMinutes(1);
         this.clock.setNowDateInMinutes(1);
-        assertFalse(this.clock.isTheIntervalElapsed(1000));
+        assertFalse(this.clock.isTheIntervalElapsed(1));
     }
 
     @Test
     public void testIsTheIntervalElapsedInitialNotEqualsNowButNotIntervalElapsed() {
         this.clock.setInitialDateInMinutes(0);
         this.clock.setNowDateInMinutes(1);
-        assertFalse(this.clock.isTheIntervalElapsed(2000));
+        assertFalse(this.clock.isTheIntervalElapsed(2));
     }
 
     @Test
     public void testIsTheIntervalElapsedInitialNotEqualsNowAndIntervalElapsed() {
         this.clock.setInitialDateInMinutes(0);
         this.clock.setNowDateInMinutes(2);
-        assertTrue(this.clock.isTheIntervalElapsed(2000));
+        assertTrue(this.clock.isTheIntervalElapsed(2));
     }
 
 }

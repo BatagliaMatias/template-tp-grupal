@@ -14,7 +14,7 @@ public class JobTest {
     Job job = null;
     Clock clock = null;
     Boolean repeatable = false;
-    long interval = 2000;
+    long interval = 2;
 
     @Before
     public void setUp() {
@@ -50,14 +50,14 @@ public class JobTest {
     @Test
     public void testHasToExecuteFirstExecutionTrueRepeatable() {
         Job jobTest = new Job(true, interval, ()-> { return "test"; });
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + this.interval);
         assertTrue(jobTest.hasToExecute(this.clock));
     }
 
     @Test
     public void testHasToExecuteFirstExecutionFalseRepeatable() {
         Job jobTest = new Job(false, interval, ()-> { return "test"; });
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + this.interval );
         assertTrue(jobTest.hasToExecute(this.clock));
     }
 
@@ -65,7 +65,7 @@ public class JobTest {
     public void testHasToExecuteSecondExecutionTrueRepeatable() {
         Job jobTest = new Job(true, interval, ()-> { return "test"; });
         jobTest.execute();
-        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + (this.interval / 1000));
+        this.clock.setNowDateInMinutes(this.clock.initialDateInMinutes + this.interval);
         assertTrue(jobTest.hasToExecute(this.clock));
     }
 

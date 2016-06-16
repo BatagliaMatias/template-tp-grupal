@@ -7,8 +7,8 @@ import ar.fiuba.tdd.tp.engine.motor2.Event;
  */
 public class Job {
 
-    boolean repeatable = false;
-    long interval = 0;
+    boolean repeatable;
+    long interval;
     Event task;
     int quantityExecutions;
 
