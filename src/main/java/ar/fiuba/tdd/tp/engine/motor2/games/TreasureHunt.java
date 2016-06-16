@@ -103,7 +103,7 @@ public class TreasureHunt implements GameBuilder {
         treasureHunt.setPlayerCommand(pickKey);
         treasureHunt.setPlayerCommand(pickTreasure);
 
-        treasureHunt.addTimedEvent(true, 50000, () -> {
+        treasureHunt.addTimedEvent(true, 1, () -> {
                 if (box.getParent() == room2) {
                     room2.removeComponent(box);
                     room1.setComponent(box);

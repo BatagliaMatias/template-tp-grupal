@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.engine.motor2;
 
+import ar.fiuba.tdd.tp.engine.motor2.schedule.*;
 import ar.fiuba.tdd.tp.server.PlayerConnection;
 
 import java.util.ArrayList;
@@ -19,6 +20,12 @@ public class Game {
     private int lastPlayerToExecute = 0;
     private Container initialPosition = null;
     private int maxPlayers = 10;
+    Scheduler scheduler;
+
+    public Game() {
+        this.scheduler = new Scheduler(this);
+        this.scheduler.start();
+    }
 
     public void setMaxPlayers(int maxPlayers) {
         this.maxPlayers = maxPlayers;
@@ -49,25 +56,9 @@ public class Game {
     }
 
     public void addTimedEvent(boolean repeat, long delay, Event event) {
-        Timer timer = new Timer();
-        TimerTask eventTask = new TimerTask() {
-            @Override
-            public void run() {
-                sendMessageToAll(event.execute());
-                for (PlayerConnection player : players) {
-                    checkLoseCondition(player.getContainer());
-                }
-            }
-        };
-        if (repeat) {
-            timer.schedule(eventTask, delay, delay);
-        } else {
-            timer.schedule(eventTask, delay);
-        }
-
+        Job newJob = new Job(repeat, delay, event);
+        this.scheduler.addJob(newJob);
     }
-
-
 
     public void addPlayer(PlayerConnection player) {
         sendMessageToAll("player " + player.getID() + " has entered the game");

@@ -132,7 +132,7 @@ public class WolfSheepCol implements GameBuilder {
 
 
         Game wolfSheepCol = new Game();
-        wolfSheepCol.addTimedEvent(true, 50000, () -> "AUTO MSG: the wolf is in " + wolf.getParent().getName() + " the sheep is in "
+        wolfSheepCol.addTimedEvent(true, 1, () -> "AUTO MSG: the wolf is in " + wolf.getParent().getName() + " the sheep is in "
                 + sheep.getParent().getName() + " the col is in " + col.getParent().getName());
 
         wolfSheepCol.setExecutableCommands(takeCol);
