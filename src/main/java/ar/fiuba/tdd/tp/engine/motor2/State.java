@@ -25,9 +25,9 @@ public class State {
 
     public void setLamdaModifierByCommandAndState(String command, String stateAdd, String message) {
         this.setModifier(command, (HashMap<String, Container> components, HashMap<String, Boolean> states) -> {
-            states.put(stateAdd, true);
-            return message;
-        });
+                states.put(stateAdd, true);
+                return message;
+            });
 
     }
 

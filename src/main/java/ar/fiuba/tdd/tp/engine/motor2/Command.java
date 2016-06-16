@@ -29,7 +29,7 @@ public class Command implements Event {
                     }
                 }
                 return components.get(componentName).changeStatus(newStatus);
-        });
+            });
     }
 
     public void setComponent(Container component) {

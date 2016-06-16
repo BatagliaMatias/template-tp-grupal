@@ -13,10 +13,10 @@ public class OpenDoor2 implements GameBuilder {
         boxStates.setState("open", false);
         boxStates.setState("visible", true);
         boxStates.setModifier("open", (HashMap<String, Container> components, HashMap<String, Boolean> states) -> {
-            states.put("open", true);
-            components.get("Key").changeStatus("visible");
-            return "The box is open";
-        });
+                states.put("open", true);
+                components.get("Key").changeStatus("visible");
+                return "The box is open";
+            });
 
         Container box = new Container("Box");
         box.setState(boxStates);
