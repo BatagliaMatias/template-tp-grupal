@@ -34,7 +34,7 @@ public class Game {
 
     public Container getContainer(String nameContainer) {
         for (Container container : this.containers) {
-            if (container.getName() == nameContainer) {
+            if (container.getName().equals(nameContainer)) {
                 return container;
             }
         }
