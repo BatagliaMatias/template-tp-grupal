@@ -93,6 +93,14 @@ public class Game {
         }
     }
 
+    public void sendMessageToAllExcept(int id, String msg) {
+        for (PlayerConnection player : players) {
+            if (player.getID() != id) {
+                player.sendMessage(msg);
+            }
+        }
+    }
+
     public void setCommandWin(Container container, String statusWin) {
         CommandWin win = new CommandWin();
         win.setComponent(container);
@@ -114,7 +122,8 @@ public class Game {
         if (result.equals(INVALID_COMMAND_MESSAGE)) {
             sendMessageTo(playerID, result);
         } else {
-            sendMessageToAll("player " + playerID + " has " + result);
+            sendMessageTo(playerID,"player " + playerID + ": " + result);
+            sendMessageToAllExcept(playerID,"player " + playerID +" execute: "+command);
         }
         if (endGame()) {
             sendMessageToAll(getFinalMessage());
