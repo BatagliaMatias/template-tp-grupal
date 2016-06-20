@@ -30,7 +30,7 @@ public class Scheduler extends Thread {
         jobs.add(newJob);
     }
 
-    public synchronized void run() {
+    public void run() {
         while (true) {
             this.cycles++;
             if (this.hasToRun()) {
@@ -56,7 +56,7 @@ public class Scheduler extends Thread {
 
     }
 
-    public synchronized boolean hasToRun() {
+    public boolean hasToRun() {
         this.clock.reload();
         long actual = this.clock.actualTimeInMinutes();
         if (this.lastRun != actual) {
@@ -69,5 +69,9 @@ public class Scheduler extends Thread {
 
     public void setLastRun(long newLast) {
         this.lastRun = newLast;
+    }
+
+    public void waitExecutionOfJob(int job){
+        this.jobs.get(job).waitForExecution();
     }
 }

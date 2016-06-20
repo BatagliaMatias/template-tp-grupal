@@ -55,8 +55,8 @@ public class Escape2Test {
         game.scheduler.clock.setInitialDateInMinutes((game.scheduler.clock.actualTimeInMinutes() - 2));
         //2: seteo que la ultima vez que corrio el job fue hace 2 minutos
         game.scheduler.setLastRun(game.scheduler.clock.actualTimeInMinutes() - 2);
-        // 3: le doy 500 ms para asegurarme que el ciclo del job corre
-        this.sleep();
+        // 3: Espero que corra el job
+        game.scheduler.waitExecutionOfJob(0);
         //4: como ya corrio el job, el bibliotecario tiene energia
         assertTrue(bibliotecario.contains(energia));
         driver.sendCommand("goto Biblioteca", player1);
@@ -101,8 +101,8 @@ public class Escape2Test {
         game.scheduler.clock.setInitialDateInMinutes((game.scheduler.clock.actualTimeInMinutes() - 2));
         //2: seteo que la ultima vez que corrio el job fue hace 2 minutos
         game.scheduler.setLastRun(game.scheduler.clock.actualTimeInMinutes() - 2);
-        // 3: le doy 500 ms para asegurarme que el ciclo del job corre
-        this.sleep();
+        // 3: Espero que corra el job
+        game.scheduler.waitExecutionOfJob(0);
         //4: como ya corrio el job, el bibliotecario tiene energia
         assertTrue(bibliotecario.contains(energia));
 
@@ -111,14 +111,5 @@ public class Escape2Test {
 
         assertEquals(GameState.Lost, player1.getGameState());
         assertNotEquals(GameState.Lost, player2.getGameState());
-    }
-
-
-    public void sleep() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

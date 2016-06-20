@@ -2,6 +2,8 @@ package ar.fiuba.tdd.tp.engine.motor2.schedule;
 
 import ar.fiuba.tdd.tp.engine.motor2.Event;
 
+import java.util.Date;
+
 /**
  * Created by jorlando on 11/06/16.
  */
@@ -33,5 +35,17 @@ public class Job {
 
     public boolean alreadyExecuted() {
         return (this.quantityExecutions > 0);
+    }
+
+    public void waitForExecution() {
+        long initialTimeInMillis = (new Date()).getTime();
+        long actualTimeInMillis = (new Date()).getTime();
+        long maxTimeWaitInMillis = 10000;
+        while ((this.getQuantityExecutions() == 0) && ((actualTimeInMillis - initialTimeInMillis) <= maxTimeWaitInMillis)) {
+            actualTimeInMillis = (new Date()).getTime();
+        }
+    }
+    public int getQuantityExecutions() {
+        return this.quantityExecutions;
     }
 }
